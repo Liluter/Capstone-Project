@@ -16,6 +16,8 @@ npm install
 npm run dev
 ```
 
+### 3. If not open automatically in web browser go to [Best Store](http://127.0.0.1:8080) link.
+
 ## Techstack:
 
 ### HTML, CSS, JS, SCSS
