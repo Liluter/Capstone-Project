@@ -12,8 +12,8 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "echo \"Dummy build script required for Autocode Compile\"",
-		"compile": "sass src/scss:dist/css",
-		"dev": "npm run compile && live-server"
+		"compile": "sass src/scss:src/dist/css",
+		"dev": "npm run compile && live-server src"
 	},
 	"devDependencies": {
 		"live-server": "^1.2.0",
