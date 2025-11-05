@@ -11,10 +11,12 @@
 	"type": "commonjs",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"compile": "sass src/scss:dist/css"
+		"build": "echo \"Dummy build script required for Autocode Compile\"",
+		"compile": "sass src/scss:dist/css",
+		"dev": "npm run compile && live-server"
 	},
 	"devDependencies": {
+		"live-server": "^1.2.0",
 		"sass": "^1.93.3"
 	}
 }
