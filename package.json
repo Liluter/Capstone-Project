@@ -12,11 +12,16 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "echo \"Dummy build script required for Autocode Compile\"",
+		"lint": "npx stylelint '**/*.scss' ",
 		"compile": "sass src/scss:src/dist/css",
-		"dev": "npm run compile && live-server src"
+		"dev": "npm run compile && npm run lint && live-server src"
 	},
 	"devDependencies": {
 		"live-server": "^1.2.0",
 		"sass": "^1.93.3"
+	},
+	"dependencies": {
+		"stylelint": "^16.25.0",
+		"stylelint-scss": "^6.12.1"
 	}
 }
