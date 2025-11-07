@@ -1,4 +1,7 @@
 node_modules
 package-lock.json
 .DS_Store
-/.DS_Store
+
+#temporary files and compilation
+src/dist/
+src/html/temp/
