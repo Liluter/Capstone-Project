@@ -14,26 +14,20 @@ hr {
 	margin: 0;
 	padding: 0;
 }
-
-.site-header {
+.header-container {
+	width: 100%;
+	background-color: var.$white;
 	position: sticky;
 	top: 0;
+}
+.site-header {
 	margin: 0 auto;
+
 	width: var.$brakepoint-large;
+
 	background-color: var.$white;
 	color: black;
-	li {
-		list-style: none;
-		list-style-type: none;
-	}
-	a {
-		&:link,
-		&:visited,
-		&:active {
-			text-decoration: none;
-			color: inherit;
-		}
-	}
+
 	hr.regular {
 		border-top: 1px solid var.$light-gray;
 		opacity: 0.2;
@@ -64,7 +58,7 @@ hr {
 					border-radius: 50% 50%;
 					width: var.$height-xs;
 					height: var.$height-xs;
-					font-size: var.$font-small;
+					font-size: var.$font-size-small;
 					text-align: center;
 					font-weight: 700;
 					display: block;
@@ -118,7 +112,7 @@ hr {
 .main-navigation {
 	height: var.$height-m;
 	font-weight: var.$font-bold;
-	font-size: var.$font-medium;
+	font-size: var.$font-size-medium;
 }
 .header-branding a {
 	@extend %display-centered;
@@ -127,7 +121,7 @@ hr {
 	.site-name {
 		color: var.$primary;
 		font-weight: var.$font-bold;
-		font-size: var.$font-big;
+		font-size: var.$font-size-big;
 		min-width: max-content;
 	}
 }
@@ -150,8 +144,24 @@ hr {
 	}
 }
 @media screen and (width <= var.$brakepoint-medium) {
+	.header-top {
+		height: var.$height-m;
+	}
 	.site-header {
 		width: var.$brakepoint-small;
+	}
+	.main-navigation {
+		height: var.$height-s;
+	}
+}
+@media screen and (orientation: landscape) and (width <= var.$brakepoint-medium) {
+	.header-top {
+		height: var.$height-m;
+		.header-menu {
+		}
+	}
+	.main-navigation {
+		height: var.$height-s;
 	}
 }
 @media screen and (width <= var.$brakepoint-small) {
@@ -173,6 +183,7 @@ hr {
 		}
 	}
 }
+
 @media screen and (orientation: portrait) and (width <= var.$brakepoint-very-small) {
 	.header-top {
 		height: var.$height-m;
@@ -190,7 +201,7 @@ hr {
 			}
 		}
 		a .site-name {
-			font-size: var.$font-large;
+			font-size: var.$font-size-large;
 		}
 	}
 	.site-header > .main-navigation {

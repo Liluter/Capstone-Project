@@ -1,14 +1,26 @@
 @use "../base/fonts";
 * {
 	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 html,
 body,
 ul,
 ol {
-	margin: 0;
-	padding: 0;
+}
+a {
+	&:link,
+	&:visited,
+	&:active {
+		text-decoration: none;
+		color: inherit;
+	}
+}
+li {
+	list-style: none;
+	list-style-type: none;
 }
 
 body {

@@ -1,0 +1,11 @@
+@mixin font($fontWeight, $fontSize, $fontFamily...) {
+	font-family: $fontFamily;
+	font-weight: $fontWeight;
+	font-size: $fontSize;
+}
+
+%display-centered {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
