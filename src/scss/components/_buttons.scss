@@ -1,0 +1,20 @@
+@use "../abstracts/variables" as var;
+@use "../base/fonts";
+@use "../abstracts/mixins";
+
+a.btn-link-primary {
+	display: block;
+	width: 174px;
+	height: 60px;
+	background-color: var.$primary;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var.$white;
+	@include mixins.font(
+		var.$font-bold,
+		var.$font-size-medium,
+		"Monteserrat",
+		sans-serif
+	);
+}
