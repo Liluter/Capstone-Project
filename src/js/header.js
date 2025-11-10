@@ -1,6 +1,6 @@
-const body = document.body;
 const headerHtml = `
-  <header class="site-header">
+  <header class="header-container">
+    <div class="site-header">
     <div class="header-top">
       <ul class="list socialmedia">
         <li>
@@ -83,13 +83,14 @@ const headerHtml = `
         </li>
       </ul>
     </div>
+    </div>
   </header>`;
 
-body.insertAdjacentHTML("afterbegin", headerHtml);
+document.body.insertAdjacentHTML("afterbegin", headerHtml);
 const burgerMenu = document.getElementById("burger-menu");
 const cartIconCounter = document.getElementById("");
 burgerMenu.addEventListener("click", toggleMenu);
-body.addEventListener("click", (event) => closeMenu(event));
+document.body.addEventListener("click", (event) => closeMenu(event));
 const dropdownMenu = document.querySelector(".site-header .dropdown-menu");
 
 function toggleMenu() {
