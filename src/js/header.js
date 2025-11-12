@@ -99,7 +99,7 @@ function toggleMenu() {
 function closeMenu(event) {
 	if (
 		event.target.closest(".dropdown-menu") ||
-		event.target.parentElement === body
+		event.target.parentElement === document.body
 	) {
 		dropdownMenu.classList.remove("show");
 	}
