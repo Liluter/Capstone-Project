@@ -1,6 +1,9 @@
 $primary: #b92770;
 $secondary: #504e4a;
-$light-gray: #727174;
+$gray: #727174;
+$light-gray: #e7e8e9;
+$black: #000000;
+$black40: #00000066;
 $white: #ffffff;
 
 $space-smallest: 6px;
@@ -8,22 +11,33 @@ $space-small: 8px;
 $space-medium: 12px;
 $space-large: 18px;
 $space-big: 24px;
-$space-verybig: 34px;
+$space-bigger: 30px;
+$space-verybig: 60px;
+$space-ultrabig: 90px;
+$space-mega: 120px;
 
 $font-size-small: 12px;
 $font-size-regular: 15px;
 $font-size-medium: 18px;
 $font-size-large: 22px;
 $font-size-big: 30px;
+$font-size-ultrabig: 40px;
 
 $font-regular: 400;
 $font-medium: 500;
 $font-bold: 700;
+$font-black: 900;
 
 $brakepoint-large: 1440px;
 $brakepoint-medium: 1024px;
 $brakepoint-small: 768px;
 $brakepoint-very-small: 511px;
+
+$breakepoints: (
+	"large": $brakepoint-large,
+	"medium": $brakepoint-medium,
+	"small": $brakepoint-small,
+);
 
 $height-xs: 18px;
 $height-s: 36px;
@@ -34,3 +48,5 @@ $radius-small: 4px;
 $radius-medium: 8px;
 $radius-large: 12px;
 $radius-big: 20px;
+
+$shadow-drop: 0 20px 80px 0 #c1c7d4b3;

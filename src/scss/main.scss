@@ -1,2 +1,158 @@
 @use "base/reset";
+@use "abstracts/_variables" as var;
+@use "abstracts/mixins";
 @use "layouts/header";
+@use "layouts/footer";
+@use "components/buttons";
+
+.main-container {
+	@include mixins.font(
+		var.$font-regular,
+		var.$font-size-regular,
+		"Montserrat",
+		sans-serif
+	);
+	width: 100%;
+	> * {
+		margin-bottom: clamp(
+			var.$space-big,
+			10vw - var.$space-big,
+			var.$space-mega
+		);
+	}
+	color: var.$black;
+	p.description {
+		color: var.$secondary;
+	}
+}
+
+.hero {
+	background-color: var.$white;
+	font-size: var.$font-size-medium;
+
+	.hero-wrapper {
+		background-color: var.$light-gray;
+		height: calc(100vh - var.$height-s - var.$height-l - var.$space-big);
+		width: 100%;
+		margin-bottom: var.$space-ultrabig * -1;
+
+		.hero-section {
+			@extend %display-centered;
+			margin: 0 auto;
+			padding: var.$space-big 0;
+			height: 100%;
+			> * {
+				flex: 1 1 50%;
+			}
+			.hero-content {
+				margin-right: -50px;
+				padding-left: var.$space-medium;
+				padding-right: var.$space-medium;
+			}
+
+			.hero-image {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+	.card {
+		display: grid;
+		grid-template-columns: repeat(2, calc(var.$brakepoint-large / 2));
+		grid-template-rows: calc(var.$brakepoint-large / 2);
+		box-shadow: var.$shadow-drop;
+
+		h2.card-title {
+			font-weight: var.$font-black;
+		}
+		> * {
+			@extend %display-centered;
+			padding: 0 var.$space-ultrabig;
+		}
+		.left-card {
+			background-color: var.$white;
+			.avatar-item {
+				@extend %display-centered;
+				justify-content: flex-start;
+				column-gap: var.$space-big;
+				.avatar-image {
+					height: clamp(4em, 4em + 0.5vw, 5em);
+					width: auto;
+				}
+				p.avatar-name {
+					font-weight: var.$font-bold;
+					font-size: clamp(1.1em, max(2vw, 1em), 1.2em);
+				}
+				p {
+					margin: var.$space-smallest 0;
+				}
+			}
+		}
+		.right-card {
+			background-image: linear-gradient(var.$black40, var.$black40),
+				url("../../assets/images/homepage/discounted_suitcases2x.png");
+			background-size: cover;
+			background-repeat: no-repeat;
+			color: var.$white;
+			p {
+				color: inherit;
+			}
+		}
+	}
+}
+
+@media screen and (width <= var.$brakepoint-large) {
+	.hero {
+		.card {
+			grid-template-columns: repeat(2, calc(var.$brakepoint-medium / 2));
+			grid-template-rows: calc(var.$brakepoint-medium / 2);
+			font-size: var.$font-size-regular;
+			> * {
+				padding: 0 var.$space-bigger * 2;
+			}
+		}
+	}
+}
+@media screen and (width <= var.$brakepoint-medium) {
+	.hero {
+		.hero-wrapper {
+			margin-bottom: 0;
+			height: auto;
+			.hero-section {
+				flex-direction: column-reverse;
+				height: fit-content;
+				.hero-content {
+					margin-right: 0;
+				}
+			}
+		}
+		.card {
+			grid-template-columns: repeat(2, calc(var.$brakepoint-small / 2));
+			grid-template-rows: calc(var.$brakepoint-small / 2);
+			font-size: var.$font-size-regular;
+			> * {
+				padding: 0 var.$space-bigger;
+			}
+		}
+	}
+}
+@media screen and (width <= var.$brakepoint-small) {
+	.hero {
+		.card {
+			grid-template-columns: 100vw;
+			grid-template-rows: 100vw 100vw;
+			font-size: var.$font-size-regular;
+			> * {
+				padding: 0 var.$space-bigger;
+			}
+		}
+	}
+}
+@media screen and (orientation: portrait) and (width <= var.$brakepoint-very-small) {
+	.main-container {
+		a.btn-link-primary {
+			width: 100%;
+			height: auto;
+		}
+	}
+}
