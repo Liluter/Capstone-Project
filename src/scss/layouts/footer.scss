@@ -1,5 +1,5 @@
-@use "../abstracts/variables" as var;
 @use "../base/fonts";
+@use "../abstracts/variables" as var;
 @use "../abstracts/mixins";
 
 .footer-container {
@@ -13,8 +13,7 @@
 		@include mixins.font(
 			var.$font-bold,
 			var.$font-size-medium,
-			"Inter",
-			Arial,
+			Inter,
 			Helvetica,
 			sans-serif
 		);
@@ -22,9 +21,7 @@
 	.benefits {
 		width: var.$brakepoint-large;
 		margin: 0 auto;
-		padding: var.$space-verybig var.$space-smallest;
-		// display: flex;
-		// justify-content: center;
+		padding: var.$space-big var.$space-smallest;
 		@extend %display-centered;
 		align-items: flex-start;
 		flex-direction: column;
@@ -45,8 +42,6 @@
 			display: flex;
 			justify-content: space-around;
 			li {
-				// display: flex;
-				// align-items: center;
 				@extend %display-centered;
 
 				justify-content: flex-start;
@@ -279,7 +274,7 @@
 			.footer-contact {
 				grid-column: 1;
 				address {
-					margin-top: var.$space-verybig;
+					margin-top: var.$space-big;
 					.address-list {
 						grid-template-columns: 100%;
 						.contact-item-wrapper {
