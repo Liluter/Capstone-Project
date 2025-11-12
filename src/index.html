@@ -5,13 +5,123 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Best Shop</title>
-  <link rel="stylesheet" href="dist/css/main.css">
   <script src="./js/header.js" defer></script>
   <script src="./js/footer.js" defer></script>
+  <link rel="stylesheet" href="dist/css/main.css">
+  <script src="./js/main.js" defer></script>
 </head>
 
 <body>
-  <main class="main-container">
+  <main class="main-container" aria-label="main">
+    <div class="hero">
+      <div class="hero-wrapper">
+        <section class="hero-section responsive" aria-labelledby="hero-title">
+          <div class="hero-content">
+            <h1 id="hero-title">Smart Styles for Every Destination</h1>
+            <p class="description">Phasellus risus turpis, pretium sit amet magna non, molestie ultricies enim.
+              Nullam pulvinar felis at
+              metus.</p>
+            <a href="html/catalog.html" class="btn-link-primary">View All Items</a>
+          </div>
+          <figure class="image-figure">
+            <img class="hero-image" src="./assets/images/homepage/hero2x.webp" alt="travel suitcase" loading="eager">
+          </figure>
+
+        </section>
+      </div>
+      <div class="card responsive">
+        <section class="left-card">
+          <div class="card-content">
+            <div class="avatar-item">
+              <img src="./assets/images/homepage/CMO.png" class="avatar-image" alt="CMO">
+              <div>
+                <p class="avatar-name">Lillian Bennet</p>
+                <p>Chief Marketing Officer</p>
+              </div>
+            </div>
+            <h2 class="card-title">Aliquam Faucibus Odionecom.</h2>
+            <p class="description">Duis vestibulum elit vel neque pharetra vulputate.
+              Quisque scelerisque nisi urna. Duis rutrum non risus in
+              imperdiet. Proin molestie accumsan nulla sit.</p>
+            <p class="description">Namaki duis vestibulum elit vel neque pharetra vulputate.
+              Quisque scelerisque nisi urna.</p>
+          </div>
+        </section>
+        <section class="right-card">
+          <div class="card-content">
+            <h2 class="card-title">25% Discount</h2>
+            <p class="description">Curabitur vulputate arcu odio, ac facilisis diam accumsan ut. Ut imperdiet et leo in
+              vulputate. </p>
+            <a href="html/catalog.html" class="btn-link-primary">Get Discount</a>
+          </div>
+
+        </section>
+      </div>
+    </div>
+    <section class="travel-suitcases product-list responsive">
+      <header>
+        <h2>Travel suitcases</H2>
+        <p class="description">Duis vestibulum elit vel neque pharetra</p>
+      </header>
+      <div class="flex-container">
+        <div class="travel-card" id="sc-t-4">
+          <img src="assets/images/homepage/travel/suitcase_t_3.webp" alt="travel suitcase" class="card-image-content">
+          <div class="card-body">
+            <h3>Vel vestibulum elit tuvel euqen.</h3>
+            <p class="description">
+              Duis vestibulum vel neque pharetra vulputate. Quisque scelerisque nisi.
+            </p>
+          </div>
+        </div>
+        <div class="travel-card" id="sc-t-1">
+          <img src="assets/images/homepage/travel/suitcase_t_0.webp" alt="travel suitcase" class="card-image-content">
+          <div class="card-body">
+            <h3>Duis vestibulum elit vel neque.</h3>
+            <p class="description">
+              Duis vestibulum vel neque pharetra vulputate. Quisque scelerisque nisi.
+            </p>
+          </div>
+        </div>
+        <div class="travel-card" id="sc-t-2">
+          <img src="assets/images/homepage/travel/suitcase_t_1.webp" alt="travel suitcase" class="card-image-content">
+          <div class="card-body">
+            <h3>Neque vestibulum elit nequvel.</h3>
+            <p class="description">
+              Duis vestibulum vel neque pharetra vulputate. Quisque scelerisque nisi.
+            </p>
+          </div>
+        </div>
+        <div class="travel-card" id="sc-t-3">
+          <img src="assets/images/homepage/travel/suitcase_t_2.webp" alt="travel suitcase" class="card-image-content">
+          <div class="card-body">
+            <h3>Elituis stibulum elit
+              velneque.</h3>
+            <p class="description">
+              Duis vestibulum vel neque pharetra vulputate. Quisque scelerisque nisi.
+            </p>
+          </div>
+        </div>
+        <div class="travel-card" id="sc-t-4">
+          <img src="assets/images/homepage/travel/suitcase_t_3.webp" alt="travel suitcase" class="card-image-content">
+          <div class="card-body">
+            <h3>Vel vestibulum elit tuvel euqen.</h3>
+            <p class="description">
+              Duis vestibulum vel neque pharetra vulputate. Quisque scelerisque nisi.
+            </p>
+          </div>
+        </div>
+        <div class="travel-card" id="sc-t-1">
+          <img src="assets/images/homepage/travel/suitcase_t_0.webp" alt="travel suitcase" class="card-image-content">
+          <div class="card-body">
+            <h3>Duis vestibulum elit vel neque.</h3>
+            <p class="description">
+              Duis vestibulum vel neque pharetra vulputate. Quisque scelerisque nisi.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
 
   </main>
 </body>
