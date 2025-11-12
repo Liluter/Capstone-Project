@@ -1,0 +1,37 @@
+@use "../abstracts/variables" as var;
+
+.product-card {
+	width: 296px;
+	height: 569px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	margin: var.$space-big;
+	position: relative;
+
+	.card-image-content {
+		display: block;
+		// margin-bottom: 23px;
+		box-shadow: var.$shadow-drop;
+	}
+	.card-body {
+		flex: 1 0 auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		h3 {
+			margin: var.$space-big auto 0;
+			width: 70%;
+		}
+		p {
+			padding: var.$space-regular 0;
+		}
+		p.price {
+			color: var.$secondary;
+			font-weight: 700;
+			font-size: var.$font-size-medium;
+		}
+	}
+}

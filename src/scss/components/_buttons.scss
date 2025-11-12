@@ -2,21 +2,40 @@
 @use "../base/fonts";
 @use "../abstracts/mixins";
 
-a.btn-link-primary {
-	display: block;
-	width: 174px;
-	height: 60px;
-	background-color: var.$primary;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.btn-primary {
+	width: 156px;
+	height: 40px;
+	@extend %display-centered;
 	color: var.$white;
+	border: none;
+	background-color: var.$primary;
 	@include mixins.font(
 		var.$font-bold,
 		var.$font-size-medium,
 		"Monteserrat",
 		sans-serif
 	);
+}
+
+.btn-small {
+	position: absolute;
+	top: var.$space-big;
+	left: var.$space-big;
+	@extend .btn-primary;
+	width: 54px;
+	height: 28px;
+	font-size: var.$font-size-small;
+	font-family: "Inter", sans-serif;
+	visibility: hidden;
+	&.in-sale {
+		visibility: visible;
+	}
+}
+
+a.btn-link-primary {
+	width: 174px;
+	height: 60px;
+	@extend .btn-primary;
 	padding: var.$space-small 0;
 	margin: var.$space-big 0;
 }
@@ -73,22 +92,35 @@ section.product-list.responsive {
 		margin: 10px 0;
 	}
 	overflow: hidden;
+	&.selected-products {
+		// background-color: aquamarine;
+		overflow: visible;
+		.flex-container {
+			column-gap: 0;
+			flex-wrap: wrap;
+			.product-card {
+				flex: 0 1 none;
+			}
+		}
+	}
 	.flex-container {
 		position: relative;
-		left: -296px;
 		width: fit-content;
 		display: flex;
 		justify-content: start;
 		column-gap: var.$space-big;
 		margin-top: var.$space-verybig;
-		padding-bottom: var.$space-verybig;
-		transition: all 2s ease;
+		margin-bottom: var.$space-big;
+		// transition: all 2s ease;
+		&.slider {
+			left: -296px;
+		}
 		.travel-card {
 			position: relative;
 			overflow: hidden;
 			width: 296px;
 			height: 600px;
-			box-shadow: none;
+
 			.card-image-content {
 				position: absolute;
 				top: 0;
