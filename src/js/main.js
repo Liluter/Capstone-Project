@@ -5,7 +5,10 @@ const mySliderHandler = createSliderHandler(flexContainer);
 flexContainer.addEventListener("click", mySliderHandler);
 
 const selectedProductsContainer = document.querySelector(
-	".product-list--selected .product-list__container"
+	".selected-products .product-list__container"
+);
+const newProductsArrivalContainer = document.querySelector(
+	".new-products-arrival .product-list__container"
 );
 
 const productCardTemplate = `
@@ -19,7 +22,7 @@ const productCardTemplate = `
             <div class="product-card__body">
               <h3 class="product-card__title">Vel vestibulum elit tuvel euqen.</h3>
               <p class="product-card__price"></p>
-              <button class="btn-primary">Add To Cart</button>
+              <button class="btn-primary"></button>
               <div class="btn-small in-sale">
                 SALE
               </div>
@@ -38,7 +41,7 @@ class TemplateHtmlParser {
 		this.#doc = this.#parser.parseFromString(this.#templateString, "text/html");
 	}
 
-	createProductCard(data) {
+	createProductCard(data, btnTitle) {
 		const elementTemplate = this.#doc.body.firstChild.cloneNode(true);
 		const pictureEle = elementTemplate.querySelector("picture");
 		elementTemplate.id = data.id;
@@ -47,8 +50,9 @@ class TemplateHtmlParser {
 		imgElem.src = data.imageUrl;
 		imgElem.alt = `${data.color} ${data.category}`;
 		const cardBody = elementTemplate.querySelector(".product-card__body");
-		const [nameElem, priceElem, , saleElem] = cardBody.children;
+		const [nameElem, priceElem, btnElem, saleElem] = cardBody.children;
 		nameElem.textContent = data.name;
+		btnElem.textContent = btnTitle;
 		priceElem.textContent = `$${data.price}`;
 		data.salesStatus ? null : saleElem.classList.remove("in-sale");
 
@@ -57,24 +61,38 @@ class TemplateHtmlParser {
 }
 
 const htmlParser = new TemplateHtmlParser(productCardTemplate);
-// temporary off
-mountSelectedProduct(selectedProductsContainer);
 
-async function mountSelectedProduct(containerElement) {
+dataAccess();
+
+async function dataAccess() {
 	try {
 		const data = await fetchLocalData("assets/data.json");
-		const selectedProductsItems = data.filter((element) =>
-			element.blocks.includes("Selected Products")
-		);
 
-		const productCardElements = selectedProductsItems.map((data) =>
-			htmlParser.createProductCard(data)
+		mountElements(
+			data,
+			selectedProductsContainer,
+			"Add To Cart",
+			"Selected Products"
 		);
-		containerElement.append(...productCardElements);
-		console.log("productCardElements", selectedProductsItems);
+		mountElements(
+			data,
+			newProductsArrivalContainer,
+			"View Product",
+			"New Products Arrival"
+		);
 	} catch (error) {
-		console.error("Error with showSelectedProduct", error);
+		console.error("Error with data Acces", error);
 	}
+}
+
+function mountElements(data, containerElement, btnTitle, filterBy) {
+	const selectedProductsItems = data.filter((element) =>
+		element.blocks.includes(filterBy)
+	);
+	const productCardElements = selectedProductsItems.map((data) =>
+		htmlParser.createProductCard(data, btnTitle)
+	);
+	containerElement.append(...productCardElements);
 }
 
 async function fetchLocalData(url) {
@@ -87,6 +105,7 @@ async function fetchLocalData(url) {
 		throw err;
 	}
 }
+
 function createSliderHandler(container) {
 	let pending = false;
 	return function handleClick(event) {

@@ -48,10 +48,10 @@ a.btn-link-primary {
 .fluid {
 	width: 100vw;
 }
-
-.responsive {
+.container {
 	width: var.$brakepoint-large;
 	margin: 0 auto;
+	margin-bottom: clamp(var.$space-big, 10vw - var.$space-big, var.$space-mega);
 	@media screen and (width <= var.$brakepoint-large) {
 		width: var.$brakepoint-medium;
 	}
@@ -61,54 +61,47 @@ a.btn-link-primary {
 	@media screen and (width <= var.$brakepoint-small) {
 		width: 100%;
 	}
-	p.description,
-	h2,
-	h1,
-	.avatar-item {
-		margin: clamp(var.$space-small, 2vw, var.$space-bigger) 0;
+}
+.travel-card {
+	position: relative;
+	overflow: hidden;
+	width: 296px;
+	height: 600px;
+	color: var.$white;
+
+	&__image-content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		object-fit: cover;
+		z-index: 0;
 	}
-	h1 {
-		margin: var.$space-bigger 0;
-		width: 80%;
-		font-weight: var.$font-black;
-		font-size: clamp(1.5em, 1em + 2vw, 4em);
+	&__body {
+		position: relative;
+		z-index: 1;
+		padding: 2.5em;
+		padding-right: var.$space-verybig;
+		background-color: var.$black40;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: flex-start;
+		text-align: start;
+		row-gap: var.$space-bigger;
+		line-height: var.$font-size-big;
+		font-size: var.$font-size-medium;
 	}
-	h2 {
-		font-size: clamp(1.5em, 1.5em + 1vw, 4em);
-	}
-	p.description {
-		font-size: clamp(
-			var.$font-size-regular,
-			var.$font-size-regular + 0.1vw - 1px,
-			var.$font-size-medium
-		);
+	&:hover {
+		transform: scale(1.03);
+		box-shadow: var.$shadow-drop;
+		transition: transform 0.2s ease-out;
 	}
 }
-
-section.product-list.responsive {
+.product-list {
 	text-align: center;
-	p.description,
-	h2 {
-		margin: 10px 0;
-	}
 	overflow: hidden;
-	&.selected-products {
-		column-gap: 0;
-		overflow: visible;
-		.flex-container {
-			column-gap: 0;
-			width: 100%;
-			display: flex;
-			row-gap: var.$space-bigger;
-			justify-content: space-around;
-			flex-wrap: wrap;
-			.flex-item {
-				display: flex;
-				justify-content: center;
-			}
-		}
-	}
-	.flex-container {
+	&__container {
 		position: relative;
 		width: fit-content;
 		display: flex;
@@ -116,44 +109,27 @@ section.product-list.responsive {
 		column-gap: var.$space-big;
 		margin-top: var.$space-verybig;
 		margin-bottom: var.$space-big;
-		&.slider {
+		&--slider {
 			left: -296px;
 		}
-		.travel-card {
-			position: relative;
-			overflow: hidden;
-			width: 296px;
-			height: 600px;
+	}
 
-			.card-image-content {
-				position: absolute;
-				top: 0;
-				left: 0;
-				object-fit: cover;
-				z-index: 0;
-			}
-			.card-body {
-				position: relative;
-				z-index: 1;
-				padding: var.$space-big;
-				background-color: var.$black40;
-				height: 100%;
-				display: flex;
-				flex-direction: column;
-				justify-content: flex-end;
-				align-items: flex-start;
-				text-align: start;
-				> * {
-					color: var.$white;
-				}
-			}
-			&:hover {
-				transform: scale(1.03);
-				box-shadow: var.$shadow-drop;
-				transition: transform 0.2s ease-out;
-			}
+	&--mounted {
+		column-gap: 0;
+		overflow: visible;
+		.product-list__container {
+			column-gap: 0;
+			width: 100%;
+			display: flex;
+			row-gap: var.$space-verybig;
+			justify-content: space-around;
+			flex-wrap: wrap;
 		}
 	}
+}
+.flex-item {
+	display: flex;
+	justify-content: center;
 }
 
 .banner {

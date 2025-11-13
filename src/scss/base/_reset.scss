@@ -22,12 +22,15 @@ a {
 }
 h1 {
 	margin-top: var.$space-verybig;
-	margin-bottom: var.$space-verybig;
+	margin-bottom: var.$space-big;
 	font-weight: var.$font-black;
+	font-size: clamp(1.5em, 1em + 2vw, 4em);
 }
 h2 {
 	font-weight: var.$font-black;
+	font-size: clamp(1.5em, 1.5em + 1vw, 4em);
 }
+
 li {
 	list-style: none;
 	list-style-type: none;
@@ -35,4 +38,11 @@ li {
 
 body {
 	font-family: "Montserrat", sans-serif;
+}
+
+.spacing-vertical-1 {
+	margin: clamp(var.$space-smallest, 0.8vw, var.$space-big) 0;
+}
+.spacing-vertical-2 {
+	margin: clamp(var.$space-small, 2vw, var.$space-bigger) 0;
 }
