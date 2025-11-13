@@ -11,7 +11,7 @@
 			"salesStatus": true,
 			"rating": 4.5,
 			"popularity": 90,
-			"blocks": ["New Products Arrival", "Selected Products"]
+			"blocks": ["Selected Products"]
 		},
 		{
 			"id": "SU002",
@@ -30,11 +30,11 @@
 			"id": "SU003",
 			"name": "Urban Compact Travel Suitcase",
 			"price": 310,
-			"imageUrl": "path/to/image3.jpg",
+			"imageUrl": "assets/images/homepage/arrival/suitcase_hand_grey.webp",
 			"category": "suitcases",
 			"color": "grey",
 			"size": "XL",
-			"salesStatus": true,
+			"salesStatus": false,
 			"rating": 4.7,
 			"popularity": 95,
 			"blocks": ["New Products Arrival"]
@@ -160,14 +160,14 @@
 			"id": "KL013",
 			"name": "Explorer Kids' Lightweight Luggage",
 			"price": 230,
-			"imageUrl": "path/to/image13.jpg",
+			"imageUrl": "assets/images/homepage/arrival/suitcase_yellow.webp",
 			"category": "kids' luggage",
 			"color": "yellow",
 			"size": "S",
 			"salesStatus": true,
 			"rating": 4.0,
 			"popularity": 73,
-			"blocks": []
+			"blocks": ["New Products Arrival"]
 		},
 		{
 			"id": "KL014",
@@ -186,14 +186,14 @@
 			"id": "KL015",
 			"name": "Urban Traveler Kids' Rolling Luggage",
 			"price": 220,
-			"imageUrl": "path/to/image15.jpg",
+			"imageUrl": "assets/images/homepage/arrival/suitcase_dark_blue.webp",
 			"category": "kids' luggage",
 			"color": "blue",
 			"size": "S",
-			"salesStatus": true,
+			"salesStatus": false,
 			"rating": 4.5,
 			"popularity": 80,
-			"blocks": []
+			"blocks": ["New Products Arrival"]
 		},
 		{
 			"id": "KL016",
