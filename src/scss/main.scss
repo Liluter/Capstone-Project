@@ -14,18 +14,16 @@
 		sans-serif
 	);
 	width: 100%;
-	> * {
-		margin-bottom: clamp(
-			var.$space-big,
-			10vw - var.$space-big,
-			var.$space-mega
-		);
-	}
 	color: var.$black;
 }
 
 .description {
 	color: var.$secondary;
+	font-size: clamp(
+		var.$font-size-regular,
+		var.$font-size-regular + 0.1vw - 1px,
+		var.$font-size-medium
+	);
 	&--white {
 		color: var.$white;
 	}
@@ -66,6 +64,8 @@
 	@extend %display-centered;
 	justify-content: flex-start;
 	column-gap: var.$space-big;
+	margin: clamp(var.$space-small, 2vw, var.$space-bigger) 0;
+
 	&__image {
 		height: clamp(4em, 4em + 0.5vw, 5em);
 		width: auto;
