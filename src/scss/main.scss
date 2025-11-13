@@ -57,47 +57,45 @@
 			}
 		}
 	}
-	.card {
-		display: grid;
-		grid-template-columns: repeat(2, calc(var.$brakepoint-large / 2));
-		grid-template-rows: calc(var.$brakepoint-large / 2);
-		box-shadow: var.$shadow-drop;
+}
+.card {
+	display: grid;
+	grid-template-columns: repeat(2, calc(var.$brakepoint-large / 2));
+	grid-template-rows: calc(var.$brakepoint-large / 2);
+	box-shadow: var.$shadow-drop;
 
-		h2.card-title {
-			font-weight: var.$font-black;
-		}
-		> * {
+	h2.card-title {
+		font-weight: var.$font-black;
+	}
+	> * {
+		@extend %display-centered;
+		padding: 0 var.$space-ultrabig;
+	}
+	.left-card {
+		background-color: var.$white;
+		.avatar-item {
 			@extend %display-centered;
-			padding: 0 var.$space-ultrabig;
-		}
-		.left-card {
-			background-color: var.$white;
-			.avatar-item {
-				@extend %display-centered;
-				justify-content: flex-start;
-				column-gap: var.$space-big;
-				.avatar-image {
-					height: clamp(4em, 4em + 0.5vw, 5em);
-					width: auto;
-				}
-				p.avatar-name {
-					font-weight: var.$font-bold;
-					font-size: clamp(1.1em, max(2vw, 1em), 1.2em);
-				}
-				p {
-					margin: var.$space-smallest 0;
-				}
+			justify-content: flex-start;
+			column-gap: var.$space-big;
+			.avatar-image {
+				height: clamp(4em, 4em + 0.5vw, 5em);
+				width: auto;
 			}
-		}
-		.right-card {
-			background-image: linear-gradient(var.$black40, var.$black40),
-				url("../../assets/images/homepage/discounted_suitcases2x.png");
-			background-size: cover;
-			background-repeat: no-repeat;
-			color: var.$white;
+			p.avatar-name {
+				font-weight: var.$font-bold;
+				font-size: clamp(1.1em, max(2vw, 1em), 1.2em);
+			}
 			p {
-				color: inherit;
+				margin: var.$space-smallest 0;
 			}
+		}
+	}
+	.right-card {
+		@include mixins.background-overlay(
+			"../../assets/images/homepage/discounted_suitcases2x.png"
+		);
+		p {
+			color: inherit;
 		}
 	}
 }
@@ -144,7 +142,7 @@
 			grid-template-rows: 100vw 100vw;
 			font-size: var.$font-size-regular;
 			> * {
-				padding: 0 var.$space-bigger;
+				padding: 0 var.$space-medium;
 			}
 		}
 	}

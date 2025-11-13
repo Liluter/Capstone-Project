@@ -1,11 +1,17 @@
-@use "sass:list";
-@use "sass:map";
-@use "_variables" as var;
+@use "variables" as var;
 
 @mixin font($fontWeight, $fontSize, $fontFamily...) {
 	font-family: $fontFamily;
 	font-weight: $fontWeight;
 	font-size: $fontSize;
+}
+
+@mixin background-overlay($url) {
+	background-image: linear-gradient(var.$black40, var.$black40), url($url);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	color: var.$white;
 }
 
 %display-centered {
