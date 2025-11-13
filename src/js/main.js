@@ -1,11 +1,11 @@
-const travelContainer = document.querySelector("section.travel-suitcases ");
-const flexContainer = travelContainer.querySelector("div.flex-container");
+const travelContainer = document.querySelector(".travel-suitcases");
+const flexContainer = travelContainer.querySelector(".product-list__container");
 const mySliderHandler = createSliderHandler(flexContainer);
 
 flexContainer.addEventListener("click", mySliderHandler);
 
 const selectedProductsContainer = document.querySelector(
-	".selected-products .flex-container"
+	".product-list--selected .product-list__container"
 );
 
 const productCardTemplate = `
