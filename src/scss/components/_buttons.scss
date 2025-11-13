@@ -100,7 +100,6 @@ a.btn-link-primary {
 }
 .product-list {
 	text-align: center;
-	// overflow: hidden;
 	&__container {
 		position: relative;
 		width: fit-content;
@@ -124,8 +123,6 @@ a.btn-link-primary {
 	}
 
 	&--mounted {
-		// overflow: hidden;
-
 		column-gap: 0;
 		overflow: visible;
 		.product-list__container {

@@ -4,8 +4,6 @@
 .product-card {
 	width: 296px;
 	height: 569px;
-	// display: flex;
-	// align-items: center;
 	@extend %display-centered;
 
 	flex-direction: column;
@@ -37,7 +35,6 @@
 }
 
 .customer-card {
-	// width: clamp(260px, 30vw, 33%);
 	height: auto;
 	width: 40%;
 	flex: 0.3 0.3 300px;
