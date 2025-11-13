@@ -40,9 +40,28 @@ body {
 	font-family: "Montserrat", sans-serif;
 }
 
+.text {
+	&--primary {
+		color: var.$primary;
+	}
+	&--secondary {
+		color: var.$secondary;
+	}
+	&--white {
+		color: var.$white;
+	}
+	&--bold {
+		font-weight: var.$font-bold;
+	}
+}
+
 .spacing-vertical-1 {
 	margin: clamp(var.$space-smallest, 0.8vw, var.$space-big) 0;
 }
 .spacing-vertical-2 {
 	margin: clamp(var.$space-small, 2vw, var.$space-bigger) 0;
+}
+
+.no-overflow {
+	overflow: hidden;
 }

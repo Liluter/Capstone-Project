@@ -100,7 +100,7 @@ a.btn-link-primary {
 }
 .product-list {
 	text-align: center;
-	overflow: hidden;
+	// overflow: hidden;
 	&__container {
 		position: relative;
 		width: fit-content;
@@ -113,8 +113,19 @@ a.btn-link-primary {
 			left: -296px;
 		}
 	}
+	&__fluid {
+		margin-top: var.$space-verybig;
+		margin-bottom: var.$space-big;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		column-gap: var.$space-big;
+		row-gap: var.$space-big;
+	}
 
 	&--mounted {
+		// overflow: hidden;
+
 		column-gap: 0;
 		overflow: visible;
 		.product-list__container {
@@ -127,6 +138,7 @@ a.btn-link-primary {
 		}
 	}
 }
+
 .flex-item {
 	display: flex;
 	justify-content: center;

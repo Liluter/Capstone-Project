@@ -18,15 +18,12 @@
 }
 
 .description {
-	color: var.$secondary;
 	font-size: clamp(
 		var.$font-size-regular,
-		var.$font-size-regular + 0.1vw - 1px,
+		var.$font-size-regular + 0.2vw - 1px,
 		var.$font-size-medium
 	);
-	&--white {
-		color: var.$white;
-	}
+	line-height: 160%;
 }
 .hero {
 	background-color: var.$white;
