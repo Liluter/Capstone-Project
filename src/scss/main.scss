@@ -22,11 +22,14 @@
 		);
 	}
 	color: var.$black;
-	p.description {
-		color: var.$secondary;
-	}
 }
 
+.description {
+	color: var.$secondary;
+	&--white {
+		color: var.$white;
+	}
+}
 .hero {
 	background-color: var.$white;
 	font-size: var.$font-size-medium;
@@ -50,10 +53,6 @@
 		margin-right: -50px;
 		padding-left: var.$space-medium;
 		padding-right: var.$space-medium;
-		h1 {
-		}
-		.description {
-		}
 	}
 
 	&__image {
@@ -63,45 +62,45 @@
 	&__figure {
 	}
 }
+.avatar-item {
+	@extend %display-centered;
+	justify-content: flex-start;
+	column-gap: var.$space-big;
+	&__image {
+		height: clamp(4em, 4em + 0.5vw, 5em);
+		width: auto;
+	}
+	&__name {
+		font-weight: var.$font-bold;
+		font-size: clamp(1.1em, max(2vw, 1em), 1.2em);
+	}
+	p {
+		margin: var.$space-smallest 0;
+	}
+}
 .card {
 	display: grid;
 	grid-template-columns: repeat(2, calc(var.$brakepoint-large / 2));
 	grid-template-rows: calc(var.$brakepoint-large / 2);
 	box-shadow: var.$shadow-drop;
 
-	h2.card-title {
-		font-weight: var.$font-black;
-	}
-	> * {
+	&__col {
 		@extend %display-centered;
 		padding: 0 var.$space-ultrabig;
 	}
-	.left-card {
+
+	&__col--left {
 		background-color: var.$white;
-		.avatar-item {
-			@extend %display-centered;
-			justify-content: flex-start;
-			column-gap: var.$space-big;
-			.avatar-image {
-				height: clamp(4em, 4em + 0.5vw, 5em);
-				width: auto;
-			}
-			p.avatar-name {
-				font-weight: var.$font-bold;
-				font-size: clamp(1.1em, max(2vw, 1em), 1.2em);
-			}
-			p {
-				margin: var.$space-smallest 0;
-			}
-		}
 	}
-	.right-card {
+	&__col--right {
+		color: white;
 		@include mixins.background-overlay(
 			"../../assets/images/homepage/discounted_suitcases2x.png"
 		);
-		p {
-			color: inherit;
-		}
+	}
+
+	&.card-title {
+		font-weight: var.$font-black;
 	}
 }
 
@@ -110,7 +109,7 @@
 		grid-template-columns: repeat(2, calc(var.$brakepoint-medium / 2));
 		grid-template-rows: calc(var.$brakepoint-medium / 2);
 		font-size: var.$font-size-regular;
-		> * {
+		&__col {
 			padding: 0 var.$space-bigger * 2;
 		}
 	}
