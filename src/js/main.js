@@ -14,11 +14,11 @@ const productCardTemplate = `
             <picture>
 							<source srcset="" />
               <img src="" alt="" width="296"
-                height="400" class="card-image-content">
+                height="400" class="product-card__image">
             </picture>
-            <div class="card-body">
-              <h3 class="card-name">Vel vestibulum elit tuvel euqen.</h3>
-              <p class="price"></p>
+            <div class="product-card__body">
+              <h3 class="product-card__title">Vel vestibulum elit tuvel euqen.</h3>
+              <p class="product-card__price"></p>
               <button class="btn-primary">Add To Cart</button>
               <div class="btn-small in-sale">
                 SALE
@@ -46,7 +46,7 @@ class TemplateHtmlParser {
 		sourceElem.srcset = data.imageUrl;
 		imgElem.src = data.imageUrl;
 		imgElem.alt = `${data.color} ${data.category}`;
-		const cardBody = elementTemplate.querySelector(".card-body");
+		const cardBody = elementTemplate.querySelector(".product-card__body");
 		const [nameElem, priceElem, , saleElem] = cardBody.children;
 		nameElem.textContent = data.name;
 		priceElem.textContent = `$${data.price}`;

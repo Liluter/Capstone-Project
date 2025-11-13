@@ -8,27 +8,27 @@
 	justify-content: space-between;
 	align-items: center;
 	position: relative;
-	.card-image-content {
+	&__image {
 		display: block;
 		box-shadow: var.$shadow-drop;
 	}
-	.card-body {
+	&__body {
 		flex: 1 0 auto;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
-		h3 {
-			margin: var.$space-big auto 0;
-			width: 70%;
-		}
-		p {
-			padding: var.$space-regular 0;
-		}
-		p.price {
-			color: var.$secondary;
-			font-weight: 700;
-			font-size: var.$font-size-medium;
-		}
+	}
+	&__title {
+		margin: var.$space-big auto 0;
+		width: 70%;
+	}
+	&__text {
+		padding: var.$space-regular 0;
+	}
+	&__price {
+		color: var.$secondary;
+		font-weight: 700;
+		font-size: var.$font-size-medium;
 	}
 }
