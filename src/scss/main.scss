@@ -31,31 +31,36 @@
 	background-color: var.$white;
 	font-size: var.$font-size-medium;
 
-	.hero-wrapper {
+	&__wrapper {
 		background-color: var.$light-gray;
 		height: calc(100vh - var.$height-s - var.$height-l - var.$space-big);
 		width: 100%;
 		margin-bottom: var.$space-ultrabig * -1;
-
-		.hero-section {
-			@extend %display-centered;
-			margin: 0 auto;
-			padding: var.$space-big 0;
-			height: 100%;
-			> * {
-				flex: 1 1 50%;
-			}
-			.hero-content {
-				margin-right: -50px;
-				padding-left: var.$space-medium;
-				padding-right: var.$space-medium;
-			}
-
-			.hero-image {
-				width: 100%;
-				height: 100%;
-			}
+	}
+	&__section {
+		@extend %display-centered;
+		margin: 0 auto;
+		padding: var.$space-big 0;
+		height: 100%;
+	}
+	&__item {
+		flex: 1 1 50%;
+	}
+	&__content {
+		margin-right: -50px;
+		padding-left: var.$space-medium;
+		padding-right: var.$space-medium;
+		h1 {
 		}
+		.description {
+		}
+	}
+
+	&__image {
+		width: 100%;
+		height: 100%;
+	}
+	&__figure {
 	}
 }
 .card {
@@ -101,49 +106,46 @@
 }
 
 @media screen and (width <= var.$brakepoint-large) {
-	.hero {
-		.card {
-			grid-template-columns: repeat(2, calc(var.$brakepoint-medium / 2));
-			grid-template-rows: calc(var.$brakepoint-medium / 2);
-			font-size: var.$font-size-regular;
-			> * {
-				padding: 0 var.$space-bigger * 2;
-			}
+	.card {
+		grid-template-columns: repeat(2, calc(var.$brakepoint-medium / 2));
+		grid-template-rows: calc(var.$brakepoint-medium / 2);
+		font-size: var.$font-size-regular;
+		> * {
+			padding: 0 var.$space-bigger * 2;
 		}
 	}
 }
 @media screen and (width <= var.$brakepoint-medium) {
 	.hero {
-		.hero-wrapper {
+		&__wrapper {
 			margin-bottom: 0;
 			height: auto;
-			.hero-section {
-				flex-direction: column-reverse;
-				height: fit-content;
-				.hero-content {
-					margin-right: 0;
-				}
-			}
 		}
-		.card {
-			grid-template-columns: repeat(2, calc(var.$brakepoint-small / 2));
-			grid-template-rows: calc(var.$brakepoint-small / 2);
-			font-size: var.$font-size-regular;
-			> * {
-				padding: 0 var.$space-bigger;
-			}
+		&__section {
+			flex-direction: column-reverse;
+			height: fit-content;
+		}
+		&__content {
+			margin-right: 0;
+		}
+	}
+
+	.card {
+		grid-template-columns: repeat(2, calc(var.$brakepoint-small / 2));
+		grid-template-rows: calc(var.$brakepoint-small / 2);
+		font-size: var.$font-size-regular;
+		> * {
+			padding: 0 var.$space-bigger;
 		}
 	}
 }
 @media screen and (width <= var.$brakepoint-small) {
-	.hero {
-		.card {
-			grid-template-columns: 100vw;
-			grid-template-rows: 100vw 100vw;
-			font-size: var.$font-size-regular;
-			> * {
-				padding: 0 var.$space-medium;
-			}
+	.card {
+		grid-template-columns: 100vw;
+		grid-template-rows: 100vw 100vw;
+		font-size: var.$font-size-regular;
+		> * {
+			padding: 0 var.$space-medium;
 		}
 	}
 }
