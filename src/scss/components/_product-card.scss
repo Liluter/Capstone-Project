@@ -1,12 +1,15 @@
 @use "../abstracts/variables" as var;
+@use "../abstracts/mixins";
 
 .product-card {
 	width: 296px;
 	height: 569px;
-	display: flex;
+	// display: flex;
+	// align-items: center;
+	@extend %display-centered;
+
 	flex-direction: column;
 	justify-content: space-between;
-	align-items: center;
 	position: relative;
 	&__image {
 		display: block;
@@ -31,4 +34,17 @@
 		font-weight: 700;
 		font-size: var.$font-size-medium;
 	}
+}
+
+.customer-card {
+	// width: clamp(260px, 30vw, 33%);
+	height: auto;
+	width: 40%;
+	flex: 0.3 0.3 300px;
+
+	@extend %display-centered;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 30px;
+	box-shadow: var.$shadow-drop;
 }
