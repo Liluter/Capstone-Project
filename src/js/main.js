@@ -8,7 +8,9 @@ const selectedProductsContainer = document.querySelector(
 	".selected-products .flex-container"
 );
 
-const productCardTemplate = `<div class="product-card">
+const productCardTemplate = `
+				<div class="flex-item">
+					<div class="product-card">
             <picture>
 							<source srcset="" />
               <img src="" alt="" width="296"
@@ -22,7 +24,9 @@ const productCardTemplate = `<div class="product-card">
                 SALE
               </div>
             </div>
-          </div>`;
+          </div>
+				</div>
+					`;
 
 class TemplateHtmlParser {
 	#doc;
@@ -53,7 +57,7 @@ class TemplateHtmlParser {
 }
 
 const htmlParser = new TemplateHtmlParser(productCardTemplate);
-
+// temporary off
 mountSelectedProduct(selectedProductsContainer);
 
 async function mountSelectedProduct(containerElement) {
@@ -120,7 +124,7 @@ function createSliderHandler(container) {
 						sliderContainer.replaceChildren(...childElements.slice(1));
 						sliderContainer.append(cloneToMove);
 					} else {
-						sliderContainer.replaceChildren(...childElements.slice(0, 5));
+						sliderContainer.replaceChildren(...childElements.slice(0, 9));
 						sliderContainer.prepend(cloneToMove);
 					}
 					pending = false;
