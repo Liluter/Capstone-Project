@@ -32,10 +32,26 @@
 	font-style: normal;
 	font-display: swap;
 }
+
+@font-face {
+	font-family: "Inter";
+	src: url("../../assets/fonts/Inter/inter-medium-webfont.woff2")
+		format("woff2");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
 @font-face {
 	font-family: "Inter";
 	src: url("../../assets/fonts/Inter/inter-bold-webfont.woff2") format("woff2");
 	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Inter";
+	src: url("../../assets/fonts/Inter/inter-black-webfont.woff2") format("woff2");
+	font-weight: 900;
 	font-style: normal;
 	font-display: swap;
 }
