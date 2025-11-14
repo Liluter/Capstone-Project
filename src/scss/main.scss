@@ -5,6 +5,7 @@
 @use "layouts/footer";
 @use "components/buttons";
 @use "components/product-card";
+@use "pages/catalog";
 
 .main-container {
 	@include mixins.font(

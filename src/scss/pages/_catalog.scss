@@ -1,0 +1,89 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables" as var;
+@use "../layouts/header";
+@use "../layouts/footer";
+@use "../components/buttons";
+@use "../components/product-card";
+
+.page-control {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr clamp(313px, 20vw, 330px);
+	grid-template-rows: auto;
+	column-gap: var.$space-medium;
+
+	&__top-bar {
+		background-color: rgb(124, 109, 98);
+		grid-column: 1 / span 2;
+		grid-row: 1/2;
+		color: coral;
+	}
+	&__main-content {
+		// background-color: rgb(148, 174, 166);
+
+		grid-column: 1 / 2;
+		grid-row: 2/3;
+		margin-top: var.$space-medium;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(296px, 1fr));
+		column-gap: var.$space-small;
+		row-gap: 50px;
+	}
+	&__sidebar {
+		grid-column: 2/3;
+		grid-row: 2/3;
+		margin-top: var.$space-medium;
+
+		// color: teal;
+		// background-color: bisque;
+		display: flex;
+		flex-direction: column;
+		// width: 100%;
+	}
+}
+
+.recommendation-list {
+	// width: 100%;
+	display: flex;
+	flex-direction: column;
+	row-gap: var.$space-big;
+	&__item {
+	}
+}
+.recommendation-card {
+	text-decoration: none;
+	display: flex;
+	column-gap: var.$space-medium;
+	font-size: var.$font-size-regular;
+	&__picture {
+		background-color: rgb(11, 33, 33);
+		box-shadow: var.$shadow-drop;
+	}
+	&__image {
+		display: block;
+	}
+	&__body {
+	}
+	&__title {
+	}
+	&__rating {
+		display: inline-flex;
+		gap: var.$space-smallest - 1px;
+	}
+}
+
+.icon-star {
+	display: block;
+	width: 12px;
+	height: 11px;
+	background-size: cover;
+	&__yellow {
+		background-image: url("../../assets/images/cataloge/yellow_star.webp");
+	}
+	&__half {
+		background-image: url("../../assets/images/cataloge/half_star.webp");
+	}
+	&__gray {
+		background-image: url("../../assets/images/cataloge/gray_star.webp");
+	}
+}

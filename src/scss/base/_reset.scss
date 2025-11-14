@@ -62,6 +62,13 @@ body {
 	margin: clamp(var.$space-small, 2vw, var.$space-bigger) 0;
 }
 
+.spacing-top {
+	margin-bottom: 0;
+}
+.spacing-bottom {
+	margin-top: 0;
+}
+
 .no-overflow {
 	overflow: hidden;
 }
