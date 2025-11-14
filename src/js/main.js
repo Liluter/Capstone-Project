@@ -1,5 +1,8 @@
 const travelContainer = document.querySelector(".travel-suitcases");
 const flexContainer = travelContainer.querySelector(".product-list__container");
+
+const cartCounterElement = document.querySelector("#cartCounter");
+
 const mySliderHandler = createSliderHandler(flexContainer);
 
 flexContainer.addEventListener("click", mySliderHandler);
@@ -60,6 +63,74 @@ class TemplateHtmlParser {
 	}
 }
 
+class Cart {
+	#cartName = "BestShopCart";
+	constructor(cartElement) {
+		this.cartElement = cartElement;
+		this.cartInit();
+	}
+	cartInit() {
+		const existingCart = window.localStorage.getItem(this.#cartName);
+		if (existingCart) {
+			this.updateCouterElement();
+		} else {
+			this.writeData();
+			this.updateCouterElement();
+		}
+	}
+	itemCaunter() {
+		const data = this.parseData();
+		if (data) {
+			return data.length;
+		} else {
+			return 0;
+		}
+	}
+	updateCouterElement() {
+		if (this.itemCaunter() === 0) {
+			this.cartElement.classList.add("counter--hidden");
+			this.cartElement.textContent = "";
+		} else {
+			this.cartElement.classList.remove("counter--hidden");
+			this.cartElement.textContent = this.itemCaunter();
+		}
+	}
+	parseData() {
+		try {
+			const cartItems = window.localStorage.getItem(this.#cartName);
+			const jsonData = JSON.parse(cartItems);
+			return jsonData;
+		} catch (error) {
+			console.error(error);
+			throw error;
+		}
+	}
+	writeData(data) {
+		try {
+			const localData = this.parseData();
+			if (localData !== null && localData.length >= 0) {
+				if (!data) {
+					throw new Error("No data passed or wrong data");
+				}
+				const incomingDataArr = [data];
+				const newDataArr = [...localData, ...incomingDataArr];
+				const stringifyNewData = JSON.stringify(newDataArr);
+				window.localStorage.setItem(this.#cartName, stringifyNewData);
+				this.updateCouterElement();
+			} else {
+				const emptyArr = [];
+				const stingifyDate = JSON.stringify(emptyArr);
+				window.localStorage.setItem(this.#cartName, stingifyDate);
+				this.updateCouterElement();
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	}
+}
+
+const myCart = new Cart(cartCounterElement);
+
 const htmlParser = new TemplateHtmlParser(productCardTemplate);
 
 dataAccess();
@@ -80,8 +151,46 @@ async function dataAccess() {
 			"View Product",
 			"New Products Arrival"
 		);
+		//
+		const productLists = document.querySelectorAll(
+			".product-list__container:not(.product-list__container--slider)"
+		);
+
+		const arrProdCards = [...productLists];
+		arrProdCards.forEach((list) =>
+			list.addEventListener("click", (e) => {
+				const picture = e.target.closest("picture");
+				if (picture) {
+					redirectToProductPage(picture);
+				} else {
+					const btn = e.target.closest(".btn-primary");
+					if (btn && btn.textContent === "Add To Cart") {
+						const btnId = btn.closest(".flex-item").id;
+						const productItem = getProductById(data, btnId);
+						myCart.writeData(productItem);
+					} else if (btn) {
+						redirectToProductPage(btn);
+					}
+				}
+			})
+		);
 	} catch (error) {
 		console.error("Error with data Acces", error);
+	}
+}
+
+function getProductById(data, productId) {
+	const filteredItem = data.filter((elem) => elem.id === productId);
+	return filteredItem[0];
+}
+
+function redirectToProductPage(descendantElement) {
+	const parent = descendantElement.closest(".flex-item");
+	if (parent) {
+		const productId = parent.id;
+		const pageUrl = "/html/product.html";
+		const targetUrl = `${pageUrl}?id=${encodeURIComponent(productId)}`;
+		window.location.href = targetUrl;
 	}
 }
 
@@ -98,7 +207,6 @@ function mountElements(data, containerElement, btnTitle, filterBy) {
 async function fetchLocalData(url) {
 	try {
 		const response = await fetch(url);
-
 		const json = await response.json();
 		return json.data;
 	} catch (err) {

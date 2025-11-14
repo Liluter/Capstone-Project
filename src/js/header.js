@@ -32,7 +32,7 @@ const headerHtml = `
         <li>
           <a href="html/cart.html">
             <img src="assets/images/header/shopping-cart.svg" alt="cart-icon" width="30" height="33">
-            <div class="counter">3</div>
+            <div id="cartCounter" class="counter">3</div>
           </a>
         </li>
         <li id="burger-menu" class="header-menu">

@@ -23,7 +23,7 @@
 		var.$font-size-regular + 0.2vw - 1px,
 		var.$font-size-medium
 	);
-	line-height: 160%;
+	line-height: clamp(1.2em, 1.8vw, 1.8em);
 }
 .hero {
 	background-color: var.$white;

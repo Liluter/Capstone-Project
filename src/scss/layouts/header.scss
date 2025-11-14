@@ -63,6 +63,9 @@ hr {
 					text-align: center;
 					font-weight: 700;
 					display: block;
+					&--hidden {
+						visibility: hidden;
+					}
 				}
 			}
 		}
