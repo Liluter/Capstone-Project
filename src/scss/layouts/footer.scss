@@ -14,7 +14,6 @@
 			var.$font-bold,
 			var.$font-size-medium,
 			Inter,
-			Helvetica,
 			sans-serif
 		);
 	}
@@ -34,8 +33,7 @@
 			@include mixins.font(
 				var.$font-medium,
 				var.$font-size-regular,
-				"Helvetica",
-				Arial,
+				"Inter",
 				sans-serif
 			);
 			line-height: 160%;
@@ -62,7 +60,7 @@
 		@include mixins.font(
 			var.$font-regular,
 			var.$font-size-regular,
-			"Helvetica",
+			"Inter",
 			sans-serif
 		);
 		padding-top: var.$space-big * 4;
