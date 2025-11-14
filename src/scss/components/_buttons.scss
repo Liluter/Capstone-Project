@@ -2,7 +2,7 @@
 @use "../base/fonts";
 @use "../abstracts/mixins";
 
-.btn-primary {
+%btn-base {
 	width: 156px;
 	height: 40px;
 	@extend %display-centered;
@@ -17,11 +17,17 @@
 	);
 }
 
+.btn-primary {
+	@extend %btn-base;
+	&:hover {
+		@include mixins.hoverable();
+	}
+}
 .btn-small {
 	position: absolute;
 	top: var.$space-big;
 	left: var.$space-big;
-	@extend .btn-primary;
+	@extend %btn-base;
 	width: 54px;
 	height: 28px;
 	font-size: var.$font-size-small;
@@ -41,8 +47,7 @@ a.btn-link-primary {
 }
 
 .btn-link-primary:hover {
-	transform: scale(1.05);
-	transition: transform 0.2s ease-out;
+	@include mixins.hoverable();
 }
 
 .fluid {

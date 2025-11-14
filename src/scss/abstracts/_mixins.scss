@@ -14,6 +14,11 @@
 	color: var.$white;
 }
 
+@mixin hoverable() {
+	transform: scale(1.02);
+	transition: transform 0.15s ease-in-out;
+}
+
 %display-centered {
 	display: flex;
 	justify-content: center;
