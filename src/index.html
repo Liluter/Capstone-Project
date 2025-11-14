@@ -5,10 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Best Shop</title>
-  <script src="./js/header.js" defer></script>
+  <script src="./js/header.js" async></script>
   <script src="./js/footer.js" defer></script>
   <link rel="stylesheet" href="dist/css/main.css">
-  <script src="./js/main.js" defer></script>
+  <script src="./js/cart.js" type="module"></script>
+  <script src="./js/main.js" type="module"></script>
 </head>
 
 <body>
@@ -23,9 +24,11 @@
               metus.</p>
             <a href="html/catalog.html" class="btn-link-primary">View All Items</a>
           </div>
-          <figure class="hero__figure hero__item">
-            <img class="hero__image" src="./assets/images/homepage/hero2x.webp" alt="travel suitcase" loading="eager">
-          </figure>
+          <picture class="hero__figure hero__item">
+            <source srcset="./assets/images/homepage/hero1x.webp, ./assets/images/homepage/hero2x.webp 2x" />
+            <img class="hero__image" src="./assets/images/homepage/hero1x.webp" alt="travel suitcase" loading="eager"
+              width="766" height="625">
+          </picture>
 
         </section>
       </div>

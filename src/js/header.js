@@ -86,12 +86,15 @@ const headerHtml = `
     </div>
   </header>`;
 
+let dropdownMenu;
 document.body.insertAdjacentHTML("afterbegin", headerHtml);
-const burgerMenu = document.getElementById("burger-menu");
-const cartIconCounter = document.getElementById("");
-burgerMenu.addEventListener("click", toggleMenu);
-document.body.addEventListener("click", (event) => closeMenu(event));
-const dropdownMenu = document.querySelector(".site-header .dropdown-menu");
+
+document.addEventListener("DOMContentLoaded", () => {
+	const burgerMenu = document.getElementById("burger-menu");
+	burgerMenu.addEventListener("click", toggleMenu);
+	document.body.addEventListener("click", (event) => closeMenu(event));
+	dropdownMenu = document.querySelector(".site-header .dropdown-menu");
+});
 
 function toggleMenu() {
 	dropdownMenu.classList.toggle("show");
@@ -99,7 +102,7 @@ function toggleMenu() {
 function closeMenu(event) {
 	if (
 		event.target.closest(".dropdown-menu") ||
-		event.target.parentElement === document.body
+		event.target.closest(".main-container")
 	) {
 		dropdownMenu.classList.remove("show");
 	}
