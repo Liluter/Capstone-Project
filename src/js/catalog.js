@@ -1,4 +1,5 @@
 const startTime = Date.now();
+import {Cart} from "./cart.js";
 
 const bestSet = [
 	{
@@ -37,29 +38,35 @@ class Catalog {
 	currentPageNumber;
 	#backButton;
 	#nextButton;
-	constructor() {
+	#cart;
+	#actualDataSet;
+	#defaultSortData;
+	activeFilters;
+	constructor(cart) {
 		this.#productContainer = document.querySelector("#productContainer");
 		this.#paginatorResultElement = document.querySelector("#paginationCount");
 		this.#pageNumberContainer = document.querySelector("#pageNumberButtons");
 		this.#backButton = document.querySelector("#backButton");
 		this.#nextButton = document.querySelector("#nextButton");
+		this.activeFilters = document.querySelector("#activeFilters");
+		this.#cart = cart;
 	}
 	async init(dataUrl) {
-		try {
-			const response = await fetch(dataUrl);
-			const json = await response.json();
-			this.#data = json.data;
-			this.filteredPagesSet();
-			console.log("Loding Time  ", Date.now() - startTime);
-		} catch (err) {
-			console.error(err);
-			throw err;
-		}
+		const response = await fetch(dataUrl);
+		const json = await response.json();
+		this.#data = json.data;
+		this.filteredPagesSet();
+		this.#productContainer.addEventListener("click", (e) => {
+			const productId = e.target.closest(".flex-item").id;
+			console.log("!!! ADD to cart but element not id", productId);
+
+			this.#cart.writeData(productId);
+		});
+		console.log("Loding Time  ", Date.now() - startTime);
 	}
 
 	mountPageSet(pageNumber = 1) {
 		this.setActivePage(pageNumber);
-		console.log("ACTIVE PAGE", this.currentPageNumber);
 		const pageElementsSet = this.pageListData[pageNumber - 1];
 		const concatedString = pageElementsSet.join("");
 		this.#productContainer.innerHTML = concatedString;
@@ -71,12 +78,40 @@ class Catalog {
 		const endRange = +start + pageElementsSet.length - 1;
 
 		this.setPaginationCount(start, endRange, flatedArray.length);
+		this.#productContainer.scrollIntoView({
+			behavior: "smooth",
+			block: "start",
+		});
+	}
+	activeFilterInfoHandler(filterQuery) {
+		if (filterQuery) {
+			this.activeFilters.classList.remove("hide");
+
+			const sizeTekst = filterQuery.size ? `by Size ${filterQuery.size}, ` : "";
+			const colorTekst = filterQuery.color
+				? `by Color ${filterQuery.color}, `
+				: "";
+			const categoryTekst = filterQuery.category
+				? `by Category ${filterQuery.category}, `
+				: "";
+
+			this.activeFilters.textContent = `Active filters: ${[
+				sizeTekst,
+				colorTekst,
+				categoryTekst,
+			].join("")} `;
+			this.activeFilters.classList.remove("hide");
+		} else {
+			this.activeFilters.classList.add("hide");
+		}
 	}
 	setActivePage(pageNumber) {
 		this.currentPageNumber = pageNumber;
 		this.createPaginationButtons();
 	}
 	filteredPagesSet(filter) {
+		console.log("HERE1");
+		this.activeFilterInfoHandler(filter);
 		if (
 			!filter ||
 			(filter.size === "" &&
@@ -84,22 +119,29 @@ class Catalog {
 				filter.category === "" &&
 				filter.salesStatus === false)
 		) {
-			const allProductsStringedData = this.#data.map((elem) => {
-				return this.templateStringGenerator(elem);
-			});
-			this.splitPagesData(allProductsStringedData);
-			// this.createPaginationButtons();
-			this.mountPageSet(1);
+			console.log("HERE2");
+
+			this.#actualDataSet = this.#data;
+			this.#defaultSortData = this.#data;
+			console.log("CLEARED FILTER");
+
+			this.mountData(this.#data);
 		} else {
+			console.log("HERE3");
+
 			const filteredData = this.allFilters(filter, this.#data);
-			const filteredProductsStringedData = filteredData.map((elem) => {
-				return this.templateStringGenerator(elem);
-			});
-			console.log("filteredData", filteredData);
-			this.splitPagesData(filteredProductsStringedData);
-			// this.createPaginationButtons();
-			this.mountPageSet(1);
+			this.#defaultSortData = filteredData;
+			this.#actualDataSet = filteredData;
+			this.mountData(filteredData);
 		}
+	}
+
+	mountData(data) {
+		const stringedData = data.map((elem) => {
+			return this.templateStringGenerator(elem);
+		});
+		this.splitPagesData(stringedData);
+		this.mountPageSet(1);
 	}
 
 	createPaginationButtons() {
@@ -129,7 +171,6 @@ class Catalog {
 			this.currentPageNumber > 1 &&
 			this.currentPageNumber === this.pageListData.length
 		) {
-			// this.#backButton.classList.remove("page-button__hidden");
 			this.#nextButton.classList.add("page-button__hidden");
 		} else if (this.currentPageNumber !== this.pageListData.length) {
 			this.#nextButton.classList.remove("page-button__hidden");
@@ -170,7 +211,6 @@ class Catalog {
 			filteredData = filteredBySalesStatus;
 		}
 
-		console.log("allFilters ---------", filteredData);
 		return filteredData;
 	}
 	sizeFilter(filter, data) {
@@ -183,55 +223,51 @@ class Catalog {
 			"S, M, XL": ["S", "M", "XL", "S, M, XL"],
 		};
 		const dataMatch = truthTable[filter];
-		console.log("sizeFilter ", dataMatch.includes(data));
 		return dataMatch.includes(data);
 	}
 	colorFilter(filter, data) {
-		console.log("colorFilter", filter, data);
 		return filter === data;
 	}
 	categoryFilter(filter, data) {
-		console.log("categoryFilter", filter, data);
 		return filter === data;
 	}
 	salesStatusFilter(filter, data) {
-		console.log("salesStatusFilter", filter, data);
 		return filter === data;
 	}
 	sortedPagesSet(sortBy) {
+		let sortedArr;
 		switch (sortBy) {
 			case "lowest_highest":
-				console.log("lowest_highest");
+				sortedArr = this.#actualDataSet.toSorted((a, b) => a.price - b.price);
 				break;
-			case "highet_lowest":
-				console.log("highet_lowest");
+			case "highest_lowest":
+				sortedArr = this.#actualDataSet.toSorted((a, b) => b.price - a.price);
 				break;
 			case "popularity":
-				console.log("rating");
+				sortedArr = this.#actualDataSet.toSorted(
+					(a, b) => b.popularity - a.popularity
+				);
 				break;
 			case "rating":
-				console.log("rating");
+				sortedArr = this.#actualDataSet.toSorted((a, b) => b.rating - a.rating);
 				break;
 			default:
-				console.log("default");
+				sortedArr = this.#defaultSortData;
 		}
+		this.#actualDataSet = sortedArr;
+		this.mountData(sortedArr);
 	}
 
 	splitPagesData(data, number = 12) {
-		console.log("all filtered data length", data.length);
 		if (data.length <= number) {
 			this.pageListData = [data];
-			console.log("PAGE LIST1", this.pageListData);
 		} else if (data.length !== 0) {
 			const newSplitedArray = [];
 			while (data.length) {
 				const splicy = data.splice(0, number);
 				newSplitedArray.push(splicy);
 			}
-
 			this.pageListData = [...newSplitedArray];
-			console.log("");
-			console.log("PAGE LIST2", this.pageListData);
 		}
 	}
 
@@ -270,13 +306,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const bestSetContainer = document.querySelector("#recommendation-container");
 	mountRecommendationProduct(bestSetContainer, bestSet);
-	// dataAccess();
 
-	const productCatalog = new Catalog();
+	const cartCounterElement = document.querySelector("#cartCounter");
+	const cart = new Cart(cartCounterElement);
+	const productCatalog = new Catalog(cart);
+
 	productCatalog.init("/assets/data.json");
 
-	const selectBox = document.querySelector("#selectSort");
-	selectBox.addEventListener("change", (e) => console.log(e.target.value));
+	const sortBox = document.querySelector("#selectSort");
+	sortBox.addEventListener("change", (e) => {
+		productCatalog.sortedPagesSet(e.target.value);
+	});
 
 	const filterBtn = document.querySelector("#filterBtn");
 	const filterDropdown = document.querySelector("#filterDropdown");
@@ -286,61 +326,47 @@ document.addEventListener("DOMContentLoaded", () => {
 	const selectCategory = filterDropdown.querySelector("#selectCategory");
 	const selectSales = filterDropdown.querySelector("#selectSales");
 
-	const backButton = document.querySelector("#backButton");
-	const nextButton = document.querySelector("#nextButton");
 	const paginator = document.querySelector(".page-control__paginator");
 
 	paginator.addEventListener(
 		"click",
 		(e) => {
 			const currentTarget = e.currentTarget;
-
 			if (e.target === currentTarget.children[0]) {
-				console.log("back");
 				if (productCatalog.currentPageNumber > 1) {
-					console.log("can go next");
 					productCatalog.mountPageSet(productCatalog.currentPageNumber - 1);
 				}
 			} else if (e.target === currentTarget.children[2]) {
 				if (
 					productCatalog.currentPageNumber < productCatalog.pageListData.length
 				) {
-					console.log("can go next");
 					productCatalog.mountPageSet(productCatalog.currentPageNumber + 1);
 				}
 			} else if (e.target.closest("#pageNumberButtons")) {
 				const pageNumber = e.target.textContent;
-				console.log("page", pageNumber);
-				console.log("page", e.target);
 				if (productCatalog.currentPageNumber != pageNumber) {
-					console.log("can go", pageNumber);
 					productCatalog.mountPageSet(+pageNumber);
 				}
 			}
 		},
 		false
 	);
-
-	console.log("backButton", backButton);
-	console.log("backButton", nextButton);
-
+	// const activeFilters = document.querySelector("#activeFilters");
 	const selectInputs = [selectSize, selectColor, selectCategory];
 	selectInputs.forEach((elem) => {
-		elem.addEventListener("click", (e) => {
+		elem.addEventListener("change", (e) => {
 			switch (e.target.id) {
 				case "selectSize":
-					console.log("selectSize", e.target.value);
 					filterQuery.size = e.target.value;
 					break;
 				case "selectColor":
-					console.log("selectColor");
 					filterQuery.color = e.target.value;
 					break;
 				case "selectCategory":
-					console.log("selectCategory");
 					filterQuery.category = e.target.value;
 					break;
 			}
+
 			if (
 				filterQuery.category.length ||
 				filterQuery.color.length ||
@@ -348,10 +374,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				filterQuery.size
 			) {
 				productCatalog.filteredPagesSet(filterQuery);
+			} else {
+				console.log("EXTRA LINE");
+				productCatalog.filteredPagesSet();
 			}
-
-			console.log("check", e.target.value);
-			console.log("filterQuery", filterQuery);
 		});
 	});
 
@@ -364,18 +390,14 @@ document.addEventListener("DOMContentLoaded", () => {
 			selectSales.checked = false;
 		}
 		filterQuery.salesStatus = selectSales.checked;
-		console.log("filterQuery", filterQuery);
-
 		productCatalog.filteredPagesSet(filterQuery);
 	});
 
 	const clearFilters = filterDropdown.querySelector("#clear_filters");
 	const hideFilters = filterDropdown.querySelector("#hide_filters");
-	// console.log(clearFilters, hideFilters);
 	[clearFilters, hideFilters].forEach((el) =>
 		el.addEventListener("click", (e) => {
 			if (e.target.id === "clear_filters") {
-				console.log("clear");
 				const defaultQuerry = {
 					size: "",
 					color: "",
@@ -387,10 +409,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				);
 				selectSales.checked = false;
 				filterQuery = {...defaultQuerry};
-
-				console.log("filterQuery", filterQuery);
+				console.log("CLEAR FILTER");
 				productCatalog.filteredPagesSet();
-				//apply filtering for clear showFilteredData(filterQuery)
 			} else if (e.target.id === "hide_filters") {
 				filterDropdown.classList.toggle("hide");
 			}
