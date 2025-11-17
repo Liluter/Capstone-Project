@@ -90,13 +90,11 @@ async function dataAccess() {
 			"View Product",
 			"New Products Arrival"
 		);
-		//
 		const productLists = document.querySelectorAll(
 			".product-list__container:not(.product-list__container--slider)"
 		);
 
-		const arrProdCards = [...productLists];
-		arrProdCards.forEach((list) =>
+		productLists.forEach((list) =>
 			list.addEventListener("click", (e) => {
 				const picture = e.target.closest("picture");
 				if (picture) {
