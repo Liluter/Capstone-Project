@@ -59,7 +59,10 @@ class TemplateHtmlParser {
 		nameElem.textContent = data.name;
 		btnElem.textContent = btnTitle;
 		priceElem.textContent = `$${data.price}`;
-		data.salesStatus ? null : saleElem.classList.remove("in-sale");
+
+		if (!data.salesStatus) {
+			saleElem.classList.remove("in-sale");
+		}
 
 		return elementTemplate;
 	}
@@ -141,13 +144,9 @@ function mountElements(data, containerElement, btnTitle, filterBy) {
 }
 
 async function fetchLocalData(url) {
-	try {
-		const response = await fetch(url);
-		const json = await response.json();
-		return json.data;
-	} catch (err) {
-		throw err;
-	}
+	const response = await fetch(url);
+	const json = await response.json();
+	return json.data;
 }
 
 function createSliderHandler(container) {

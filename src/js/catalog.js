@@ -1,4 +1,3 @@
-import {Cart} from "./cart.js";
 const startTime = Date.now();
 
 const bestSet = [
@@ -28,11 +27,9 @@ const bestSet = [
 		src: "../../assets/images/cataloge/set_green_small.webp",
 	},
 ];
+
 class Catalog {
-	#doc;
-	#parser;
 	#data;
-	#actualSet;
 	#paginatorResultElement;
 	#productContainer;
 	pageListData;
@@ -41,7 +38,6 @@ class Catalog {
 	#backButton;
 	#nextButton;
 	constructor() {
-		this.#parser = new DOMParser();
 		this.#productContainer = document.querySelector("#productContainer");
 		this.#paginatorResultElement = document.querySelector("#paginationCount");
 		this.#pageNumberContainer = document.querySelector("#pageNumberButtons");
@@ -53,7 +49,6 @@ class Catalog {
 			const response = await fetch(dataUrl);
 			const json = await response.json();
 			this.#data = json.data;
-			// console.log("init data", this.#data);
 			this.filteredPagesSet();
 			console.log("Loding Time  ", Date.now() - startTime);
 		} catch (err) {
@@ -106,6 +101,7 @@ class Catalog {
 			this.mountPageSet(1);
 		}
 	}
+
 	createPaginationButtons() {
 		const filledButton = this.pageListData.map((list, idx) => {
 			if (idx === 0) {
@@ -144,9 +140,6 @@ class Catalog {
 
 	setPaginationCount(start, actualPage, all) {
 		const firstLineElem = this.#paginatorResultElement.firstElementChild;
-		const secondLineElem =
-			this.#paginatorResultElement.firstElementChild.firstElementChild;
-
 		firstLineElem.innerHTML = `Showing ${start}-${actualPage} <span class="second-line"> Of ${all} Results</span>`;
 	}
 	allFilters(filter, data) {
@@ -231,7 +224,7 @@ class Catalog {
 			console.log("PAGE LIST1", this.pageListData);
 		} else if (data.length !== 0) {
 			const newSplitedArray = [];
-			for (let i = 0; data.length !== 0; i++) {
+			while (data.length) {
 				const splicy = data.splice(0, number);
 				newSplitedArray.push(splicy);
 			}
@@ -274,17 +267,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		category: "",
 		salesStatus: false,
 	};
-	const cartCounterElement = document.querySelector("#cartCounter");
-	const myCart = new Cart(cartCounterElement);
+
 	const bestSetContainer = document.querySelector("#recommendation-container");
 	mountRecommendationProduct(bestSetContainer, bestSet);
 	// dataAccess();
 
 	const productCatalog = new Catalog();
 	productCatalog.init("/assets/data.json");
-
-	const paginationCount = document.querySelector("#paginationCount");
-	// console.log(paginationCount);
 
 	const selectBox = document.querySelector("#selectSort");
 	selectBox.addEventListener("change", (e) => console.log(e.target.value));
@@ -371,7 +360,9 @@ document.addEventListener("DOMContentLoaded", () => {
 		selectSalesChecked = selectSales.checked;
 	});
 	selectSales.addEventListener("click", () => {
-		if (selectSalesChecked) [(selectSales.checked = false)];
+		if (selectSalesChecked) {
+			selectSales.checked = false;
+		}
 		filterQuery.salesStatus = selectSales.checked;
 		console.log("filterQuery", filterQuery);
 
@@ -405,32 +396,13 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		})
 	);
-	filterBtn.addEventListener("click", (e) => {
-		console.log("OPEN FILTER MODAL");
+	filterBtn.addEventListener("click", () => {
 		filterDropdown.classList.toggle("hide");
 	});
 
 	const searchInput = document.querySelector("#searchInput");
 	searchInput.addEventListener("change", (e) => console.log("Cheange", e));
 });
-
-// async function dataAccess() {
-// 	try {
-// 		const data = await fetchLocalData("/assets/data.json");
-// 	} catch (error) {
-// 		console.error("Error with data Acces", error);
-// 	}
-// }
-
-// async function fetchLocalData(url) {
-// 	try {
-// 		const response = await fetch(url);
-// 		const json = await response.json();
-// 		return json.data;
-// 	} catch (err) {
-// 		throw err;
-// 	}
-// }
 
 function mountRecommendationProduct(destination, dataSet) {
 	if (dataSet) {
@@ -449,15 +421,6 @@ function mountRecommendationProduct(destination, dataSet) {
 			return newDoc.body.firstChild;
 		});
 		destination.append(...docArr);
-	}
-}
-
-function docElementGenerator(data) {
-	const parser = new DOMParser();
-	if (data) {
-		const elementString = productCardString(data);
-		const newDoc = parser.parseFromString(elementString, "text/html");
-		return newDoc.body.firstChild;
 	}
 }
 

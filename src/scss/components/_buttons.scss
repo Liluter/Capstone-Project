@@ -1,4 +1,4 @@
-@use "../abstracts/variables" as var;
+@use "../abstracts/variables" as settings;
 @use "../base/fonts";
 @use "../abstracts/mixins";
 
@@ -6,12 +6,12 @@
 	width: 156px;
 	height: 40px;
 	@extend %display-centered;
-	color: var.$white;
+	color: settings.$white;
 	border: none;
-	background-color: var.$primary;
+	background-color: settings.$primary;
 	@include mixins.font(
-		var.$font-bold,
-		var.$font-size-medium,
+		settings.$font-bold,
+		settings.$font-size-medium,
 		"Monteserrat",
 		sans-serif
 	);
@@ -26,12 +26,12 @@
 }
 .btn-small {
 	position: absolute;
-	top: var.$space-big;
-	left: var.$space-big;
+	top: settings.$space-big;
+	left: settings.$space-big;
 	@extend %btn-base;
 	width: 54px;
 	height: 28px;
-	font-size: var.$font-size-small;
+	font-size: settings.$font-size-small;
 	font-family: "Inter", sans-serif;
 	visibility: hidden;
 	&.in-sale {
@@ -39,26 +39,25 @@
 	}
 }
 .filter-button {
-	background-color: var.$white;
-	border: var.$border-regular solid var.$soft-gray;
-	color: var.$secondary;
+	background-color: settings.$white;
+	color: settings.$secondary;
 
 	@include mixins.font(
-		var.$font-regular,
-		var.$font-size-medium,
+		settings.$font-regular,
+		settings.$font-size-medium,
 		"Monteserrat",
 		sans-serif
 	);
 
 	height: 100%;
 	width: 100px;
-	border: 2px solid var.$soft-gray;
+	border: settings.$border-regular solid settings.$soft-gray;
 	transition: all 0.2s ease;
 	&:hover,
 	&:active,
 	&:focus {
-		color: var.$white;
-		background-color: var.$primary;
+		color: settings.$white;
+		background-color: settings.$primary;
 		border: none;
 	}
 }
@@ -66,8 +65,8 @@
 .page-button {
 	position: relative;
 	@include mixins.font(
-		var.$font-bold,
-		var.$font-size-small,
+		settings.$font-bold,
+		settings.$font-size-small,
 		"Inter",
 		sans-serif
 	);
@@ -80,22 +79,22 @@
 	min-width: 40px;
 	width: auto;
 	padding: 0 20px;
-	border-radius: var.$radius-small;
-	margin-right: var.$space-small;
+	border-radius: settings.$radius-small;
+	margin-right: settings.$space-small;
 	&__invert {
 		@extend .page-button;
 		background-color: transparent;
 
-		color: var.$black;
+		color: settings.$black;
 		&:hover,
 		&:focus {
-			border: var.$border-regular solid var.$primary;
+			border: settings.$border-regular solid settings.$primary;
 			transition: none;
 		}
 		&:active {
 			@include mixins.hoverable();
-			background-color: var.$primary;
-			color: var.$white;
+			background-color: settings.$primary;
+			color: settings.$white;
 		}
 	}
 	&__hidden {
@@ -112,7 +111,7 @@
 			background-position-x: right;
 			background-position-y: center;
 			background-repeat: no-repeat;
-			padding: 0 var.$space-medium;
+			padding: 0 settings.$space-medium;
 			filter: invert(-1);
 		}
 		.left-arrow {
@@ -121,11 +120,11 @@
 		}
 		@extend .page-button;
 		background-color: transparent;
-		border: var.$border-regular solid var.$primary;
-		color: var.$black;
+		border: settings.$border-regular solid settings.$primary;
+		color: settings.$black;
 		&:hover {
-			color: var.$white;
-			background-color: var.$primary;
+			color: settings.$white;
+			background-color: settings.$primary;
 			.right-arrow,
 			.left-arrow {
 				filter: invert(1);
@@ -142,8 +141,8 @@ a.btn-link-primary {
 	width: 174px;
 	height: 60px;
 	@extend .btn-primary;
-	padding: var.$space-small 0;
-	margin: var.$space-big 0;
+	padding: settings.$space-small 0;
+	margin: settings.$space-big 0;
 }
 
 .btn-link-primary:hover {
@@ -151,16 +150,20 @@ a.btn-link-primary {
 }
 
 .container {
-	width: var.$brakepoint-large;
+	width: settings.$brakepoint-large;
 	margin: 0 auto;
-	margin-bottom: clamp(var.$space-big, 10vw - var.$space-big, var.$space-mega);
-	@media screen and (width <= var.$brakepoint-large) {
-		width: var.$brakepoint-medium;
+	margin-bottom: clamp(
+		settings.$space-big,
+		10vw - settings.$space-big,
+		settings.$space-mega
+	);
+	@media screen and (max-width: settings.$brakepoint-large) {
+		width: settings.$brakepoint-medium;
 	}
-	@media screen and (width <= var.$brakepoint-medium) {
-		width: var.$brakepoint-small;
+	@media screen and (max-width: settings.$brakepoint-medium) {
+		width: settings.$brakepoint-small;
 	}
-	@media screen and (width <= var.$brakepoint-small) {
+	@media screen and (max-width: settings.$brakepoint-small) {
 		width: 100%;
 	}
 }
@@ -169,7 +172,7 @@ a.btn-link-primary {
 	overflow: hidden;
 	width: 296px;
 	height: 600px;
-	color: var.$white;
+	color: settings.$white;
 
 	&__image-content {
 		position: absolute;
@@ -182,21 +185,21 @@ a.btn-link-primary {
 		position: relative;
 		z-index: 1;
 		padding: 2.5em;
-		padding-right: var.$space-verybig;
-		background-color: var.$black40;
+		padding-right: settings.$space-verybig;
+		background-color: settings.$black40;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
 		align-items: flex-start;
 		text-align: start;
-		row-gap: var.$space-bigger;
-		line-height: var.$font-size-big;
-		font-size: var.$font-size-medium;
+		row-gap: settings.$space-bigger;
+		line-height: settings.$font-size-big;
+		font-size: settings.$font-size-medium;
 	}
 	&:hover {
 		transform: scale(1.03);
-		box-shadow: var.$shadow-drop;
+		box-shadow: settings.$shadow-drop;
 		transition: transform 0.2s ease-out;
 	}
 }
@@ -207,21 +210,21 @@ a.btn-link-primary {
 		width: fit-content;
 		display: flex;
 		justify-content: start;
-		column-gap: var.$space-big;
-		margin-top: var.$space-verybig;
-		margin-bottom: var.$space-big;
+		column-gap: settings.$space-big;
+		margin-top: settings.$space-verybig;
+		margin-bottom: settings.$space-big;
 		&--slider {
 			left: -296px;
 		}
 	}
 	&__fluid {
-		margin-top: var.$space-verybig;
-		margin-bottom: var.$space-big;
+		margin-top: settings.$space-verybig;
+		margin-bottom: settings.$space-big;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
-		column-gap: var.$space-big;
-		row-gap: var.$space-big;
+		column-gap: settings.$space-big;
+		row-gap: settings.$space-big;
 	}
 
 	&--mounted {
@@ -231,7 +234,7 @@ a.btn-link-primary {
 			column-gap: 0;
 			width: 100%;
 			display: flex;
-			row-gap: var.$space-verybig;
+			row-gap: settings.$space-verybig;
 			justify-content: space-around;
 			flex-wrap: wrap;
 		}
@@ -251,15 +254,15 @@ a.btn-link-primary {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: auto;
-	box-shadow: var.$shadow-drop;
-	color: var.$white;
-	padding: var.$space-big 0;
-	row-gap: var.$space-verybig;
+	box-shadow: settings.$shadow-drop;
+	color: settings.$white;
+	padding: settings.$space-big 0;
+	row-gap: settings.$space-verybig;
 	.side {
 		@extend %display-centered;
-		padding: 0 var.$space-medium;
+		padding: 0 settings.$space-medium;
 		p.description {
-			color: var.$white;
+			color: settings.$white;
 		}
 	}
 	.side:first-child {
@@ -271,13 +274,13 @@ a.btn-link-primary {
 	}
 }
 
-@media screen and (width <= var.$brakepoint-large) {
+@media screen and (max-width: settings.$brakepoint-large) {
 	.flex-item {
 		flex: 0 0 50%;
 	}
 }
 
-@media screen and (width <= var.$brakepoint-small) {
+@media screen and (max-width: settings.$brakepoint-small) {
 	.banner {
 		grid-template-columns: 1fr;
 		.side {

@@ -1,5 +1,5 @@
 @use "base/reset";
-@use "abstracts/_variables" as var;
+@use "abstracts/_variables" as settings;
 @use "abstracts/mixins";
 @use "layouts/header";
 @use "layouts/footer";
@@ -9,37 +9,39 @@
 
 .main-container {
 	@include mixins.font(
-		var.$font-regular,
-		var.$font-size-regular,
+		settings.$font-regular,
+		settings.$font-size-regular,
 		"Montserrat",
 		sans-serif
 	);
 	width: 100%;
-	color: var.$black;
+	color: settings.$black;
 }
 
 .description {
 	font-size: clamp(
-		var.$font-size-regular,
-		var.$font-size-regular + 0.2vw - 1px,
-		var.$font-size-medium
+		settings.$font-size-regular,
+		settings.$font-size-regular + 0.2vw - 1px,
+		settings.$font-size-medium
 	);
 	line-height: clamp(1.2em, 1.8vw, 1.8em);
 }
 .hero {
-	background-color: var.$white;
-	font-size: var.$font-size-medium;
+	background-color: settings.$white;
+	font-size: settings.$font-size-medium;
 
 	&__wrapper {
-		background-color: var.$light-gray;
-		height: calc(100vh - var.$height-s - var.$height-l - var.$space-big);
+		background-color: settings.$light-gray;
+		height: calc(
+			100vh - settings.$height-s - settings.$height-l - settings.$space-big
+		);
 		width: 100%;
-		margin-bottom: var.$space-ultrabig * -1;
+		margin-bottom: settings.$space-ultrabig * -1;
 	}
 	&__section {
 		@extend %display-centered;
 		margin: 0 auto;
-		padding: var.$space-big 0;
+		padding: settings.$space-big 0;
 		height: 100%;
 	}
 	&__item {
@@ -47,8 +49,8 @@
 	}
 	&__content {
 		margin-right: -50px;
-		padding-left: var.$space-medium;
-		padding-right: var.$space-medium;
+		padding-left: settings.$space-medium;
+		padding-right: settings.$space-medium;
 	}
 
 	&__image {
@@ -59,34 +61,34 @@
 .avatar-item {
 	@extend %display-centered;
 	justify-content: flex-start;
-	column-gap: var.$space-big;
-	margin: clamp(var.$space-small, 2vw, var.$space-bigger) 0;
+	column-gap: settings.$space-big;
+	margin: clamp(settings.$space-small, 2vw, settings.$space-bigger) 0;
 
 	&__image {
 		height: clamp(4em, 4em + 0.5vw, 5em);
 		width: auto;
 	}
 	&__name {
-		font-weight: var.$font-bold;
+		font-weight: settings.$font-bold;
 		font-size: clamp(1.1em, max(2vw, 1em), 1.2em);
 	}
 	p {
-		margin: var.$space-smallest 0;
+		margin: settings.$space-smallest 0;
 	}
 }
 .card {
 	display: grid;
-	grid-template-columns: repeat(2, calc(var.$brakepoint-large / 2));
-	grid-template-rows: calc(var.$brakepoint-large / 2);
-	box-shadow: var.$shadow-drop;
+	grid-template-columns: repeat(2, calc(settings.$brakepoint-large / 2));
+	grid-template-rows: calc(settings.$brakepoint-large / 2);
+	box-shadow: settings.$shadow-drop;
 
 	&__col {
 		@extend %display-centered;
-		padding: 0 var.$space-ultrabig;
+		padding: 0 settings.$space-ultrabig;
 	}
 
 	&__col--left {
-		background-color: var.$white;
+		background-color: settings.$white;
 	}
 	&__col--right {
 		color: white;
@@ -96,21 +98,21 @@
 	}
 
 	&.card-title {
-		font-weight: var.$font-black;
+		font-weight: settings.$font-black;
 	}
 }
 
-@media screen and (width <= var.$brakepoint-large) {
+@media screen and (max-width: settings.$brakepoint-large) {
 	.card {
-		grid-template-columns: repeat(2, calc(var.$brakepoint-medium / 2));
-		grid-template-rows: calc(var.$brakepoint-medium / 2);
-		font-size: var.$font-size-regular;
+		grid-template-columns: repeat(2, calc(settings.$brakepoint-medium / 2));
+		grid-template-rows: calc(settings.$brakepoint-medium / 2);
+		font-size: settings.$font-size-regular;
 		&__col {
-			padding: 0 var.$space-bigger * 2;
+			padding: 0 settings.$space-bigger * 2;
 		}
 	}
 }
-@media screen and (width <= var.$brakepoint-medium) {
+@media screen and (max-width: settings.$brakepoint-medium) {
 	.hero {
 		&__wrapper {
 			margin-bottom: 0;
@@ -126,25 +128,25 @@
 	}
 
 	.card {
-		grid-template-columns: repeat(2, calc(var.$brakepoint-small / 2));
-		grid-template-rows: calc(var.$brakepoint-small / 2);
-		font-size: var.$font-size-regular;
+		grid-template-columns: repeat(2, calc(settings.$brakepoint-small / 2));
+		grid-template-rows: calc(settings.$brakepoint-small / 2);
+		font-size: settings.$font-size-regular;
 		> * {
-			padding: 0 var.$space-bigger;
+			padding: 0 settings.$space-bigger;
 		}
 	}
 }
-@media screen and (width <= var.$brakepoint-small) {
+@media screen and (max-width: settings.$brakepoint-small) {
 	.card {
 		grid-template-columns: 100vw;
 		grid-template-rows: 100vw 100vw;
-		font-size: var.$font-size-regular;
+		font-size: settings.$font-size-regular;
 		> * {
-			padding: 0 var.$space-medium;
+			padding: 0 settings.$space-medium;
 		}
 	}
 }
-@media screen and (orientation: portrait) and (width <= var.$brakepoint-very-small) {
+@media screen and (orientation: portrait) and (max-width: settings.$brakepoint-very-small) {
 	.main-container {
 		a.btn-link-primary {
 			width: 100%;

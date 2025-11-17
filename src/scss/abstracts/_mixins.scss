@@ -1,4 +1,4 @@
-@use "variables" as var;
+@use "variables" as settings;
 
 @mixin font($fontWeight, $fontSize, $fontFamily...) {
 	font-family: $fontFamily;
@@ -7,11 +7,12 @@
 }
 
 @mixin background-overlay($url) {
-	background-image: linear-gradient(var.$black40, var.$black40), url($url);
+	background-image: linear-gradient(settings.$black40, settings.$black40),
+		url($url);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	color: var.$white;
+	color: settings.$white;
 }
 
 @mixin hoverable() {

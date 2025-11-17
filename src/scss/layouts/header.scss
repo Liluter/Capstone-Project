@@ -1,5 +1,5 @@
 @use "../base/fonts";
-@use "../abstracts/variables" as var;
+@use "../abstracts/variables" as settings;
 
 %display-centered {
 	display: flex;
@@ -16,7 +16,7 @@ hr {
 }
 .header-container {
 	width: 100%;
-	background-color: var.$white;
+	background-color: settings.$white;
 	position: sticky;
 	top: 0;
 	z-index: 100;
@@ -24,42 +24,42 @@ hr {
 .site-header {
 	margin: 0 auto;
 
-	width: var.$brakepoint-large;
+	width: settings.$brakepoint-large;
 
-	background-color: var.$white;
+	background-color: settings.$white;
 	color: black;
 
 	hr.regular {
-		border-top: 1px solid var.$gray;
+		border-top: 1px solid settings.$gray;
 		opacity: 0.2;
 		border-bottom: 1px transparent;
 	}
 
 	.list {
 		@extend %display-centered;
-		padding: var.$space-medium 0;
+		padding: settings.$space-medium 0;
 
 		&.socialmedia {
-			gap: var.$space-big;
+			gap: settings.$space-big;
 			@extend %flex;
 		}
 		&.account-controls {
-			gap: var.$space-large;
+			gap: settings.$space-large;
 			@extend %flex;
 
-			padding: 0 var.$space-medium;
+			padding: 0 settings.$space-medium;
 			:nth-child(2) {
 				position: relative;
 				.counter {
 					position: absolute;
-					top: var.$space-small * -1;
-					left: var.$space-big;
-					color: var.$primary;
-					border: 2px solid var.$primary;
+					top: settings.$space-small * -1;
+					left: settings.$space-big;
+					color: settings.$primary;
+					border: 2px solid settings.$primary;
 					border-radius: 50% 50%;
-					width: var.$height-xs;
-					height: var.$height-xs;
-					font-size: var.$font-size-small;
+					width: settings.$height-xs;
+					height: settings.$height-xs;
+					font-size: settings.$font-size-small;
 					text-align: center;
 					font-weight: 700;
 					display: block;
@@ -72,17 +72,17 @@ hr {
 
 		&.nav-list {
 			height: 100%;
-			gap: var.$space-big;
+			gap: settings.$space-big;
 			li:hover,
 			li:focus-within {
-				color: var.$primary;
+				color: settings.$primary;
 			}
 		}
 	}
 	.dropdown-menu {
-		background-color: var.$secondary;
-		color: var.$white;
-		padding: var.$space-large 0;
+		background-color: settings.$secondary;
+		color: settings.$white;
+		padding: settings.$space-large 0;
 		display: none;
 		.navigation {
 			height: auto;
@@ -91,7 +91,7 @@ hr {
 			}
 		}
 		hr.special {
-			border: 1px solid var.$primary;
+			border: 1px solid settings.$primary;
 			width: 75%;
 			margin: 0 auto;
 			opacity: 1;
@@ -108,34 +108,34 @@ hr {
 .header-top {
 	@extend %display-centered;
 	justify-content: space-between;
-	height: var.$height-l;
-	padding: 0 var.$space-smallest;
+	height: settings.$height-l;
+	padding: 0 settings.$space-smallest;
 	.header-menu {
 		display: none;
 	}
 }
 .main-navigation {
-	height: var.$height-m;
-	font-weight: var.$font-bold;
-	font-size: var.$font-size-medium;
+	height: settings.$height-m;
+	font-weight: settings.$font-bold;
+	font-size: settings.$font-size-medium;
 }
 .header-branding a {
 	@extend %display-centered;
-	gap: var.$space-medium;
-	height: var.$height-s;
+	gap: settings.$space-medium;
+	height: settings.$height-s;
 	.site-name {
-		color: var.$primary;
-		font-weight: var.$font-bold;
-		font-size: var.$font-size-big;
+		color: settings.$primary;
+		font-weight: settings.$font-bold;
+		font-size: settings.$font-size-big;
 		min-width: max-content;
 	}
 }
 
 .logo img {
-	background-color: var.$primary;
-	width: var.$height-s;
-	height: var.$height-s;
-	border-radius: var.$radius-medium;
+	background-color: settings.$primary;
+	width: settings.$height-s;
+	height: settings.$height-s;
+	border-radius: settings.$radius-medium;
 	padding: 1px;
 }
 .arrow-icon {
@@ -143,53 +143,53 @@ hr {
 	bottom: 2px;
 }
 
-@media screen and (width <= var.$brakepoint-large) {
+@media screen and (max-width: settings.$brakepoint-large) {
 	.site-header {
-		width: var.$brakepoint-medium;
+		width: settings.$brakepoint-medium;
 	}
 }
-@media screen and (width <= var.$brakepoint-medium) {
+@media screen and (max-width: settings.$brakepoint-medium) {
 	.header-top {
-		height: var.$height-m;
+		height: settings.$height-m;
 	}
 	.site-header {
-		width: var.$brakepoint-small;
+		width: settings.$brakepoint-small;
 	}
 	.main-navigation {
-		height: var.$height-s;
+		height: settings.$height-s;
 	}
 }
-@media screen and (orientation: landscape) and (width <= var.$brakepoint-medium) {
+@media screen and (orientation: landscape) and (max-width: settings.$brakepoint-medium) {
 	.header-top {
-		height: var.$height-m;
+		height: settings.$height-m;
 	}
 	.main-navigation {
-		height: var.$height-s;
+		height: settings.$height-s;
 	}
 }
-@media screen and (width <= var.$brakepoint-small) {
+@media screen and (max-width: settings.$brakepoint-small) {
 	.header-top {
-		height: var.$height-m;
+		height: settings.$height-m;
 	}
 	.site-header {
 		width: 100%;
 		.list.socialmedia {
-			gap: var.$space-medium;
-			padding-left: var.$space-medium;
-			padding-right: var.$space-medium;
+			gap: settings.$space-medium;
+			padding-left: settings.$space-medium;
+			padding-right: settings.$space-medium;
 		}
 		.header-branding {
-			padding: 0 var.$space-medium 0 var.$space-medium;
+			padding: 0 settings.$space-medium 0 settings.$space-medium;
 		}
 		.list.nav-list {
-			gap: var.$space-medium;
+			gap: settings.$space-medium;
 		}
 	}
 }
 
-@media screen and (orientation: portrait) and (width <= var.$brakepoint-very-small) {
+@media screen and (orientation: portrait) and (max-width: settings.$brakepoint-very-small) {
 	.header-top {
-		height: var.$height-m;
+		height: settings.$height-m;
 		justify-content: space-between;
 		width: 100%;
 		.header-menu {
@@ -204,7 +204,7 @@ hr {
 			}
 		}
 		a .site-name {
-			font-size: var.$font-size-large;
+			font-size: settings.$font-size-large;
 		}
 	}
 	.site-header > .main-navigation {

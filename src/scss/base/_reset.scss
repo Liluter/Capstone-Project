@@ -1,5 +1,5 @@
 @use "../base/fonts";
-@use "../abstracts/variables" as var;
+@use "../abstracts/variables" as settings;
 
 * {
 	box-sizing: border-box;
@@ -16,13 +16,13 @@ a {
 	}
 }
 h1 {
-	margin-top: var.$space-verybig;
-	margin-bottom: var.$space-big;
-	font-weight: var.$font-black;
+	margin-top: settings.$space-verybig;
+	margin-bottom: settings.$space-big;
+	font-weight: settings.$font-black;
 	font-size: clamp(1.5em, 1em + 2vw, 4em);
 }
 h2 {
-	font-weight: var.$font-black;
+	font-weight: settings.$font-black;
 	font-size: clamp(1.5em, 1.5em + 1vw, 4em);
 }
 
@@ -37,24 +37,24 @@ body {
 
 .text {
 	&--primary {
-		color: var.$primary;
+		color: settings.$primary;
 	}
 	&--secondary {
-		color: var.$secondary;
+		color: settings.$secondary;
 	}
 	&--white {
-		color: var.$white;
+		color: settings.$white;
 	}
 	&--bold {
-		font-weight: var.$font-bold;
+		font-weight: settings.$font-bold;
 	}
 }
 
 .spacing-vertical-1 {
-	margin: clamp(var.$space-smallest, 0.8vw, var.$space-big) 0;
+	margin: clamp(settings.$space-smallest, 0.8vw, settings.$space-big) 0;
 }
 .spacing-vertical-2 {
-	margin: clamp(var.$space-small, 2vw, var.$space-bigger) 0;
+	margin: clamp(settings.$space-small, 2vw, settings.$space-bigger) 0;
 }
 
 .spacing-top {
@@ -69,6 +69,6 @@ body {
 }
 
 .borders-horizontal {
-	border-top: 2px solid var.$primary;
-	border-bottom: 2px solid var.$primary;
+	border-top: 2px solid settings.$primary;
+	border-bottom: 2px solid settings.$primary;
 }
