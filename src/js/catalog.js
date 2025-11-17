@@ -35,14 +35,18 @@ class Catalog {
 	#actualSet;
 	#paginatorResultElement;
 	#productContainer;
-	#pageListData;
+	pageListData;
 	#pageNumberContainer;
 	currentPageNumber;
+	#backButton;
+	#nextButton;
 	constructor() {
 		this.#parser = new DOMParser();
 		this.#productContainer = document.querySelector("#productContainer");
 		this.#paginatorResultElement = document.querySelector("#paginationCount");
 		this.#pageNumberContainer = document.querySelector("#pageNumberButtons");
+		this.#backButton = document.querySelector("#backButton");
+		this.#nextButton = document.querySelector("#nextButton");
 	}
 	async init(dataUrl) {
 		try {
@@ -61,12 +65,12 @@ class Catalog {
 	mountPageSet(pageNumber = 1) {
 		this.setActivePage(pageNumber);
 		console.log("ACTIVE PAGE", this.currentPageNumber);
-		const pageElementsSet = this.#pageListData[pageNumber - 1];
+		const pageElementsSet = this.pageListData[pageNumber - 1];
 		const concatedString = pageElementsSet.join("");
 		this.#productContainer.innerHTML = concatedString;
 		this.setActivePage(pageNumber);
 
-		const flatedArray = this.#pageListData.flat();
+		const flatedArray = this.pageListData.flat();
 		const secondNum = (12 * (pageNumber - 1) + 1).toString();
 		const start = pageNumber === 1 ? 1 : secondNum;
 		const endRange = +start + pageElementsSet.length - 1;
@@ -103,7 +107,7 @@ class Catalog {
 		}
 	}
 	createPaginationButtons() {
-		const filledButton = this.#pageListData.map((list, idx) => {
+		const filledButton = this.pageListData.map((list, idx) => {
 			if (idx === 0) {
 				return `<button class="page-button${
 					this.currentPageNumber === idx + 1 ? "" : "__invert"
@@ -114,6 +118,26 @@ class Catalog {
 				}">${idx + 1}</button>`;
 			}
 		});
+		if (this.currentPageNumber === 1) {
+			this.#backButton.classList.add("page-button__hidden");
+		}
+		if (this.currentPageNumber > 1) {
+			this.#backButton.classList.remove("page-button__hidden");
+		}
+		if (this.pageListData.length === 1) {
+			this.#backButton.classList.remove("page-button__hidden");
+			this.#nextButton.classList.remove("page-button__hidden");
+		}
+		if (
+			this.pageListData.length > 1 &&
+			this.currentPageNumber > 1 &&
+			this.currentPageNumber === this.pageListData.length
+		) {
+			// this.#backButton.classList.remove("page-button__hidden");
+			this.#nextButton.classList.add("page-button__hidden");
+		} else if (this.currentPageNumber !== this.pageListData.length) {
+			this.#nextButton.classList.remove("page-button__hidden");
+		}
 		const joinedTemplateString = filledButton.join("");
 		this.#pageNumberContainer.innerHTML = joinedTemplateString;
 	}
@@ -203,8 +227,8 @@ class Catalog {
 	splitPagesData(data, number = 12) {
 		console.log("all filtered data length", data.length);
 		if (data.length <= number) {
-			this.#pageListData = [data];
-			console.log("PAGE LIST1", this.#pageListData);
+			this.pageListData = [data];
+			console.log("PAGE LIST1", this.pageListData);
 		} else if (data.length !== 0) {
 			const newSplitedArray = [];
 			for (let i = 0; data.length !== 0; i++) {
@@ -212,9 +236,9 @@ class Catalog {
 				newSplitedArray.push(splicy);
 			}
 
-			this.#pageListData = [...newSplitedArray];
+			this.pageListData = [...newSplitedArray];
 			console.log("");
-			console.log("PAGE LIST2", this.#pageListData);
+			console.log("PAGE LIST2", this.pageListData);
 		}
 	}
 
@@ -281,10 +305,20 @@ document.addEventListener("DOMContentLoaded", () => {
 		"click",
 		(e) => {
 			const currentTarget = e.currentTarget;
+
 			if (e.target === currentTarget.children[0]) {
 				console.log("back");
+				if (productCatalog.currentPageNumber > 1) {
+					console.log("can go next");
+					productCatalog.mountPageSet(productCatalog.currentPageNumber - 1);
+				}
 			} else if (e.target === currentTarget.children[2]) {
-				console.log("next page");
+				if (
+					productCatalog.currentPageNumber < productCatalog.pageListData.length
+				) {
+					console.log("can go next");
+					productCatalog.mountPageSet(productCatalog.currentPageNumber + 1);
+				}
 			} else if (e.target.closest("#pageNumberButtons")) {
 				const pageNumber = e.target.textContent;
 				console.log("page", pageNumber);
@@ -293,9 +327,6 @@ document.addEventListener("DOMContentLoaded", () => {
 					console.log("can go", pageNumber);
 					productCatalog.mountPageSet(+pageNumber);
 				}
-				// if (e.target.classList.contains("page-button__invert")) {
-				// 	console.log("can go");
-				// }
 			}
 		},
 		false
