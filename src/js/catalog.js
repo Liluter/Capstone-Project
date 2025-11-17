@@ -78,7 +78,7 @@ class Catalog {
 				return this.templateStringGenerator(elem);
 			});
 			this.splitPagesData(allProductsStringedData);
-
+			this.createPaginationButtons();
 			this.mountPageSet(1);
 		} else {
 			const filteredData = this.allFilters(filter, this.#data);
@@ -87,7 +87,7 @@ class Catalog {
 			});
 			console.log("filteredData", filteredData);
 			this.splitPagesData(filteredProductsStringedData);
-
+			this.createPaginationButtons();
 			this.mountPageSet(1);
 		}
 	}
@@ -96,11 +96,10 @@ class Catalog {
 			if (idx === 0) {
 				return `<button class="page-button">1</button>`;
 			} else {
-				return `<button class="page-button__invert">${idx + 1}hell</button>`;
+				return `<button class="page-button__invert">${idx + 1}</button>`;
 			}
 		});
 		const joinedTemplateString = filledButton.join("");
-		console.log("joinedTemplateString", joinedTemplateString);
 		this.#pageNumberContainer.innerHTML = joinedTemplateString;
 	}
 
