@@ -73,7 +73,8 @@ hr {
 		&.nav-list {
 			height: 100%;
 			gap: var.$space-big;
-			li:hover {
+			li:hover,
+			li:focus-within {
 				color: var.$primary;
 			}
 		}
@@ -161,8 +162,6 @@ hr {
 @media screen and (orientation: landscape) and (width <= var.$brakepoint-medium) {
 	.header-top {
 		height: var.$height-m;
-		.header-menu {
-		}
 	}
 	.main-navigation {
 		height: var.$height-s;

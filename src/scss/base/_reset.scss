@@ -7,11 +7,6 @@
 	padding: 0;
 }
 
-html,
-body,
-ul,
-ol {
-}
 a {
 	&:link,
 	&:visited,
@@ -71,4 +66,9 @@ body {
 
 .no-overflow {
 	overflow: hidden;
+}
+
+.borders-horizontal {
+	border-top: 2px solid var.$primary;
+	border-bottom: 2px solid var.$primary;
 }

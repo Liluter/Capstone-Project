@@ -113,6 +113,7 @@
 			}
 		}
 		.footer-main-links {
+			align-items: start;
 			grid-column: 1/4;
 			grid-row: 1/2;
 			@extend %display-centered;

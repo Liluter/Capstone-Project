@@ -15,11 +15,12 @@
 		"Monteserrat",
 		sans-serif
 	);
+	transition: all 0.2s ease;
 }
-
 .btn-primary {
 	@extend %btn-base;
-	&:hover {
+	&:hover,
+	&:focus-within {
 		@include mixins.hoverable();
 	}
 }
@@ -37,7 +38,106 @@
 		visibility: visible;
 	}
 }
+.filter-button {
+	background-color: var.$white;
+	border: var.$border-regular solid var.$soft-gray;
+	color: var.$secondary;
 
+	@include mixins.font(
+		var.$font-regular,
+		var.$font-size-medium,
+		"Monteserrat",
+		sans-serif
+	);
+
+	height: 100%;
+	width: 100px;
+	border: 2px solid var.$soft-gray;
+	transition: all 0.2s ease;
+	&:hover,
+	&:active,
+	&:focus {
+		color: var.$white;
+		background-color: var.$primary;
+		border: none;
+	}
+}
+
+.page-button {
+	position: relative;
+	@include mixins.font(
+		var.$font-bold,
+		var.$font-size-small,
+		"Inter",
+		sans-serif
+	);
+	@extend %btn-base;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid transparent;
+	height: 40px;
+	min-width: 40px;
+	width: auto;
+	padding: 0 20px;
+	border-radius: var.$radius-small;
+	margin-right: var.$space-small;
+	&__invert {
+		@extend .page-button;
+		background-color: transparent;
+
+		color: var.$black;
+		&:hover,
+		&:focus {
+			border: var.$border-regular solid var.$primary;
+			transition: none;
+		}
+		&:active {
+			@include mixins.hoverable();
+			background-color: var.$primary;
+			color: var.$white;
+		}
+	}
+	&__hidden {
+		visibility: hidden;
+	}
+	&__empty {
+		.right-arrow {
+			width: 100%;
+			height: 100%;
+			position: relative;
+			display: block;
+			background-image: url("/../../assets/images/cataloge/arrow_right.svg");
+			background-size: 16px 8px;
+			background-position-x: right;
+			background-position-y: center;
+			background-repeat: no-repeat;
+			padding: 0 var.$space-medium;
+			filter: invert(-1);
+		}
+		.left-arrow {
+			@extend .right-arrow;
+			transform: scale(-1);
+		}
+		@extend .page-button;
+		background-color: transparent;
+		border: var.$border-regular solid var.$primary;
+		color: var.$black;
+		&:hover {
+			color: var.$white;
+			background-color: var.$primary;
+			.right-arrow,
+			.left-arrow {
+				filter: invert(1);
+			}
+		}
+		&:active {
+			@include mixins.hoverable();
+		}
+	}
+}
+
+.btn-link-primary,
 a.btn-link-primary {
 	width: 174px;
 	height: 60px;
@@ -50,9 +150,6 @@ a.btn-link-primary {
 	@include mixins.hoverable();
 }
 
-.fluid {
-	width: 100vw;
-}
 .container {
 	width: var.$brakepoint-large;
 	margin: 0 auto;
