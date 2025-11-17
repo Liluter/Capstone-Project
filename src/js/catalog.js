@@ -37,6 +37,7 @@ class Catalog {
 	#productContainer;
 	#pageListData;
 	#pageNumberContainer;
+	currentPageNumber;
 	constructor() {
 		this.#parser = new DOMParser();
 		this.#productContainer = document.querySelector("#productContainer");
@@ -58,14 +59,24 @@ class Catalog {
 	}
 
 	mountPageSet(pageNumber = 1) {
+		this.setActivePage(pageNumber);
+		console.log("ACTIVE PAGE", this.currentPageNumber);
 		const pageElementsSet = this.#pageListData[pageNumber - 1];
 		const concatedString = pageElementsSet.join("");
 		this.#productContainer.innerHTML = concatedString;
+		this.setActivePage(pageNumber);
 
 		const flatedArray = this.#pageListData.flat();
-		this.setPaginationCount(pageElementsSet.length, flatedArray.length);
-	}
+		const secondNum = (12 * (pageNumber - 1) + 1).toString();
+		const start = pageNumber === 1 ? 1 : secondNum;
+		const endRange = +start + pageElementsSet.length - 1;
 
+		this.setPaginationCount(start, endRange, flatedArray.length);
+	}
+	setActivePage(pageNumber) {
+		this.currentPageNumber = pageNumber;
+		this.createPaginationButtons();
+	}
 	filteredPagesSet(filter) {
 		if (
 			!filter ||
@@ -78,7 +89,7 @@ class Catalog {
 				return this.templateStringGenerator(elem);
 			});
 			this.splitPagesData(allProductsStringedData);
-			this.createPaginationButtons();
+			// this.createPaginationButtons();
 			this.mountPageSet(1);
 		} else {
 			const filteredData = this.allFilters(filter, this.#data);
@@ -87,28 +98,32 @@ class Catalog {
 			});
 			console.log("filteredData", filteredData);
 			this.splitPagesData(filteredProductsStringedData);
-			this.createPaginationButtons();
+			// this.createPaginationButtons();
 			this.mountPageSet(1);
 		}
 	}
 	createPaginationButtons() {
 		const filledButton = this.#pageListData.map((list, idx) => {
 			if (idx === 0) {
-				return `<button class="page-button">1</button>`;
+				return `<button class="page-button${
+					this.currentPageNumber === idx + 1 ? "" : "__invert"
+				}">1</button>`;
 			} else {
-				return `<button class="page-button__invert">${idx + 1}</button>`;
+				return `<button class="page-button${
+					this.currentPageNumber === idx + 1 ? "" : "__invert"
+				}">${idx + 1}</button>`;
 			}
 		});
 		const joinedTemplateString = filledButton.join("");
 		this.#pageNumberContainer.innerHTML = joinedTemplateString;
 	}
 
-	setPaginationCount(actualPage, all) {
+	setPaginationCount(start, actualPage, all) {
 		const firstLineElem = this.#paginatorResultElement.firstElementChild;
 		const secondLineElem =
 			this.#paginatorResultElement.firstElementChild.firstElementChild;
 
-		firstLineElem.innerHTML = `Showing 1-${actualPage} <span class="second-line"> Of ${all} Results</span>`;
+		firstLineElem.innerHTML = `Showing ${start}-${actualPage} <span class="second-line"> Of ${all} Results</span>`;
 	}
 	allFilters(filter, data) {
 		let filteredData = data;
@@ -258,7 +273,39 @@ document.addEventListener("DOMContentLoaded", () => {
 	const selectCategory = filterDropdown.querySelector("#selectCategory");
 	const selectSales = filterDropdown.querySelector("#selectSales");
 
-	[selectSize, selectColor, selectCategory].forEach((elem) => {
+	const backButton = document.querySelector("#backButton");
+	const nextButton = document.querySelector("#nextButton");
+	const paginator = document.querySelector(".page-control__paginator");
+
+	paginator.addEventListener(
+		"click",
+		(e) => {
+			const currentTarget = e.currentTarget;
+			if (e.target === currentTarget.children[0]) {
+				console.log("back");
+			} else if (e.target === currentTarget.children[2]) {
+				console.log("next page");
+			} else if (e.target.closest("#pageNumberButtons")) {
+				const pageNumber = e.target.textContent;
+				console.log("page", pageNumber);
+				console.log("page", e.target);
+				if (productCatalog.currentPageNumber != pageNumber) {
+					console.log("can go", pageNumber);
+					productCatalog.mountPageSet(+pageNumber);
+				}
+				// if (e.target.classList.contains("page-button__invert")) {
+				// 	console.log("can go");
+				// }
+			}
+		},
+		false
+	);
+
+	console.log("backButton", backButton);
+	console.log("backButton", nextButton);
+
+	const selectInputs = [selectSize, selectColor, selectCategory];
+	selectInputs.forEach((elem) => {
 		elem.addEventListener("click", (e) => {
 			switch (e.target.id) {
 				case "selectSize":
