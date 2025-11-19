@@ -42,6 +42,8 @@ class Catalog {
 	#actualDataSet;
 	#defaultSortData;
 	activeFilters;
+	#timer;
+	searchPopup;
 	constructor(cart) {
 		this.#productContainer = document.querySelector("#productContainer");
 		this.#paginatorResultElement = document.querySelector("#paginationCount");
@@ -49,7 +51,10 @@ class Catalog {
 		this.#backButton = document.querySelector("#backButton");
 		this.#nextButton = document.querySelector("#nextButton");
 		this.activeFilters = document.querySelector("#activeFilters");
+		this.searchPopup = document.querySelector("#searchPopup");
 		this.#cart = cart;
+
+		this.searchPopup.addEventListener("click", this.popUpHandler);
 	}
 	async init(dataUrl) {
 		const response = await fetch(dataUrl);
@@ -83,6 +88,40 @@ class Catalog {
 			block: "start",
 		});
 	}
+	searchProduct(query) {
+		if (this.#timer) {
+			clearTimeout(this.#timer);
+		}
+		this.#timer = setTimeout(() => {
+			const results = this.#data.filter((elem) =>
+				elem.name.toLowerCase().includes(query.toLowerCase())
+			);
+			if (results.length === 1) {
+				this.redirectToProductPage(results[0].id);
+			} else if (query) {
+				this.showPopUp();
+			}
+			this.#timer = undefined;
+		}, 1000);
+	}
+	popUpHandler(event) {
+		const button = event.target.closest("#popupBtn");
+		if (button) {
+			event.target.closest("#searchPopup").classList.add("hide");
+		}
+	}
+	showPopUp() {
+		this.searchPopup.classList.remove("hide");
+		setTimeout(function () {
+			this.searchPopup.classList.add("hide");
+		}, 5000);
+	}
+
+	redirectToProductPage(productId) {
+		const pageUrl = "/html/product.html";
+		const targetUrl = `${pageUrl}?id=${encodeURIComponent(productId)}`;
+		window.location.href = targetUrl;
+	}
 	activeFilterInfoHandler(filterQuery) {
 		if (filterQuery) {
 			this.activeFilters.classList.remove("hide");
@@ -110,7 +149,6 @@ class Catalog {
 		this.createPaginationButtons();
 	}
 	filteredPagesSet(filter) {
-		console.log("HERE1");
 		this.activeFilterInfoHandler(filter);
 		if (
 			!filter ||
@@ -119,16 +157,10 @@ class Catalog {
 				filter.category === "" &&
 				filter.salesStatus === false)
 		) {
-			console.log("HERE2");
-
 			this.#actualDataSet = this.#data;
 			this.#defaultSortData = this.#data;
-			console.log("CLEARED FILTER");
-
 			this.mountData(this.#data);
 		} else {
-			console.log("HERE3");
-
 			const filteredData = this.allFilters(filter, this.#data);
 			this.#defaultSortData = filteredData;
 			this.#actualDataSet = filteredData;
@@ -421,7 +453,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	const searchInput = document.querySelector("#searchInput");
-	searchInput.addEventListener("change", (e) => console.log("Cheange", e));
+	searchInput.addEventListener("input", (e) => {
+		productCatalog.searchProduct(e.target.value);
+	});
 });
 
 function mountRecommendationProduct(destination, dataSet) {
@@ -444,6 +478,9 @@ function mountRecommendationProduct(destination, dataSet) {
 	}
 }
 
+// function hidePopup(element) {
+// 	setTimeout(() => element.classList.add("hide"), 5000);
+// }
 function makeTempString(data) {
 	const bestSetTemplate = `<li class="recommendation-list__item">
     <a href="" class="recommendation-card">

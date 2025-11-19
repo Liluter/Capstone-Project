@@ -4,7 +4,9 @@
 @use "../layouts/footer";
 @use "../components/buttons";
 @use "../components/product-card";
-
+body {
+	position: relative;
+}
 .page-control {
 	position: relative;
 	width: 100%;

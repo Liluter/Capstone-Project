@@ -149,6 +149,27 @@ a.btn-link-primary {
 	@include mixins.hoverable();
 }
 
+.popup {
+	position: sticky;
+	grid-column: 1/-1;
+	background-color: settings.$secondary;
+	color: settings.$white;
+	top: 200px;
+	width: 100%;
+	height: 200px;
+	z-index: 20;
+	&__content {
+		margin: 0 auto;
+		text-align: center;
+		width: 80%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+	}
+}
+
 .container {
 	width: settings.$brakepoint-large;
 	margin: 0 auto;
