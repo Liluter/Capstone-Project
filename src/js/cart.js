@@ -15,8 +15,9 @@ export class Cart {
 	}
 	itemCaunter() {
 		const data = this.parseData();
-		if (data) {
-			return data.length;
+		if (data.length) {
+			const redData = data.reduce((acc, curr) => acc + curr.quantity, 0);
+			return redData;
 		} else {
 			return 0;
 		}
@@ -37,29 +38,39 @@ export class Cart {
 			return jsonData;
 		} catch (error) {
 			console.error(error);
-			throw error;
 		}
 	}
-	writeData(data) {
-		try {
-			const localData = this.parseData();
-			if (localData !== null && localData.length >= 0) {
-				if (!data) {
-					throw new Error("No data passed or wrong data");
+
+	writeData(data, pcs = 1) {
+		const localData = this.parseData();
+		let result;
+		if (localData !== null) {
+			let merged = false;
+			const filteredCart = localData.map((item) => {
+				if (
+					item.name === data.name &&
+					item.size === data.size &&
+					item.color === data.color &&
+					item.category === data.category
+				) {
+					item.quantity = item.quantity + 1;
+					merged = true;
+					return item;
 				}
-				const incomingDataArr = [data];
-				const newDataArr = [...localData, ...incomingDataArr];
-				const stringifyNewData = JSON.stringify(newDataArr);
-				window.localStorage.setItem(this.#cartName, stringifyNewData);
-				this.updateCouterElement();
+				return item;
+			});
+			if (merged) {
+				result = JSON.stringify(filteredCart);
 			} else {
-				const emptyArr = [];
-				const stingifyDate = JSON.stringify(emptyArr);
-				window.localStorage.setItem(this.#cartName, stingifyDate);
-				this.updateCouterElement();
+				data.quantity = pcs;
+				const newDataArr = [...localData, data];
+				result = JSON.stringify(newDataArr);
 			}
-		} catch (error) {
-			console.error(error);
+		} else {
+			const emptyArr = [];
+			result = JSON.stringify(emptyArr);
 		}
+		window.localStorage.setItem(this.#cartName, result);
+		this.updateCouterElement();
 	}
 }
