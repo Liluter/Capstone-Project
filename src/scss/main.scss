@@ -6,9 +6,9 @@
 @use "components/buttons";
 @use "components/product-card";
 @use "pages/catalog";
+@use "pages/product-details";
 
 .main-container {
-	position: relative;
 	@include mixins.font(
 		settings.$font-regular,
 		settings.$font-size-regular,

@@ -63,7 +63,7 @@
 		text-align: start;
 		width: 50%;
 		@media screen and (max-width: settings.$brakepoint-small) {
-			width: 100%;
+			width: auto;
 		}
 	}
 }
@@ -250,7 +250,7 @@
 		@include mixins.font(settings.$font-bold, 20px, "Montserrat", sans-serif);
 	}
 	&__rating {
-		margin-bottom: settings.$space-small;
+		margin: 0 settings.$space-big settings.$space-small 0;
 
 		text-align: center;
 		@include mixins.font(
@@ -370,7 +370,4 @@
 
 		@extend %margin-top;
 	}
-}
-.hide {
-	display: none;
 }

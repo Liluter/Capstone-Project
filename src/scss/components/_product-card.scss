@@ -4,11 +4,13 @@
 .product-card {
 	width: 296px;
 	height: 569px;
+
 	@extend %display-centered;
 
 	flex-direction: column;
 	justify-content: space-between;
 	position: relative;
+	margin: 0 settings.$space-small;
 	&__image {
 		display: block;
 		box-shadow: settings.$shadow-drop;

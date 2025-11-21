@@ -6,17 +6,66 @@ async function dataAccess() {
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
 	const productId = urlParams.get("id");
-	const paragrafId = document.getElementById("product_id");
-
+	const data = await fetchLocalData("/assets/data.json");
 	const cartCounterElement = document.querySelector("#cartCounter");
+
+	const myCart = new Cart(cartCounterElement);
+
+	const selectedProduct = data.filter((item) => item.id === productId);
+
+	const mainPicture = document.querySelector("#mainPicture");
+	const title = document.querySelector("#productTitle");
+	const priceValue = document.querySelector("#priceValue");
+
+	const inputPcs = document.querySelector("#inputPcs");
+
+	inputPcs.addEventListener("click", (e) => {
+		switch (e.target.id) {
+			case "increment":
+				inputPcs.children[1].value = +inputPcs.children[1].value + 1;
+				break;
+			case "decrement":
+				if (inputPcs.children[1].value === "1") {
+					break;
+				} else {
+					inputPcs.children[1].value = inputPcs.children[1].value - 1;
+				}
+				break;
+		}
+	});
+
+	[...mainPicture.children].forEach((e) => {
+		const newSource = selectedProduct[0].imageUrl;
+		e.src = `../${newSource}`;
+	});
+	title.textContent = selectedProduct[0].name;
+
+	const ratingStarList = document.querySelector("#rating-star-list");
+	[...ratingStarList.children].forEach((star, idx) => {
+		if (idx + 1 < selectedProduct[0].rating) {
+			star.classList.add("icon-star__yellow");
+			star.classList.remove("icon-star__gray");
+			return;
+		}
+		star.classList.remove("icon-star__yellow");
+		star.classList.add("icon-star__gray");
+	});
+
+	priceValue.textContent = `$${selectedProduct[0].price}`;
+
 	const productForm = document.querySelector("#product-form");
+	productForm.addEventListener("submit", (event) => {
+		event.preventDefault();
+		const productData = selectedProduct[0];
+		myCart.writeData(productData, +inputPcs.children[1].value);
+	});
+
 	const infoNav = document.querySelector(".info__nav");
 	const infoContainer = document.querySelector("#info-container");
-	const myCart = new Cart(cartCounterElement);
-	const data = await fetchLocalData("/assets/data.json");
 	const alsoLikeConteiner = document.querySelector(
 		".also-like .product-list__container"
 	);
+
 	infoNav.addEventListener("click", (e) => {
 		const listNav = [...infoNav.children];
 		listNav.forEach((child, idx) => {
@@ -30,10 +79,6 @@ async function dataAccess() {
 			child.firstElementChild.classList.remove("info__active");
 		});
 	});
-	productForm.addEventListener("submit", (event) => {
-		event.preventDefault();
-		console.log("form", event);
-	});
 
 	alsoLikeConteiner.addEventListener("click", (e) => {
 		const btn = e.target.closest(".btn-primary");
@@ -44,6 +89,42 @@ async function dataAccess() {
 			myCart.writeData(productItem);
 		} else if (btn) {
 			redirectToProductPage(btn);
+		}
+	});
+
+	const reviewForm = document.querySelector("#reviewForm");
+	const emailInput = document.querySelector("#email-input");
+	const messagePopup = document.querySelector("#messagePopup");
+
+	reviewForm.addEventListener("submit", (e) => {
+		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+		e.preventDefault();
+		let isInvalid = true;
+		const emailValue = emailInput.value.trim();
+		if (!emailRegex.test(emailValue)) {
+			console.log("test rgexem ok");
+			isInvalid = false;
+		}
+		if (isInvalid) {
+			messagePopup.firstElementChild.textContent = "Form submited succesfully.";
+			messagePopup.classList.add("success");
+			messagePopup.classList.toggle("hide");
+			setTimeout(() => {
+				messagePopup.classList.toggle("hide");
+				messagePopup.classList.remove("failure");
+				messagePopup.classList.remove("success");
+			}, 3000);
+		} else {
+			messagePopup.firstElementChild.textContent =
+				"Form invalid, please check.";
+			messagePopup.classList.add("failure");
+			messagePopup.classList.toggle("hide");
+			setTimeout(() => {
+				messagePopup.classList.toggle("hide");
+				messagePopup.classList.remove("failure");
+				messagePopup.classList.remove("success");
+			}, 3000);
+			emailInput.focus();
 		}
 	});
 	mountRecommendationProduct(alsoLikeConteiner, data);
@@ -116,23 +197,3 @@ function templateStringGenerator(data) {
         </div>`;
 	return productCard;
 }
-
-const detailsContent = `<p>Vestibulum commodo sapien non elit porttitor, vitae volutpat nibh mollis. Nulla porta risus id neque tempor,
-          in efficitur justo imperdiet. Etiam a ex at
-          ante tincidunt imperdiet. Nunc congue ex vel nisl viverra, sit amet aliquet lectus ullamcorper. Praesent
-          luctus lacus non lorem elementum, eu tristique
-          sapien suscipit. Sed bibendum, ipsum nec viverra malesuada, erat nisi sodales purus, eget hendrerit dui ligula
-          eu enim. Ut non est nisi. Pellentesque
-          tristique pretium dolor eu commodo. Proin iaculis nibh vitae lectus mollis bibendum. Quisque varius eget urna
-          sit amet luctus. Suspendisse potenti.
-          Curabitur ac placerat est, sit amet sodales risus. Pellentesque viverra dui auctor, ullamcorper turpis
-          pharetra, facilisis quam.</p>
-        <br>
-        <p>Proin iaculis nibh vitae lectus mollis bibendum. Quisque varius eget urna sit amet luctus. Suspendisse
-          potenti. Curabitur ac placerat est, sit amet sodales
-          risus. Pellentesque viverra dui auctor, ullamcorper turpis pharetra, facilisis quam. Proin iaculis nibh vitae
-          lectus mollis bibendum. </p>
-        <br>
-        <p>Quisque varius eget urna sit amet luctus. Suspendisse potenti. Curabitur ac placerat est, sit amet sodales
-          risus. Pellentesque viverra dui auctor,
-          ullamcorper turpis pharetra, facilisis quam.</p>`;

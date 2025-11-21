@@ -4,9 +4,7 @@
 @use "../layouts/footer";
 @use "../components/buttons";
 @use "../components/product-card";
-body {
-	position: relative;
-}
+
 .page-control {
 	position: relative;
 	width: 100%;
@@ -282,5 +280,8 @@ body {
 	}
 	&__gray {
 		background-image: url("../../assets/images/cataloge/gray_star.webp");
+	}
+	&__empty {
+		background-image: url("../../assets/images/cataloge/empty_star.webp");
 	}
 }

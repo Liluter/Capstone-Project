@@ -23,6 +23,7 @@
 	&:focus-within {
 		@include mixins.hoverable();
 	}
+	cursor: pointer;
 }
 .btn-small {
 	position: absolute;
@@ -314,4 +315,40 @@ a.btn-link-primary {
 			}
 		}
 	}
+}
+
+.hide {
+	display: none;
+}
+.popup {
+	color: settings.$secondary;
+	text-align: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(39, 39, 39, 0.219);
+	z-index: 100;
+	@extend %display-centered;
+	&__message {
+		@include mixins.font(
+			settings.$font-medium,
+			settings.$font-size-large,
+			"Inter",
+			sans-serif
+		);
+		width: 400px;
+		height: 100px;
+		background-color: white;
+		@extend %display-centered;
+	}
+	box-shadow: settings.$shadow-drop;
+}
+
+.success {
+	color: settings.$success;
+}
+.failure {
+	color: settings.$failure;
 }

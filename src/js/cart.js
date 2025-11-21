@@ -53,7 +53,7 @@ export class Cart {
 					item.color === data.color &&
 					item.category === data.category
 				) {
-					item.quantity = item.quantity + 1;
+					item.quantity = item.quantity + pcs;
 					merged = true;
 					return item;
 				}
@@ -62,6 +62,7 @@ export class Cart {
 			if (merged) {
 				result = JSON.stringify(filteredCart);
 			} else {
+				console.log("added qttty", pcs);
 				data.quantity = pcs;
 				const newDataArr = [...localData, data];
 				result = JSON.stringify(newDataArr);

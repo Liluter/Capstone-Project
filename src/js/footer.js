@@ -41,17 +41,21 @@ const footerHtml = `
       <section class="footer-group">
         <h4>Interesting Links</h4>
         <nav aria-label="Interwsting social links">
-          <li>Photo Galery</li>
-          <li>Our Team</li>
-          <li>Socials</li>
+          <ul>
+            <li>Photo Galery</li>
+            <li>Our Team</li>
+            <li>Socials</li>
+          </ul>
         </nav>
       </section>
       <section class="footer-group">
         <h4>Achievements</h4>
         <nav aria-label="Interwsting social links">
-          <li>Winning Awards</li>
-          <li>Press</li>
-          <li>Our Amazing Clients</li>
+          <ul>
+            <li>Winning Awards</li>
+            <li>Press</li>
+            <li>Our Amazing Clients</li>
+          </ul>  
         </nav>
       </section>
     </section>
