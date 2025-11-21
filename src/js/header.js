@@ -27,7 +27,9 @@ const headerHtml = `
       </div>
       <ul class="list account-controls">
         <li>
-          <a href=""><img src="/assets/images/header/user.svg" alt="user-icon" width="30" height="33"></a>
+          <button id="account-btn" class="icon-btn">
+            <img src="/assets/images/header/user.svg" alt="user-icon" width="30" height="33">
+          </button>
         </li>
         <li>
           <a href="/html/cart.html">
@@ -90,6 +92,40 @@ let dropdownMenu;
 document.body.insertAdjacentHTML("afterbegin", headerHtml);
 
 document.addEventListener("DOMContentLoaded", () => {
+	const loginModal = document.querySelector("#loginModal");
+	const hidePassword = document.querySelector("#eyeIcon");
+	const accountBtn = document.querySelector("#account-btn");
+	const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+	const loginForm = document.querySelector("#loginForm");
+	const emailInput = document.querySelector("#emailLoginInput");
+	loginForm.addEventListener("submit", (e) => {
+		e.preventDefault();
+		let isInvalid = true;
+		const emailValue = emailInput.value.trim();
+		if (!emailRegex.test(emailValue)) {
+			isInvalid = false;
+		}
+		if (isInvalid) {
+			loginModal.classList.toggle("hide");
+		} else {
+			emailInput.focus();
+		}
+	});
+	hidePassword.addEventListener("click", (e) => {
+		const passwordInput = e.target.previousElementSibling;
+		if (passwordInput.type === "password") {
+			// eslint-disable-next-line sonarjs/no-hardcoded-passwords
+			passwordInput.type = "text";
+		} else {
+			// eslint-disable-next-line sonarjs/no-hardcoded-passwords
+			passwordInput.type = "password";
+		}
+	});
+
+	accountBtn.addEventListener("click", (e) => {
+		console.log("Autorisation", e.target);
+		loginModal.classList.toggle("hide");
+	});
 	const burgerMenu = document.getElementById("burger-menu");
 	burgerMenu.addEventListener("click", toggleMenu);
 	document.body.addEventListener("click", (event) => closeMenu(event));

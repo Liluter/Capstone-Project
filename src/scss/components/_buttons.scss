@@ -24,6 +24,10 @@
 		@include mixins.hoverable();
 	}
 	cursor: pointer;
+	&__login {
+		font-size: settings.$font-size-small;
+		font-family: "Inter" sans-serif;
+	}
 }
 .btn-small {
 	position: absolute;
@@ -351,4 +355,8 @@ a.btn-link-primary {
 }
 .failure {
 	color: settings.$failure;
+}
+
+.fluid {
+	width: 100%;
 }

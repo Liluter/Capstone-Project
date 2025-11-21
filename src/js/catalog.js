@@ -1,4 +1,3 @@
-const startTime = Date.now();
 import {Cart} from "./cart.js";
 
 const bestSet = [
@@ -57,17 +56,20 @@ class Catalog {
 		this.searchPopup.addEventListener("click", this.popUpHandler);
 	}
 	async init(dataUrl) {
-		const response = await fetch(dataUrl);
-		const json = await response.json();
-		this.#data = json.data;
-		this.filteredPagesSet();
-		this.#productContainer.addEventListener("click", (e) => {
-			const productId = e.target.closest(".flex-item").id;
-			console.log("!!! ADD to cart but element not id", productId);
+		try {
+			const response = await fetch(dataUrl);
+			const json = await response.json();
+			this.#data = json.data;
+			this.filteredPagesSet();
+			this.#productContainer.addEventListener("click", (e) => {
+				const productId = e.target.closest(".flex-item").id;
+				console.log("!!! ADD to cart but element not id", productId);
 
-			this.#cart.writeData(productId);
-		});
-		console.log("Loding Time  ", Date.now() - startTime);
+				this.#cart.writeData(productId);
+			});
+		} catch (error) {
+			console.error("Some error ocure", error);
+		}
 	}
 
 	mountPageSet(pageNumber = 1) {
@@ -304,21 +306,20 @@ class Catalog {
 	}
 
 	templateStringGenerator(data) {
-		const dataTemp = data;
-		const productCard = `<div class="flex-item" id="${dataTemp.id}">
+		const productCard = `<div class="flex-item" id="${data.id}">
           <div class="product-card">
             <picture>
-              <source srcset="/${dataTemp.imageUrl}" />
-              <img src="/${dataTemp.imageUrl}" 
-              alt="${dataTemp.category} ${
-			dataTemp.color
+              <source srcset="/${data.imageUrl}" />
+              <img src="/${data.imageUrl}" 
+              alt="${data.category} ${
+			data.color
 		}" width="296" height="400" class="product-card__image">
             </picture>
             <div class="product-card__body">
               <h3 class="product-card__title">Vel vestibulum elit tuvel euqen.</h3>
-              <p class="product-card__price">$${dataTemp.price}</p>
+              <p class="product-card__price">$${data.price}</p>
               <button class="btn-primary">Add To Cart</button>
-              <div class="btn-small ${dataTemp.salesStatus ? "in-sale" : ""}">
+              <div class="btn-small ${data.salesStatus ? "in-sale" : ""}">
                 SALE
               </div>
             </div>
@@ -383,7 +384,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		},
 		false
 	);
-	// const activeFilters = document.querySelector("#activeFilters");
 	const selectInputs = [selectSize, selectColor, selectCategory];
 	selectInputs.forEach((elem) => {
 		elem.addEventListener("change", (e) => {
@@ -407,7 +407,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			) {
 				productCatalog.filteredPagesSet(filterQuery);
 			} else {
-				console.log("EXTRA LINE");
 				productCatalog.filteredPagesSet();
 			}
 		});
@@ -441,7 +440,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				);
 				selectSales.checked = false;
 				filterQuery = {...defaultQuerry};
-				console.log("CLEAR FILTER");
 				productCatalog.filteredPagesSet();
 			} else if (e.target.id === "hide_filters") {
 				filterDropdown.classList.toggle("hide");
@@ -459,11 +457,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function mountRecommendationProduct(destination, dataSet) {
+	const data = [...dataSet];
 	if (dataSet) {
 		let mixedArr = [];
 		for (let i = 0; i < 5; i++) {
-			const happyNumber = Math.floor(Math.random() * dataSet.length);
-			const splicy = dataSet.splice(happyNumber, 1);
+			const happyNumber = Math.floor(Math.random() * data.length);
+			const splicy = data.splice(happyNumber, 1);
 			mixedArr.push(splicy[0]);
 		}
 		const parser = new DOMParser();
@@ -478,9 +477,6 @@ function mountRecommendationProduct(destination, dataSet) {
 	}
 }
 
-// function hidePopup(element) {
-// 	setTimeout(() => element.classList.add("hide"), 5000);
-// }
 function makeTempString(data) {
 	const bestSetTemplate = `<li class="recommendation-list__item">
     <a href="" class="recommendation-card">

@@ -112,7 +112,7 @@ async function dataAccess() {
 			})
 		);
 	} catch (error) {
-		console.error("Error with data Acces", error);
+		console.error("Some error ocure ", error);
 	}
 }
 
@@ -142,9 +142,13 @@ function mountElements(data, containerElement, btnTitle, filterBy) {
 }
 
 async function fetchLocalData(url) {
-	const response = await fetch(url);
-	const json = await response.json();
-	return json.data;
+	try {
+		const response = await fetch(url);
+		const json = await response.json();
+		return json.data;
+	} catch (error) {
+		console.error("Some error ocure.", error);
+	}
 }
 
 function createSliderHandler(container) {
