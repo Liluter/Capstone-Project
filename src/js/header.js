@@ -86,7 +86,59 @@ const headerHtml = `
       </ul>
     </div>
     </div>
-  </header>`;
+  </header>
+  <div id="loginModal" class="login hide">
+		<div class="login__modal">
+			<form id="loginForm" action="/login" class="login__form">
+				<div class=class="email-container">
+					<label for="emailLoginInput" class="login__label"
+						>Email address <span class="postfix">*</span></label
+					>
+					<input
+						id="emailLoginInput"
+						class="login__input"
+						name="email"
+						type="email"
+						required
+            autocomplete="useremail"
+					/>
+          <div id="email-error-message" class="error">Put valid email value</div>
+				</div>
+				<div class="password-container">
+					<label for="passwordId" class="login__label"
+						>Password <span class="postfix">*</span></label
+					>
+					<input
+						id="passwordId"
+						type="password"
+            name="new-password"
+            minLength="8"
+						class="login__input"
+            autocomplete="new-password"
+					/>
+					<span role="button" id="eyeIcon" class="eye-icon"></span>
+          <div id="password-error-message" class="error">Put valid password value minimum 8 char</div>
+
+				</div>
+				<div class="checkbox checkbox__container">
+					<div class="checkbox checkbox__container">
+						<input
+							type="checkbox"
+							name=""
+							id="remeberCheck"
+							class="checkbox__check-input"
+						/>
+						<span>Remember me</span>
+					</div>
+					<div class="checkbox__link">Forgot Your Password?</div>
+				</div>
+				<button type="submit" class="btn-primary btn-primary__login fluid">
+					LOG IN
+				</button>
+			</form>
+		</div>
+	</div>
+  `;
 
 let dropdownMenu;
 document.body.insertAdjacentHTML("afterbegin", headerHtml);
@@ -98,17 +150,40 @@ document.addEventListener("DOMContentLoaded", () => {
 	const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 	const loginForm = document.querySelector("#loginForm");
 	const emailInput = document.querySelector("#emailLoginInput");
+	const emailMessage = document.querySelector("#email-error-message");
+	const passwordInput = document.querySelector("#passwordId");
+	const passwordMessage = document.querySelector("#password-error-message");
+
 	loginForm.addEventListener("submit", (e) => {
 		e.preventDefault();
-		let isInvalid = true;
+		let emailInvalid = true;
+		let passwordInvalid = true;
 		const emailValue = emailInput.value.trim();
+		const passwordValue = passwordInput.value.trim();
 		if (!emailRegex.test(emailValue)) {
-			isInvalid = false;
+			emailMessage.classList.add("error__show");
+			emailInvalid = false;
 		}
-		if (isInvalid) {
-			loginModal.classList.toggle("hide");
+		if (emailInvalid) {
+			emailMessage.classList.remove("error__show");
 		} else {
 			emailInput.focus();
+		}
+
+		if (passwordValue.length < 8) {
+			passwordMessage.classList.add("error__show");
+			passwordInvalid = false;
+		}
+		if (passwordInvalid) {
+			passwordMessage.classList.remove("error__show");
+		} else {
+			passwordInput.focus();
+		}
+		console.log("invliad", emailInvalid, passwordInvalid);
+		if (emailInvalid && passwordInvalid) {
+			loginModal.classList.add("hide");
+		} else {
+			loginModal.classList.remove("hide");
 		}
 	});
 	hidePassword.addEventListener("click", (e) => {
@@ -122,8 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 
-	accountBtn.addEventListener("click", (e) => {
-		console.log("Autorisation", e.target);
+	accountBtn.addEventListener("click", () => {
 		loginModal.classList.toggle("hide");
 	});
 	const burgerMenu = document.getElementById("burger-menu");
