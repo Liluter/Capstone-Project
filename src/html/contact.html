@@ -109,7 +109,7 @@
 				<div class="feedback__container">
 					<div class="feedback__col--left"></div>
 					<div class="feedback__col--right">
-            <form action="" class="feedback__form">
+            <form action="" class="feedback__form" id="feedbackForm">
                 <header class="feedback__header">
 							<h4 class="feedback__title">
 								Your Feedback Is Much Appreciated!
@@ -135,7 +135,12 @@
               <label for="feedbackEmail" class="feedback__label">
                 Your Email Address <span class="postfix primary">*</span>
               </label>
-                <input type="email" name="feedbackEmail" id="feedbackEmail" class="feedback__input"/>
+                <input 
+								type="email" 
+								name="feedbackEmail" 
+								id="feedbackEmail" 
+								class="feedback__input" 
+								required/>
             </div>
             <div class="feedback__input--wrapper">
               <label for="feedbackTopic" class="feedback__label">
@@ -143,12 +148,12 @@
 							>
               </label>
                 <input type="text" name="feedbackTopic" id="feedbackTopic"  
-								class="feedback__input"
+								class="feedback__input" required
                 />
             </div>
 
 						<div class="feedback__input--wrapper">
-							<label for="feedbackMessage" class="feedback__label"
+							<label for="feedbackMessage" class="feedback__label" 
 								>Your Message <span class="postfix primary">*</span></label
 							>
 							<textarea
@@ -156,17 +161,22 @@
 								id="feedbackMessage"
 								class="feedback__input feedback__textarea"
 								rows="4"
+								required
+								autocomplete="Put your message ..."
 							></textarea>
 						</div>
 						<div class="feedback__input--wrapper">
-              <button type="submit"
+              <button id="feddbackButton" type="submit"
               class="btn-primary feedback__button">SEND</button>
             </div>
             </form>
-						
+						<div id="feedbackMessagePopup" class="popup hide">
+							<div class="popup__message">Wrong email address</div>
+						</div>
 					</div>
 				</div>
 			</section>
+			
 		</main>
 	</body>
 </html>

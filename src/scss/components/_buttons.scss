@@ -154,7 +154,7 @@ a.btn-link-primary {
 	@include mixins.hoverable();
 }
 
-.popup {
+.popup-search {
 	position: sticky;
 	grid-column: 1/-1;
 	background-color: settings.$secondary;
@@ -479,7 +479,9 @@ a.btn-link-primary {
 	display: none;
 }
 .popup {
-	color: settings.$secondary;
+	position: absolute;
+	color: settings.$primary;
+
 	text-align: center;
 	position: fixed;
 	top: 0;
@@ -491,9 +493,9 @@ a.btn-link-primary {
 	@extend %display-centered;
 	&__message {
 		@include mixins.font(
-			settings.$font-medium,
-			settings.$font-size-large,
-			"Inter",
+			settings.$font-bold,
+			settings.$font-size-medium,
+			"Montserrat",
 			sans-serif
 		);
 		width: 400px;
