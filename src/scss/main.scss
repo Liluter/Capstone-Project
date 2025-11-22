@@ -5,8 +5,10 @@
 @use "layouts/footer";
 @use "components/buttons";
 @use "components/product-card";
+@use "components/forms";
 @use "pages/catalog";
 @use "pages/product-details";
+@use "pages/about";
 
 .main-container {
 	@include mixins.font(
@@ -77,42 +79,7 @@
 		margin: settings.$space-smallest 0;
 	}
 }
-.card {
-	display: grid;
-	grid-template-columns: repeat(2, calc(settings.$brakepoint-large / 2));
-	grid-template-rows: calc(settings.$brakepoint-large / 2);
-	box-shadow: settings.$shadow-drop;
 
-	&__col {
-		@extend %display-centered;
-		padding: 0 settings.$space-ultrabig;
-	}
-
-	&__col--left {
-		background-color: settings.$white;
-	}
-	&__col--right {
-		color: white;
-		@include mixins.background-overlay(
-			"../../assets/images/homepage/discounted_suitcases2x.png"
-		);
-	}
-
-	&.card-title {
-		font-weight: settings.$font-black;
-	}
-}
-
-@media screen and (max-width: settings.$brakepoint-large) {
-	.card {
-		grid-template-columns: repeat(2, calc(settings.$brakepoint-medium / 2));
-		grid-template-rows: calc(settings.$brakepoint-medium / 2);
-		font-size: settings.$font-size-regular;
-		&__col {
-			padding: 0 settings.$space-bigger * 2;
-		}
-	}
-}
 @media screen and (max-width: settings.$brakepoint-medium) {
 	.hero {
 		&__wrapper {
@@ -125,25 +92,6 @@
 		}
 		&__content {
 			margin-right: 0;
-		}
-	}
-
-	.card {
-		grid-template-columns: repeat(2, calc(settings.$brakepoint-small / 2));
-		grid-template-rows: calc(settings.$brakepoint-small / 2);
-		font-size: settings.$font-size-regular;
-		> * {
-			padding: 0 settings.$space-bigger;
-		}
-	}
-}
-@media screen and (max-width: settings.$brakepoint-small) {
-	.card {
-		grid-template-columns: 100vw;
-		grid-template-rows: 100vw 100vw;
-		font-size: settings.$font-size-regular;
-		> * {
-			padding: 0 settings.$space-medium;
 		}
 	}
 }

@@ -300,6 +300,160 @@ a.btn-link-primary {
 	}
 }
 
+.awards {
+	height: auto;
+
+	@include mixins.font(
+		settings.$font-bold,
+		settings.$font-size-xmedium,
+		"Montserrat",
+		sans-serif
+	);
+	&__container {
+		margin: settings.$space-mega settings.$space-medium;
+		@extend %display-centered;
+		justify-content: space-around;
+		row-gap: 30px;
+		flex-wrap: wrap;
+	}
+	&__item {
+		@extend %display-centered;
+		flex-direction: column;
+		row-gap: settings.$space-big;
+		width: 230px;
+		height: auto;
+		min-height: 237px;
+		justify-content: space-between;
+	}
+	&__text {
+		text-align: center;
+		font-size: medium;
+		font-weight: settings.$font-regular;
+		line-height: 1.6em;
+	}
+}
+
+.card {
+	display: grid;
+	grid-template-columns: repeat(2, calc(settings.$brakepoint-large / 2));
+	grid-template-rows: calc(settings.$brakepoint-large / 2);
+	box-shadow: settings.$shadow-drop;
+
+	&__arrival {
+		grid-template-columns: repeat(2, 0.5fr);
+		column-gap: settings.$space-medium;
+		grid-template-rows: 1fr;
+		box-shadow: none;
+	}
+	&__col {
+		@extend %display-centered;
+		padding: 0 settings.$space-ultrabig;
+	}
+	&__col--arrival {
+		height: 100%;
+		justify-content: space-between;
+		padding: 0;
+	}
+
+	&__col--left {
+		height: 100%;
+		background-color: settings.$white;
+	}
+	&__col--right {
+		color: white;
+		@include mixins.background-overlay(
+			"../../assets/images/homepage/discounted_suitcases2x.png"
+		);
+	}
+	&__col--right--arrival {
+		justify-content: flex-end;
+		width: 100%;
+		height: 100%;
+	}
+	&__btn--arrival {
+		width: 200px;
+		height: settings.$space-verybig;
+		font-size: settings.$font-size-medium;
+	}
+	&__image--arrival {
+		object-fit: cover;
+		width: 100%;
+
+		object-position: center;
+	}
+	&.card-title {
+		font-weight: settings.$font-black;
+	}
+}
+.card-content {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+@media screen and (max-width: settings.$brakepoint-large) {
+	.card {
+		grid-template-columns: repeat(2, calc(settings.$brakepoint-medium / 2));
+		grid-template-rows: calc(settings.$brakepoint-medium / 2);
+		font-size: settings.$font-size-regular;
+		&__arrival {
+			grid-template-columns: repeat(2, 0.5fr);
+			grid-template-rows: 1fr;
+		}
+		&__col {
+			padding: 0 settings.$space-bigger * 2;
+		}
+		&__col--arrival {
+			align-items: flex-start;
+			padding: 0;
+		}
+		&__col--right--arrival {
+			justify-content: center;
+		}
+	}
+}
+@media screen and (max-width: settings.$brakepoint-medium) {
+	.card {
+		grid-template-columns: repeat(2, calc(settings.$brakepoint-small / 2));
+		grid-template-rows: calc(settings.$brakepoint-small / 2);
+		font-size: settings.$font-size-regular;
+		&__arrival {
+			grid-template-columns: repeat(2, 0.5fr);
+			grid-template-rows: 1fr;
+		}
+		> * {
+			padding: 0 settings.$space-bigger;
+		}
+		&__col--arrival {
+			align-items: flex-start;
+			padding: 0;
+		}
+		&__btn--arrival {
+			width: 100%;
+			height: settings.$space-bigger;
+			font-size: settings.$font-size-regular;
+			font-weight: settings.$font-medium;
+		}
+	}
+}
+@media screen and (max-width: settings.$brakepoint-small) {
+	.card {
+		grid-template-columns: 100vw;
+		grid-template-rows: 100vw 100vw;
+		font-size: settings.$font-size-regular;
+		> * {
+			padding: 0 settings.$space-medium;
+		}
+		&__arrival {
+			row-gap: settings.$space-big;
+			grid-template-rows: 1fr;
+		}
+		&__image--arrival {
+			width: 100vw;
+		}
+	}
+}
+
 @media screen and (max-width: settings.$brakepoint-large) {
 	.flex-item {
 		flex: 0 0 50%;
@@ -359,4 +513,33 @@ a.btn-link-primary {
 
 .fluid {
 	width: 100%;
+}
+
+.flat-hero {
+	height: clamp(180px, 50vw, 554px);
+	@include mixins.background-overlay(
+		"../../assets/images/aboutus/banner_image.webp"
+	);
+	&__content {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	&__title {
+		color: settings.$white;
+		margin: 0;
+		@include mixins.font(
+			settings.$font-bold,
+			clamp(2em, 4vw, settings.$font-size-mega),
+			"Montserrat",
+			sans-serif
+		);
+	}
+	&__text {
+		font-size: settings.$font-size-medium;
+		margin-top: settings.$space-xlarge;
+	}
 }

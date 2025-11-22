@@ -14,6 +14,22 @@
 	background-position: center;
 	color: settings.$white;
 }
+@mixin background-overlay-gray-30($url) {
+	background-image: linear-gradient(settings.$gray-30, settings.$gray-30),
+		url($url);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	color: settings.$white;
+}
+@mixin background-overlay($url) {
+	background-image: linear-gradient(settings.$black40, settings.$black40),
+		url($url);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	color: settings.$white;
+}
 
 @mixin hoverable() {
 	transform: scale(1.02);

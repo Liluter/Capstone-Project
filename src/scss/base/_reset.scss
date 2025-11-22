@@ -51,7 +51,7 @@ body {
 }
 
 .spacing-vertical-1 {
-	margin: clamp(settings.$space-smallest, 0.8vw, settings.$space-big) 0;
+	margin: clamp(settings.$space-smallest, 1.7vw, settings.$space-big) 0;
 }
 .spacing-vertical-2 {
 	margin: clamp(settings.$space-small, 2vw, settings.$space-bigger) 0;
@@ -75,4 +75,25 @@ body {
 
 .pointer {
 	cursor: pointer;
+}
+
+.block {
+	display: block;
+}
+
+.padding-0 {
+	padding: 0;
+}
+.margin-0 {
+	margin: 0;
+}
+
+.error {
+	font-size: settings.$font-size-small;
+	line-height: 2em;
+	color: settings.$failure;
+	display: none;
+	&__show {
+		display: block;
+	}
 }

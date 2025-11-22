@@ -62,7 +62,6 @@ export class Cart {
 			if (merged) {
 				result = JSON.stringify(filteredCart);
 			} else {
-				console.log("added qttty", pcs);
 				data.quantity = pcs;
 				const newDataArr = [...localData, data];
 				result = JSON.stringify(newDataArr);

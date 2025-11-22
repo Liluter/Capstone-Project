@@ -1,119 +1,167 @@
 <!DOCTYPE html>
 <html lang="en-US">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Best Shop - Catalog</title>
+		<script src="../js/header.js" async></script>
+		<script src="../js/footer.js" defer></script>
+		<link rel="stylesheet" href="../dist/css/main.css" />
+		<script src="../js/cart.js" type="module"></script>
+		<script src="../js/catalog.js" type="module"></script>
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Best Shop - Catalog</title>
-  <script src="../js/header.js" async></script>
-  <script src="../js/footer.js" defer></script>
-  <link rel="stylesheet" href="../dist/css/main.css">
-  <script src="../js/cart.js" type="module"></script>
-  <script src="../js/catalog.js" type="module"></script>
-
-</head>
-
-<body>
-
-  <main class="container" aria-label="main">
-
-    <div class="page-control">
-      <section class="page-control__top-bar">
-        <div id="paginationCount" class="page-control__pagination-count">
-          <div class="first-line">Showing 1-12
-            <span class="second-line"> Of 15 Results</span>
-          </div>
-        </div>
-        <div class="page-control__filter-btn">
-          <button id="filterBtn" class="filter-button">Filters</button>
-        </div>
-        <select name="sort" id="selectSort" class="page-control__sort-input">
-          <option value="none" default>Default Sorting</option>
-          <option value="lowest_highest">sort by price (lowest to highest)</option>
-          <option value="highest_lowest">sort by price (highest to lowest)</option>
-          <option value="popularity">sort by popularity</option>
-          <option value="rating">sort by rating</option>
-        </select>
-        <div class="search-container">
-          <input id="searchInput" name='search' class="page-control__search-input" type="search" value=""
-            placeholder="Search Models" />
-          <span class="search-icon"></span>
-        </div>
-        <div id="activeFilters" class="page-control__filter-dropdown hide"> Active filters : </div>
-        <div id="filterDropdown" class="page-control__filter-dropdown hide">
-          <div class="page-control__filter-dropdown--container borders-horizontal">
-            <div class="page-control__flex-item">
-              <label for="selectSize" class="text--secondary text--bold">Size</label>
-              <select name="size" id="selectSize" class="page-control__sort-input">
-                <option value="" default>Choose option</option>
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-                <option value="S-L">S-L</option>
-                <option value="S, M, XL">S,M,XL</option>
-              </select>
-            </div>
-            <div class="page-control__flex-item">
-              <label for="selectColor" class="text--secondary text--bold">Color</label>
-              <select name="color" id="selectColor" class="page-control__sort-input">
-                <option value="" default>Choose option</option>
-                <option value="red">red</option>
-                <option value="blue">blue</option>
-                <option value="green">green</option>
-                <option value="black">black</option>
-                <option value="grey">grey</option>
-                <option value="yellow">yellow</option>
-                <option value="pink">pink</option>
-              </select>
-            </div>
-            <div class="page-control__flex-item">
-              <label for="selectCategory" class="text--secondary text--bold">Category</label>
-              <select name="category" id="selectCategory" class="page-control__sort-input">
-                <option value="" default>Choose option</option>
-                <option value="carry-ons">carry ons</option>
-                <option value="suitcases">suitcases</option>
-                <option value="luggage sets">luggage sets</option>
-                <option value="kids' luggage">kids' luggage</option>
-              </select>
-            </div>
-            <div class="page-control__flex-item">
-              <label for="selectSales" class="text--secondary text--bold">Sales</label>
-              <input name="sales" type="radio" id="selectSales" class="page-control__radio-input">
-            </div>
-          </div>
-          <div class="page-control__filter-dropdown--container">
-            <button id="clear_filters" class="btn-link-primary">CLEAR FILTERS</button>
-            <button id="hide_filters" class="btn-link-primary">HIDE FILTERS</button>
-          </div>
-        </div>
-        <div id="searchPopup" class="popup hide">
-          <div class="popup__content">
-            <div>
-              No such product found or many products with that name. Please specify different query.
-            </div>
-            <button id="popupBtn" class="btn-primary">OK</button>
-          </div>
-        </div>
-      </section>
-      <section id="productContainer" class="page-control__main-content"></section>
-      <section class="page-control__sidebar">
-        <h3 class="spacing-vertical-2 spacing-bottom">Top Best Sets</h3>
-        <ul id="recommendation-container" class="recommendation-list">
-        </ul>
-      </section>
-      <section class="page-control__paginator">
-        <button id="backButton" class="page-button__empty page-button__hidden"><span
-            class="left-arrow"></span>BACK</button>
-        <div id="pageNumberButtons">
-          <button class="page-button">1</button>
-        </div>
-        <button id="nextButton" class="page-button__empty">NEXT<span class="right-arrow"></span></button>
-      </section>
-    </div>
-
-  </main>
-
-</body>
-
+	<body>
+		<main class="container" aria-label="main">
+			<div class="page-control">
+				<section class="page-control__top-bar">
+					<div id="paginationCount" class="page-control__pagination-count">
+						<div class="first-line">
+							Showing 1-12
+							<span class="second-line">Of 15 Results</span>
+						</div>
+					</div>
+					<div class="page-control__filter-btn">
+						<button id="filterBtn" class="filter-button">Filters</button>
+					</div>
+					<select name="sort" id="selectSort" class="page-control__sort-input">
+						<option value="none" default>Default Sorting</option>
+						<option value="lowest_highest">
+							sort by price (lowest to highest)
+						</option>
+						<option value="highest_lowest">
+							sort by price (highest to lowest)
+						</option>
+						<option value="popularity">sort by popularity</option>
+						<option value="rating">sort by rating</option>
+					</select>
+					<div class="search-container">
+						<input
+							id="searchInput"
+							name="search"
+							class="page-control__search-input"
+							type="search"
+							value=""
+							placeholder="Search Models"
+						/>
+						<span class="search-icon"></span>
+					</div>
+					<div id="activeFilters" class="page-control__filter-dropdown hide">
+						Active filters :
+					</div>
+					<div id="filterDropdown" class="page-control__filter-dropdown hide">
+						<div
+							class="page-control__filter-dropdown--container borders-horizontal"
+						>
+							<div class="page-control__flex-item">
+								<label for="selectSize" class="text--secondary text--bold">
+									Size
+								</label>
+								<select
+									name="size"
+									id="selectSize"
+									class="page-control__sort-input"
+								>
+									<option value="" default>Choose option</option>
+									<option value="S">S</option>
+									<option value="M">M</option>
+									<option value="L">L</option>
+									<option value="XL">XL</option>
+									<option value="S-L">S-L</option>
+									<option value="S, M, XL">S,M,XL</option>
+								</select>
+							</div>
+							<div class="page-control__flex-item">
+								<label for="selectColor" class="text--secondary text--bold">
+									Color
+								</label>
+								<select
+									name="color"
+									id="selectColor"
+									class="page-control__sort-input"
+								>
+									<option value="" default>Choose option</option>
+									<option value="red">red</option>
+									<option value="blue">blue</option>
+									<option value="green">green</option>
+									<option value="black">black</option>
+									<option value="grey">grey</option>
+									<option value="yellow">yellow</option>
+									<option value="pink">pink</option>
+								</select>
+							</div>
+							<div class="page-control__flex-item">
+								<label for="selectCategory" class="text--secondary text--bold">
+									Category
+								</label>
+								<select
+									name="category"
+									id="selectCategory"
+									class="page-control__sort-input"
+								>
+									<option value="" default>Choose option</option>
+									<option value="carry-ons">carry ons</option>
+									<option value="suitcases">suitcases</option>
+									<option value="luggage sets">luggage sets</option>
+									<option value="kids' luggage">kids' luggage</option>
+								</select>
+							</div>
+							<div class="page-control__flex-item">
+								<label for="selectSales" class="text--secondary text--bold">
+									Sales
+								</label>
+								<input
+									name="sales"
+									type="radio"
+									id="selectSales"
+									class="page-control__radio-input"
+								/>
+							</div>
+						</div>
+						<div class="page-control__filter-dropdown--container">
+							<button id="clear_filters" class="btn-link-primary">
+								CLEAR FILTERS
+							</button>
+							<button id="hide_filters" class="btn-link-primary">
+								HIDE FILTERS
+							</button>
+						</div>
+					</div>
+					<div id="searchPopup" class="popup hide">
+						<div class="popup__content">
+							<div>
+								No such product found or many products with that name. Please
+								specify different query.
+							</div>
+							<button id="popupBtn" class="btn-primary">OK</button>
+						</div>
+					</div>
+				</section>
+				<section
+					id="productContainer"
+					class="page-control__main-content"
+				></section>
+				<section class="page-control__sidebar">
+					<h3 class="spacing-vertical-2 spacing-bottom">Top Best Sets</h3>
+					<ul id="recommendation-container" class="recommendation-list"></ul>
+				</section>
+				<section class="page-control__paginator">
+					<button
+						id="backButton"
+						class="page-button__empty page-button__hidden"
+					>
+						<span class="left-arrow"></span>
+						BACK
+					</button>
+					<div id="pageNumberButtons">
+						<button class="page-button">1</button>
+					</div>
+					<button id="nextButton" class="page-button__empty">
+						NEXT
+						<span class="right-arrow"></span>
+					</button>
+				</section>
+			</div>
+		</main>
+	</body>
 </html>
