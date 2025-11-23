@@ -67,7 +67,7 @@ class Catalog {
 				this.#cart.writeData(selectedProduct);
 			});
 		} catch (error) {
-			console.error("Some error ocure", error);
+			console.error("Error parsing data ", error);
 		}
 	}
 	getProductById(data, productId) {
@@ -357,7 +357,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const filterBtn = document.querySelector("#filterBtn");
 	const filterDropdown = document.querySelector("#filterDropdown");
-
 	const selectSize = filterDropdown.querySelector("#selectSize");
 	const selectColor = filterDropdown.querySelector("#selectColor");
 	const selectCategory = filterDropdown.querySelector("#selectCategory");
@@ -453,9 +452,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	filterBtn.addEventListener("click", () => {
 		filterDropdown.classList.toggle("hide");
 	});
-
 	const searchInput = document.querySelector("#searchInput");
-	searchInput.addEventListener("input", (e) => {
+	searchInput.addEventListener("change", (e) => {
 		productCatalog.searchProduct(e.target.value);
 	});
 });
