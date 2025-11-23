@@ -555,6 +555,7 @@ a.btn-link-primary {
 	}
 	&__rounded {
 		border-radius: settings.$radius-large;
+		line-height: settings.$line-height-medium;
 	}
 }
 
