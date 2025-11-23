@@ -29,7 +29,7 @@ const footerHtml = `
   <div class="info-container">
     <section class="footer-main-links">
       <section class="footer-group">
-        <h4><a href="html/about.html">About Us</a></h4>
+        <h4><a href="/html/about.html">About Us</a></h4>
         <nav aria-label="Links about company">
           <ul>
             <li>Organisation</li>
@@ -66,7 +66,7 @@ const footerHtml = `
         neque. Etiam aliquet neque sagittis erat tincidunt aliquam.</p>
     </section>
     <section class="footer-contact">
-      <h4><a href="html/contact.html">Contact Us</a></h4>
+      <h4><a href="/html/contact.html">Contact Us</a></h4>
       <p>Bendum dolor eu varius. Morbi fermentum velitsodales egetonec. volutpat orci. Sed ipsum felis, tristique
         egestas et, convallis ac velitn consequat nec luctus.</p>
       <address>

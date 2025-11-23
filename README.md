@@ -21,3 +21,5 @@ npm run dev
 ## Techstack:
 
 ### HTML, CSS, JS, SCSS
+
+# CHECKLIST RESULT POINTS [ 64 / 64]

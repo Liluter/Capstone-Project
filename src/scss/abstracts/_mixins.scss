@@ -50,10 +50,10 @@
 }
 
 %margin-bottom {
-	margin-bottom: clamp(1em, 2vw, 3em);
+	margin-bottom: clamp(settings.$space-smallest, 3vw, settings.$space-bigger);
 }
 %margin-top {
-	margin-top: clamp(1em, 1vw, 3em);
+	margin-top: clamp(settings.$space-smallest, 0.4vw, settings.$space-bigger);
 }
 
 @mixin border-bottom($color: red) {

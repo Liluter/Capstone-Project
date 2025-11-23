@@ -97,6 +97,7 @@
 		font-size: settings.$font-size-regular;
 		padding-left: settings.$space-smallest;
 		border: settings.$border-regular solid settings.$soft-gray;
+		background-color: settings.$white;
 		@media screen and (max-width: settings.$breakpoint-medium) {
 			grid-column: 2/3;
 			grid-row: 1/2;

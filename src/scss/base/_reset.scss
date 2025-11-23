@@ -17,9 +17,6 @@ a {
 	}
 }
 h1 {
-	margin-top: settings.$space-verybig;
-	margin-bottom: settings.$space-big;
-	font-weight: settings.$font-black;
 	font-size: clamp(1.5em, 1em + 2vw, 4em);
 }
 h2 {

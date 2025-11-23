@@ -68,6 +68,9 @@
 			width: auto;
 		}
 	}
+	&__hide {
+		display: none;
+	}
 }
 
 .post {
@@ -286,16 +289,10 @@
 		@include mixins.font(
 			settings.$font-bold,
 			settings.$font-size-large,
-			"Montserrat",
-			sans-serif
+			"Montserrat"
 		);
 	}
 	&__form {
-		display: flex;
-		flex-direction: column;
-		row-gap: settings.$space-bigger;
-		row-gap: clamp(1em, 1.5vw, 3em);
-
 		@extend %margin-bottom;
 	}
 	&__form--item {
@@ -307,8 +304,8 @@
 		align-items: flex-start;
 	}
 	&__select-input {
-		color: #727174;
-
+		color: settings.$gray;
+		background-color: settings.$white;
 		@extend %margin-top;
 
 		height: 40px;
@@ -390,6 +387,9 @@
 		margin: 0;
 		min-width: 0;
 		width: 100%;
-		display: block;
+		display: flex;
+		flex-direction: column;
+		row-gap: clamp(settings.$space-small, 3vw, settings.$space-verybig);
+		margin-bottom: clamp(settings.$space-small, 3vw, settings.$space-verybig);
 	}
 }

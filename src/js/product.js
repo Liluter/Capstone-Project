@@ -65,15 +65,19 @@ async function dataAccess() {
 		);
 
 		infoNav.addEventListener("click", (e) => {
+			// console.log("sdds", e.target);
 			const listNav = [...infoNav.children];
 			listNav.forEach((child, idx) => {
+				console.log("child1", child.firstElementChild);
+				console.log("child2", child.firstElementChild === e.target);
+				infoContainer.children[idx].classList.add("info__hide");
 				if (child.firstElementChild === e.target) {
+					console.log("child1", idx, child.firstElementChild);
 					child.firstElementChild.classList.add("info__active");
 
-					infoContainer.children[idx].classList.remove("hide");
+					infoContainer.children[idx].classList.remove("info__hide");
 					return;
 				}
-				infoContainer.children[idx].classList.add("hide");
 				child.firstElementChild.classList.remove("info__active");
 			});
 		});
@@ -104,11 +108,11 @@ async function dataAccess() {
 			}
 			if (isInvalid) {
 				messagePopup.firstElementChild.textContent =
-					"Form submited succesfully.";
+					"Your review was sent successfully";
 				messagePopup.classList.add("success");
-				messagePopup.classList.toggle("hide");
+				messagePopup.classList.toggle("info__hide");
 				setTimeout(() => {
-					messagePopup.classList.toggle("hide");
+					messagePopup.classList.toggle("info__hide");
 					messagePopup.classList.remove("failure");
 					messagePopup.classList.remove("success");
 				}, 3000);
@@ -116,9 +120,9 @@ async function dataAccess() {
 				messagePopup.firstElementChild.textContent =
 					"Form invalid, please check.";
 				messagePopup.classList.add("failure");
-				messagePopup.classList.toggle("hide");
+				messagePopup.classList.toggle("info__hide");
 				setTimeout(() => {
-					messagePopup.classList.toggle("hide");
+					messagePopup.classList.toggle("info__hide");
 					messagePopup.classList.remove("failure");
 					messagePopup.classList.remove("success");
 				}, 3000);

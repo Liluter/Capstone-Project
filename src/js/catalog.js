@@ -52,7 +52,6 @@ class Catalog {
 		this.activeFilters = document.querySelector("#activeFilters");
 		this.searchPopup = document.querySelector("#searchPopup");
 		this.#cart = cart;
-
 		this.searchPopup.addEventListener("click", this.popUpHandler);
 	}
 	async init(dataUrl) {
@@ -80,6 +79,7 @@ class Catalog {
 		const pageElementsSet = this.pageListData[pageNumber - 1];
 		const concatedString = pageElementsSet.join("");
 		this.#productContainer.innerHTML = concatedString;
+		console.log("set active page", pageNumber);
 		this.setActivePage(pageNumber);
 
 		const flatedArray = this.pageListData.flat();
@@ -88,6 +88,7 @@ class Catalog {
 		const endRange = +start + pageElementsSet.length - 1;
 
 		this.setPaginationCount(start, endRange, flatedArray.length);
+
 		this.#productContainer.scrollIntoView({
 			behavior: "smooth",
 			block: "start",
@@ -194,15 +195,12 @@ class Catalog {
 				}">${idx + 1}</button>`;
 			}
 		});
-		if (this.currentPageNumber === 1) {
-			this.#backButton.classList.add("page-button__hidden");
-		}
-		if (this.currentPageNumber > 1) {
+		if (this.currentPageNumber > 1 && this.pageListData.length > 1) {
 			this.#backButton.classList.remove("page-button__hidden");
 		}
 		if (this.pageListData.length === 1) {
-			this.#backButton.classList.remove("page-button__hidden");
-			this.#nextButton.classList.remove("page-button__hidden");
+			this.#backButton.classList.add("page-button__hidden");
+			this.#nextButton.classList.add("page-button__hidden");
 		}
 		if (
 			this.pageListData.length > 1 &&
@@ -210,8 +208,13 @@ class Catalog {
 			this.currentPageNumber === this.pageListData.length
 		) {
 			this.#nextButton.classList.add("page-button__hidden");
+			this.#backButton.classList.remove("page-button__hidden");
 		} else if (this.currentPageNumber !== this.pageListData.length) {
 			this.#nextButton.classList.remove("page-button__hidden");
+			this.#backButton.classList.remove("page-button__hidden");
+		}
+		if (this.currentPageNumber === 1) {
+			this.#backButton.classList.add("page-button__hidden");
 		}
 		const joinedTemplateString = filledButton.join("");
 		this.#pageNumberContainer.innerHTML = joinedTemplateString;
@@ -320,7 +323,7 @@ class Catalog {
 		}" width="296" height="400" class="product-card__image">
             </picture>
             <div class="product-card__body">
-              <h3 class="product-card__title">Vel vestibulum elit tuvel euqen.</h3>
+              <h3 class="product-card__title">${data.name}</h3>
               <p class="product-card__price">$${data.price}</p>
               <button class="btn-primary">Add To Cart</button>
               <div class="btn-small ${data.salesStatus ? "in-sale" : ""}">
@@ -367,6 +370,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	paginator.addEventListener(
 		"click",
 		(e) => {
+			e.preventDefault();
 			const currentTarget = e.currentTarget;
 			if (e.target === currentTarget.children[0]) {
 				if (productCatalog.currentPageNumber > 1) {
