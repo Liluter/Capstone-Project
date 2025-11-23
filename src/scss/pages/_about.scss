@@ -22,7 +22,7 @@
 		width: 100%;
 		@extend %display-centered;
 		align-items: flex-start;
-		@media screen and (max-width: settings.$brakepoint-medium) {
+		@media screen and (max-width: settings.$breakpoint-medium) {
 			flex-wrap: wrap;
 		}
 	}

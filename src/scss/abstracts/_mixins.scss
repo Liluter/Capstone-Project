@@ -22,8 +22,8 @@
 	background-position: center;
 	color: settings.$white;
 }
-@mixin background-overlay($url) {
-	background-image: linear-gradient(settings.$black40, settings.$black40),
+@mixin background-overlay-black-50($url) {
+	background-image: linear-gradient(settings.$black50, settings.$black50),
 		url($url);
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -47,4 +47,18 @@
 }
 %margin-top {
 	margin-top: clamp(1em, 1vw, 3em);
+}
+
+@mixin border-bottom($color: red) {
+	border-bottom: 2px solid $color;
+}
+@mixin border-top($color: red) {
+	border-top: 2px solid $color;
+}
+@mixin border-sides($color: red) {
+	border-left: 2px solid $color;
+	border-right: 2px solid $color;
+}
+@mixin outline($color: red) {
+	outline: 2px solid $color;
 }

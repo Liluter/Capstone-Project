@@ -1,5 +1,6 @@
 @use "../base/fonts";
 @use "../abstracts/variables" as settings;
+@use "../abstracts/mixins";
 
 * {
 	box-sizing: border-box;
@@ -69,8 +70,8 @@ body {
 }
 
 .borders-horizontal {
-	border-top: 2px solid settings.$primary;
-	border-bottom: 2px solid settings.$primary;
+	@include mixins.border-bottom(settings.$primary);
+	@include mixins.border-top(settings.$primary);
 }
 
 .pointer {

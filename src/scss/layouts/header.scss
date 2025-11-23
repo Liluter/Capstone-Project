@@ -25,7 +25,7 @@ hr {
 .site-header {
 	margin: 0 auto;
 
-	width: settings.$brakepoint-large;
+	width: settings.$breakpoint-large;
 
 	background-color: settings.$white;
 	color: black;
@@ -144,23 +144,23 @@ hr {
 	bottom: 2px;
 }
 
-@media screen and (max-width: settings.$brakepoint-large) {
+@media screen and (max-width: settings.$breakpoint-large) {
 	.site-header {
-		width: settings.$brakepoint-medium;
+		width: settings.$breakpoint-medium;
 	}
 }
-@media screen and (max-width: settings.$brakepoint-medium) {
+@media screen and (max-width: settings.$breakpoint-medium) {
 	.header-top {
 		height: settings.$height-m;
 	}
 	.site-header {
-		width: settings.$brakepoint-small;
+		width: settings.$breakpoint-small;
 	}
 	.main-navigation {
 		height: settings.$height-s;
 	}
 }
-@media screen and (orientation: landscape) and (max-width: settings.$brakepoint-medium) {
+@media screen and (orientation: landscape) and (max-width: settings.$breakpoint-medium) {
 	.header-top {
 		height: settings.$height-m;
 	}
@@ -168,7 +168,7 @@ hr {
 		height: settings.$height-s;
 	}
 }
-@media screen and (max-width: settings.$brakepoint-small) {
+@media screen and (max-width: settings.$breakpoint-small) {
 	.header-top {
 		height: settings.$height-m;
 	}
@@ -188,7 +188,7 @@ hr {
 	}
 }
 
-@media screen and (orientation: portrait) and (max-width: settings.$brakepoint-very-small) {
+@media screen and (orientation: portrait) and (max-width: settings.$breakpoint-very-small) {
 	.header-top {
 		height: settings.$height-m;
 		justify-content: space-between;

@@ -63,13 +63,16 @@ class Catalog {
 			this.filteredPagesSet();
 			this.#productContainer.addEventListener("click", (e) => {
 				const productId = e.target.closest(".flex-item").id;
-				console.log("!!! ADD to cart but element not id", productId);
-
-				this.#cart.writeData(productId);
+				const selectedProduct = this.getProductById(this.#data, productId);
+				this.#cart.writeData(selectedProduct);
 			});
 		} catch (error) {
 			console.error("Some error ocure", error);
 		}
+	}
+	getProductById(data, productId) {
+		const filteredItem = data.filter((elem) => elem.id === productId);
+		return filteredItem[0];
 	}
 
 	mountPageSet(pageNumber = 1) {
@@ -85,10 +88,6 @@ class Catalog {
 		const endRange = +start + pageElementsSet.length - 1;
 
 		this.setPaginationCount(start, endRange, flatedArray.length);
-		this.#productContainer.scrollIntoView({
-			behavior: "smooth",
-			block: "start",
-		});
 	}
 	searchProduct(query) {
 		if (this.#timer) {
@@ -339,10 +338,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const bestSetContainer = document.querySelector("#recommendation-container");
 	mountRecommendationProduct(bestSetContainer, bestSet);
-
 	const cartCounterElement = document.querySelector("#cartCounter");
-	const cart = new Cart(cartCounterElement);
-	const productCatalog = new Catalog(cart);
+	const myCart = new Cart(cartCounterElement);
+	myCart.cartInit();
+	const productCatalog = new Catalog(myCart);
 
 	productCatalog.init("/assets/data.json");
 

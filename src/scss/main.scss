@@ -1,4 +1,5 @@
 @use "base/reset";
+@use "base/fonts";
 @use "abstracts/_variables" as settings;
 @use "abstracts/mixins";
 @use "layouts/header";
@@ -9,6 +10,7 @@
 @use "pages/catalog";
 @use "pages/product-details";
 @use "pages/about";
+@use "pages/cart";
 
 .main-container {
 	@include mixins.font(
@@ -80,7 +82,7 @@
 	}
 }
 
-@media screen and (max-width: settings.$brakepoint-medium) {
+@media screen and (max-width: settings.$breakpoint-medium) {
 	.hero {
 		&__wrapper {
 			margin-bottom: 0;
@@ -95,7 +97,7 @@
 		}
 	}
 }
-@media screen and (orientation: portrait) and (max-width: settings.$brakepoint-very-small) {
+@media screen and (orientation: portrait) and (max-width: settings.$breakpoint-very-small) {
 	.main-container {
 		a.btn-link-primary {
 			width: 100%;

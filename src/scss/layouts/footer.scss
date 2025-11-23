@@ -18,7 +18,7 @@
 		);
 	}
 	.benefits {
-		width: settings.$brakepoint-large;
+		width: settings.$breakpoint-large;
 		margin: 0 auto;
 		padding: settings.$space-big settings.$space-smallest;
 		@extend %display-centered;
@@ -52,7 +52,7 @@
 		}
 	}
 	.info-container {
-		width: settings.$brakepoint-large;
+		width: settings.$breakpoint-large;
 		margin: auto;
 		display: grid;
 		grid-template-columns: repeat(3, 1fr) 1.6fr repeat(2, 1fr);
@@ -147,24 +147,24 @@
 	}
 }
 
-@media screen and (max-width: settings.$brakepoint-large) {
+@media screen and (max-width: settings.$breakpoint-large) {
 	.footer-container {
 		.benefits {
-			width: settings.$brakepoint-medium;
+			width: settings.$breakpoint-medium;
 			.list {
 				flex-wrap: wrap;
 			}
 		}
 		.info-container {
-			width: settings.$brakepoint-medium;
+			width: settings.$breakpoint-medium;
 			grid-template-columns: repeat(3, 1fr) settings.$space-big repeat(2, 1fr);
 		}
 	}
 }
-@media screen and (max-width: settings.$brakepoint-medium) {
+@media screen and (max-width: settings.$breakpoint-medium) {
 	.footer-container {
 		.benefits {
-			width: settings.$brakepoint-small;
+			width: settings.$breakpoint-small;
 			.list {
 				justify-content: center;
 				flex-wrap: wrap;
@@ -176,7 +176,7 @@
 			}
 		}
 		.info-container {
-			width: settings.$brakepoint-small;
+			width: settings.$breakpoint-small;
 			grid-template-columns: repeat(3, 1fr);
 			padding-top: settings.$space-big;
 			padding-left: settings.$space-big;
@@ -207,7 +207,7 @@
 	}
 }
 
-@media screen and (max-width: settings.$brakepoint-small) {
+@media screen and (max-width: settings.$breakpoint-small) {
 	.footer-container {
 		.benefits {
 			padding-left: settings.$space-large;
@@ -246,7 +246,7 @@
 	}
 }
 
-@media screen and (orientation: portrait) and (max-width: settings.$brakepoint-very-small) {
+@media screen and (orientation: portrait) and (max-width: settings.$breakpoint-very-small) {
 	.footer-container {
 		.benefits {
 			h4 {

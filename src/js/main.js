@@ -1,41 +1,5 @@
 import {Cart} from "./cart.js";
 
-const travelContainer = document.querySelector(".travel-suitcases");
-const flexContainer = travelContainer.querySelector(".product-list__container");
-
-const cartCounterElement = document.querySelector("#cartCounter");
-
-const mySliderHandler = createSliderHandler(flexContainer);
-
-flexContainer.addEventListener("click", mySliderHandler);
-
-const selectedProductsContainer = document.querySelector(
-	".selected-products .product-list__container"
-);
-const newProductsArrivalContainer = document.querySelector(
-	".new-products-arrival .product-list__container"
-);
-
-const productCardTemplate = `
-				<div class="flex-item">
-					<div class="product-card">
-            <picture>
-							<source srcset="" />
-              <img src="" alt="" width="296"
-                height="400" class="product-card__image">
-            </picture>
-            <div class="product-card__body">
-              <h3 class="product-card__title">Vel vestibulum elit tuvel euqen.</h3>
-              <p class="product-card__price"></p>
-              <button class="btn-primary"></button>
-              <div class="btn-small in-sale">
-                SALE
-              </div>
-            </div>
-          </div>
-				</div>
-					`;
-
 class TemplateHtmlParser {
 	#doc;
 	#parser;
@@ -68,27 +32,80 @@ class TemplateHtmlParser {
 	}
 }
 
-const myCart = new Cart(cartCounterElement);
+document.addEventListener("DOMContentLoaded", () => {
+	const travelContainer = document.querySelector(".travel-suitcases");
+	const flexContainer = travelContainer.querySelector(
+		".product-list__container"
+	);
 
-const htmlParser = new TemplateHtmlParser(productCardTemplate);
+	const cartCounterElement = document.querySelector("#cartCounter");
 
-dataAccess();
+	const mySliderHandler = createSliderHandler(flexContainer);
 
-async function dataAccess() {
+	flexContainer.addEventListener("click", mySliderHandler);
+
+	const selectedProductsContainer = document.querySelector(
+		".selected-products .product-list__container"
+	);
+	const newProductsArrivalContainer = document.querySelector(
+		".new-products-arrival .product-list__container"
+	);
+
+	const productCardTemplate = `
+				<div class="flex-item">
+					<div class="product-card">
+            <picture>
+							<source srcset="" />
+              <img src="" alt="" width="296"
+                height="400" class="product-card__image">
+            </picture>
+            <div class="product-card__body">
+              <h3 class="product-card__title">Vel vestibulum elit tuvel euqen.</h3>
+              <p class="product-card__price"></p>
+              <button class="btn-primary"></button>
+              <div class="btn-small in-sale">
+                SALE
+              </div>
+            </div>
+          </div>
+				</div>
+					`;
+
+	const myCart = new Cart(cartCounterElement);
+	myCart.cartInit();
+
+	const htmlParser = new TemplateHtmlParser(productCardTemplate);
+
+	dataAccess(
+		selectedProductsContainer,
+		newProductsArrivalContainer,
+		myCart,
+		htmlParser
+	);
+});
+
+async function dataAccess(
+	selectedProductsContainer,
+	newProductsArrivalContainer,
+	myCart,
+	parser
+) {
 	try {
 		const data = await fetchLocalData("assets/data.json");
-
+		console.log(data);
 		mountElements(
 			data,
 			selectedProductsContainer,
 			"Add To Cart",
-			"Selected Products"
+			"Selected Products",
+			parser
 		);
 		mountElements(
 			data,
 			newProductsArrivalContainer,
 			"View Product",
-			"New Products Arrival"
+			"New Products Arrival",
+			parser
 		);
 		const productLists = document.querySelectorAll(
 			".product-list__container:not(.product-list__container--slider)"
@@ -131,12 +148,12 @@ function redirectToProductPage(descendantElement) {
 	}
 }
 
-function mountElements(data, containerElement, btnTitle, filterBy) {
+function mountElements(data, containerElement, btnTitle, filterBy, parser) {
 	const selectedProductsItems = data.filter((element) =>
 		element.blocks.includes(filterBy)
 	);
 	const productCardElements = selectedProductsItems.map((data) =>
-		htmlParser.createProductCard(data, btnTitle)
+		parser.createProductCard(data, btnTitle)
 	);
 	containerElement.append(...productCardElements);
 }

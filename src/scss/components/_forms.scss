@@ -93,7 +93,7 @@
 	}
 }
 
-@media screen and (max-width: settings.$brakepoint-medium) {
+@media screen and (max-width: settings.$breakpoint-medium) {
 	.feedback {
 		&__container {
 			grid-template-columns: 1fr;
@@ -133,7 +133,7 @@
 		background-color: settings.$white;
 		min-width: max-content;
 		max-width: 100%;
-		@media screen and (max-width: settings.$brakepoint-very-small) {
+		@media screen and (max-width: settings.$breakpoint-very-small) {
 			width: 100%;
 		}
 		z-index: 102;

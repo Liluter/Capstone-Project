@@ -6,6 +6,7 @@ $light-gray: #e7e8e9;
 $soft-gray: #e9e9ed;
 $black: #000000;
 $black40: #00000066;
+$black50: #00000080;
 $gray-30: #c1c7d44d;
 $white: #ffffff;
 $success: #2ea123;
@@ -20,10 +21,12 @@ $space-xlarge: 20px;
 $space-big: 24px;
 $space-xbig: 27px;
 $space-bigger: 30px;
+$space-xbigger: 42px;
 $space-verybig: 60px;
 $space-huge: 70px;
 $space-ultrabig: 90px;
 $space-mega: 120px;
+$table-row: 135px;
 
 $font-size-verysmall: 9px;
 $font-size-small: 12px;
@@ -42,15 +45,15 @@ $font-medium: 500;
 $font-bold: 700;
 $font-black: 900;
 
-$brakepoint-large: 1440px;
-$brakepoint-medium: 1024px;
-$brakepoint-small: 768px;
-$brakepoint-very-small: 511px;
+$breakpoint-large: 1440px;
+$breakpoint-medium: 1024px;
+$breakpoint-small: 768px;
+$breakpoint-very-small: 511px;
 
 $breakepoints: (
-	"large": $brakepoint-large,
-	"medium": $brakepoint-medium,
-	"small": $brakepoint-small,
+	"large": $breakpoint-large,
+	"medium": $breakpoint-medium,
+	"small": $breakpoint-small,
 );
 
 $height-xs: 18px;

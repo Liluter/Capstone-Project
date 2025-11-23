@@ -29,6 +29,25 @@
 		font-family: "Inter" sans-serif;
 	}
 }
+.btn-big {
+	@extend .btn-primary;
+	height: 60px;
+	width: 224px;
+	font-size: settings.$font-size-regular;
+}
+.btn-medium {
+	@extend .btn-primary;
+	height: 42px;
+	width: clamp(120px, 50%, 229px);
+	padding: 0 settings.$space-medium;
+
+	font-size: settings.$font-size-regular;
+	&:disabled {
+		background-color: settings.$primary-50;
+		pointer-events: none;
+		cursor: default;
+	}
+}
 .btn-small {
 	position: absolute;
 	top: settings.$space-big;
@@ -176,20 +195,20 @@ a.btn-link-primary {
 }
 
 .container {
-	width: settings.$brakepoint-large;
+	width: settings.$breakpoint-large;
 	margin: 0 auto;
 	margin-bottom: clamp(
 		settings.$space-big,
 		10vw - settings.$space-big,
 		settings.$space-mega
 	);
-	@media screen and (max-width: settings.$brakepoint-large) {
-		width: settings.$brakepoint-medium;
+	@media screen and (max-width: settings.$breakpoint-large) {
+		width: settings.$breakpoint-medium;
 	}
-	@media screen and (max-width: settings.$brakepoint-medium) {
-		width: settings.$brakepoint-small;
+	@media screen and (max-width: settings.$breakpoint-medium) {
+		width: settings.$breakpoint-small;
 	}
-	@media screen and (max-width: settings.$brakepoint-small) {
+	@media screen and (max-width: settings.$breakpoint-small) {
 		width: 100%;
 	}
 }
@@ -335,8 +354,8 @@ a.btn-link-primary {
 
 .card {
 	display: grid;
-	grid-template-columns: repeat(2, calc(settings.$brakepoint-large / 2));
-	grid-template-rows: calc(settings.$brakepoint-large / 2);
+	grid-template-columns: repeat(2, calc(settings.$breakpoint-large / 2));
+	grid-template-rows: calc(settings.$breakpoint-large / 2);
 	box-shadow: settings.$shadow-drop;
 
 	&__arrival {
@@ -391,10 +410,10 @@ a.btn-link-primary {
 	flex-direction: column;
 	justify-content: space-between;
 }
-@media screen and (max-width: settings.$brakepoint-large) {
+@media screen and (max-width: settings.$breakpoint-large) {
 	.card {
-		grid-template-columns: repeat(2, calc(settings.$brakepoint-medium / 2));
-		grid-template-rows: calc(settings.$brakepoint-medium / 2);
+		grid-template-columns: repeat(2, calc(settings.$breakpoint-medium / 2));
+		grid-template-rows: calc(settings.$breakpoint-medium / 2);
 		font-size: settings.$font-size-regular;
 		&__arrival {
 			grid-template-columns: repeat(2, 0.5fr);
@@ -412,10 +431,10 @@ a.btn-link-primary {
 		}
 	}
 }
-@media screen and (max-width: settings.$brakepoint-medium) {
+@media screen and (max-width: settings.$breakpoint-medium) {
 	.card {
-		grid-template-columns: repeat(2, calc(settings.$brakepoint-small / 2));
-		grid-template-rows: calc(settings.$brakepoint-small / 2);
+		grid-template-columns: repeat(2, calc(settings.$breakpoint-small / 2));
+		grid-template-rows: calc(settings.$breakpoint-small / 2);
 		font-size: settings.$font-size-regular;
 		&__arrival {
 			grid-template-columns: repeat(2, 0.5fr);
@@ -436,7 +455,7 @@ a.btn-link-primary {
 		}
 	}
 }
-@media screen and (max-width: settings.$brakepoint-small) {
+@media screen and (max-width: settings.$breakpoint-small) {
 	.card {
 		grid-template-columns: 100vw;
 		grid-template-rows: 100vw 100vw;
@@ -454,13 +473,13 @@ a.btn-link-primary {
 	}
 }
 
-@media screen and (max-width: settings.$brakepoint-large) {
+@media screen and (max-width: settings.$breakpoint-large) {
 	.flex-item {
 		flex: 0 0 50%;
 	}
 }
 
-@media screen and (max-width: settings.$brakepoint-small) {
+@media screen and (max-width: settings.$breakpoint-small) {
 	.banner {
 		grid-template-columns: 1fr;
 		.side {
@@ -481,7 +500,6 @@ a.btn-link-primary {
 .popup {
 	position: absolute;
 	color: settings.$primary;
-
 	text-align: center;
 	position: fixed;
 	top: 0;
@@ -492,16 +510,22 @@ a.btn-link-primary {
 	z-index: 100;
 	@extend %display-centered;
 	&__message {
-		@include mixins.font(
-			settings.$font-bold,
-			settings.$font-size-medium,
-			"Montserrat",
-			sans-serif
-		);
+		padding: settings.$space-bigger;
+		font-weight: settings.$font-bold;
+		line-height: 2em;
+		// @include mixins.font(
+		// 	settings.$font-bold,
+		// 	settings.$font-size-medium,
+		// 	"Montserrat",
+		// 	sans-serif
+		// );
 		width: 400px;
 		height: 100px;
 		background-color: white;
 		@extend %display-centered;
+	}
+	&__rounded {
+		border-radius: 12px 12px;
 	}
 	box-shadow: settings.$shadow-drop;
 }
@@ -543,5 +567,11 @@ a.btn-link-primary {
 	&__text {
 		font-size: settings.$font-size-medium;
 		margin-top: settings.$space-xlarge;
+	}
+	&--cart {
+		height: 229px;
+		@include mixins.background-overlay-black-50(
+			"../../assets/images/cart/highway_image.jpg"
+		);
 	}
 }
