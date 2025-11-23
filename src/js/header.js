@@ -54,8 +54,10 @@ const headerHtml = `
       </ul>
     </nav>
     <div class="dropdown-menu">
-      <ul class="list vert">
-        <li><a href="">User Profile</a></li>
+      <ul class="list vert">	
+        <li>
+					<button id="loginBtn" class="dropdown-menu__burgerBtn">Login</button>
+				</li>
       </ul>
       <hr class="special">
       <nav class="navigation">
@@ -153,6 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const emailMessage = document.querySelector("#email-error-message");
 	const passwordInput = document.querySelector("#passwordId");
 	const passwordMessage = document.querySelector("#password-error-message");
+	const loginBtn = document.querySelector("#loginBtn");
 
 	loginForm.addEventListener("submit", (e) => {
 		e.preventDefault();
@@ -197,9 +200,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 
-	accountBtn.addEventListener("click", () => {
-		loginModal.classList.toggle("hide");
-	});
+	[loginBtn, accountBtn].forEach((btn) =>
+		btn.addEventListener("click", () => {
+			loginModal.classList.toggle("hide");
+		})
+	);
 	const burgerMenu = document.getElementById("burger-menu");
 	burgerMenu.addEventListener("click", toggleMenu);
 	document.body.addEventListener("click", (event) => closeMenu(event));

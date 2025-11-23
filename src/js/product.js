@@ -10,6 +10,7 @@ async function dataAccess() {
 		const data = await fetchLocalData("/assets/data.json");
 		const cartCounterElement = document.querySelector("#cartCounter");
 		const myCart = new Cart(cartCounterElement);
+		myCart.cartInit();
 		const selectedProduct = data.filter((item) => item.id === productId);
 		const mainPicture = document.querySelector("#mainPicture");
 		const title = document.querySelector("#productTitle");

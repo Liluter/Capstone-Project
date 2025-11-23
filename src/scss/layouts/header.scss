@@ -15,7 +15,7 @@ hr {
 	background-color: settings.$white;
 	position: sticky;
 	top: 0;
-	z-index: mixins.z("sticky-header");
+	z-index: settings.z("sticky-header");
 }
 .site-header {
 	margin: 0 auto;
@@ -80,6 +80,16 @@ hr {
 		color: settings.$white;
 		padding: settings.$space-large 0;
 		display: none;
+		&__burgerBtn {
+			border: none;
+			background: none;
+			font: inherit;
+			color: inherit;
+			appearance: none;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			cursor: pointer;
+		}
 		.navigation {
 			height: auto;
 			.vert {

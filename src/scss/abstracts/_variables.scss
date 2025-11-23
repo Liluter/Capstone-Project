@@ -1,10 +1,11 @@
 @use "sass:math";
+@use "sass:map";
 
 @function rem($pixel) {
-	@if math.is-unitles($pixel) {
+	@if math.is-unitless($pixel) {
 		@return math.div($pixel, 16) + rem;
 	} @else {
-		@return mat.div($pixel, 16px) * 1rem;
+		@return math.div($pixel, 16px) * 1rem;
 	}
 }
 
@@ -13,15 +14,15 @@ $z-layers: (
 	"header-top": 2,
 	"search-popup": 20,
 	"sticky-header": 100,
-	"modal-overlau": 101,
-	"modal-content:": 102,
+	"modal-overlay": 101,
+	"modal-content": 102,
 );
 
 @function z($layer) {
-	@if not map-has-key($z-layers, $layer) {
+	@if not map.has-key($z-layers, $layer) {
 		@error "Now such layer '#{$layer}}' in $z-layer map.";
 	}
-	@return map-get($z-layer, $layer);
+	@return map.get($z-layers, $layer);
 }
 
 $primary: #b92770;

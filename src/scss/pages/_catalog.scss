@@ -34,7 +34,7 @@
 		column-gap: settings.$space-regular;
 		color: settings.$secondary;
 		row-gap: settings.$space-small;
-		z-index: mixins.z("header-top");
+		z-index: settings.z("header-top");
 		font-size: settings.$font-size-regular;
 		background-color: settings.$white;
 		padding: settings.$space-regular settings.$space-large;
@@ -263,7 +263,7 @@
 
 	&__rating {
 		display: inline-flex;
-		gap: settings.$space-smallest - 1px;
+		gap: settings.$space-smallest - settings.rem(1px);
 	}
 }
 

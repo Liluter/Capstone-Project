@@ -190,7 +190,7 @@ a.btn-link-primary {
 	top: 200px;
 	width: 100%;
 	height: 200px;
-	z-index: mixins.z("search-popup");
+	z-index: settings.z("search-popup");
 	&__content {
 		margin: 0 auto;
 		text-align: center;
@@ -236,7 +236,7 @@ a.btn-link-primary {
 	}
 	&__body {
 		position: relative;
-		z-index: mixins.z("default");
+		z-index: settings.z("default");
 		padding: 2.5em;
 		padding-right: settings.$space-verybig;
 		background-color: settings.$black40;
@@ -515,7 +515,7 @@ a.btn-link-primary {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(39, 39, 39, 0.219);
-	z-index: mixins.z("sticky-header");
+	z-index: settings.z("sticky-header");
 	@extend %display-centered;
 	&__message {
 		padding: settings.$space-bigger;
