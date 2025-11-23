@@ -1,9 +1,21 @@
+@use "sass:list";
 @use "variables" as settings;
 
-@mixin font($fontWeight, $fontSize, $fontFamily...) {
-	font-family: $fontFamily;
-	font-weight: $fontWeight;
-	font-size: $fontSize;
+// @mixin font($fontWeight, $fontSize, $fontFamily...) {
+// 	font-family: $fontFamily, Verdana, Geneva, Tahoma, sans-serif;
+// 	font-weight: $fontWeight;
+// 	font-size: $fontSize;
+// }
+@mixin font($fontWeight: null, $fontSize: null, $fontFamily...) {
+	@if ($fontWeight) {
+		font-weight: $fontWeight;
+	}
+	@if ($fontSize) {
+		font-size: settings.rem($fontSize);
+	}
+	@if list.length($fontFamily) > 0 {
+		font-family: $fontFamily, Verdana, Geneva, Tahoma, sans-serif;
+	}
 }
 
 @mixin background-overlay($url) {

@@ -16,8 +16,7 @@
 	@include mixins.font(
 		settings.$font-regular,
 		settings.$font-size-regular,
-		"Montserrat",
-		sans-serif
+		Montserrat
 	);
 	width: 100%;
 	color: settings.$black;

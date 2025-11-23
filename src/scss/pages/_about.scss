@@ -41,7 +41,7 @@
 	}
 
 	&__image {
-		min-width: 180px;
+		min-width: settings.$team-image-width;
 		width: 100%;
 		height: auto;
 		display: block;
@@ -51,16 +51,14 @@
 		@include mixins.font(
 			settings.$font-bold,
 			clamp(settings.$font-size-regular, 2.5vw, settings.$font-size-large),
-			"Montserrat",
-			sans-serif
+			"Montserrat"
 		);
 	}
 	&__role {
 		@include mixins.font(
 			settings.$font-regular,
 			clamp(settings.$font-size-small, 1.5vw, settings.$font-size-medium),
-			"Montserrat",
-			sans-serif
+			"Montserrat"
 		);
 	}
 }

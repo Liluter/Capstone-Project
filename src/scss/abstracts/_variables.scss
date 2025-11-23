@@ -1,11 +1,22 @@
 @use "sass:math";
+@use "sass:meta";
 @use "sass:map";
 
-@function rem($pixel) {
-	@if math.is-unitless($pixel) {
-		@return math.div($pixel, 16) + rem;
+@function rem($value) {
+	@if meta.type-of($value) != "number" {
+		@return $value;
+	}
+
+	@if not math.is-unitless($value) and math.unit($value) == "rem" {
+		@return $value;
+	}
+
+	@if math.is-unitless($value) {
+		@return math.div($value, 16) + rem;
+	} @else if math.unit($value) == "px" {
+		@return math.div($value, 16px) * 1rem;
 	} @else {
-		@return math.div($pixel, 16px) * 1rem;
+		@return $value;
 	}
 }
 
@@ -44,7 +55,7 @@ $space-small: rem(8px);
 $space-medium: rem(12px);
 $space-regular: rem(16px);
 $space-large: rem(18px);
-$space-xlarge: re(20px);
+$space-xlarge: rem(20px);
 $space-big: rem(24px);
 $space-xbig: rem(27px);
 $space-bigger: rem(30px);
@@ -60,12 +71,14 @@ $font-size-small: rem(12px);
 $font-size-label: rem(14px);
 $font-size-regular: rem(15px);
 $font-size-medium: rem(17px);
+$font-size-travelcard: rem(19px);
 $font-size-xmedium: rem(20px);
 $font-size-large: rem(22px);
 $font-size-xlarge: rem(25px);
 $font-size-big: rem(30px);
 $font-size-ultrabig: rem(40px);
 $font-size-mega: rem(50px);
+$font-size-xmega: rem(223px);
 
 $btn-height-small: rem(28);
 $btn-height-regular: rem(40);
@@ -76,6 +89,8 @@ $btn-width-small: rem(54);
 $btn-width-medium: rem(40);
 $btn-width-regular: rem(159);
 $btn-width-large: rem(224);
+$button-arrival-width: rem(200px);
+$btn-feedback-width: rem(90px);
 
 $btn-width-clamp-min: rem(120);
 $btn-width-clamp-max: rem(229);
@@ -86,6 +101,31 @@ $font-bold: 700;
 $font-black: 900;
 
 $dimention-2: 110px;
+$popup-width: rem(400px);
+$popup-height: rem(100px);
+$popup-search-height: rem(200px);
+$popup-search-top-offset: rem(200px);
+$travel-card-width: rem(296px);
+$travel-card-height: rem(600px);
+$travel-card-spacing: rem(57px);
+$flat-her-height: rem(554px);
+$award-item-width: rem(244px);
+$award-item-height: rem(237px);
+$flat-hero-height-min: rem(180px);
+$flat-hero-height-max: rem(554px);
+$flat-hero-cart-height: rem(229);
+$input-height-regular: rem(40px);
+$check-input: rem(14px);
+$icon-width: rem(18px);
+$icon-height: rem(14px);
+$product-card-width: rem(296px);
+$product-card-height: rem(569px);
+$customer-card-width: rem(300px);
+
+$team-image-width: rem(180px);
+
+$product-card-title: 70%;
+$layout-container-width: 80%;
 
 $breakpoint-large: 1440px;
 $breakpoint-medium: 1024px;
@@ -102,6 +142,12 @@ $height-xs: rem(18px);
 $height-s: rem(36px);
 $height-m: rem(64px);
 $height-l: rem(135px);
+
+$line-height-small: 80%;
+
+$line-height-regular: 100%;
+$line-height-medium: 160%;
+$line-height-medium: 200%;
 
 $border-regular: rem(2px);
 

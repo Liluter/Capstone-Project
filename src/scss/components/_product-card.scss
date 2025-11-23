@@ -2,8 +2,8 @@
 @use "../abstracts/mixins";
 
 .product-card {
-	width: 296px;
-	height: 569px;
+	width: settings.$product-card-width;
+	height: settings.$product-card-height;
 
 	@extend %display-centered;
 
@@ -24,26 +24,26 @@
 	}
 	&__title {
 		margin: settings.$space-big auto 0;
-		width: 70%;
+		width: settings.$product-card-title;
 	}
 	&__text {
 		padding: settings.$space-regular 0;
 	}
 	&__price {
 		color: settings.$secondary;
-		font-weight: 700;
+		font-weight: settings.$font-bold;
 		font-size: settings.$font-size-medium;
 	}
 }
 
 .customer-card {
 	height: auto;
-	width: 40%;
-	flex: 0.3 0.3 300px;
+	width: auto;
+	flex: 0 1 settings.$customer-card-width;
 
 	@extend %display-centered;
 	flex-direction: column;
 	justify-content: space-between;
-	padding: 30px;
+	padding: settings.$space-bigger;
 	box-shadow: settings.$shadow-drop;
 }

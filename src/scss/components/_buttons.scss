@@ -12,8 +12,7 @@
 	@include mixins.font(
 		settings.$font-bold,
 		settings.$font-size-medium,
-		"Monteserrat",
-		sans-serif
+		"Montserrat"
 	);
 	transition: all 0.2s ease;
 }
@@ -25,19 +24,19 @@
 	}
 	cursor: pointer;
 	&__login {
-		font-size: settings.$font-size-small;
-		font-family: Inter, Verdana, Geneva, Tahoma, sans-serif;
+		@include mixins.font(null, settings.$font-size-small, "Inter");
 	}
 }
 
 .btn-primary {
 	@extend %btn-primary-style;
+	@include mixins.font(null, null, "SFPro");
 }
 .btn-big {
-	@extend .btn-primary;
+	@extend %btn-primary-style;
 	width: settings.$btn-width-large;
 	height: settings.$btn-height-large;
-	font-size: settings.$font-size-regular;
+	@include mixins.font(null, settings.$font-size-regular);
 }
 .btn-medium {
 	@extend %btn-primary-style;
@@ -98,13 +97,8 @@
 }
 %page-button-base {
 	position: relative;
-	@include mixins.font(
-		settings.$font-bold,
-		settings.$font-size-small,
-		"Inter",
-		sans-serif
-	);
 	@extend %btn-base;
+	@include mixins.font(null, settings.$font-size-small, "Inter");
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -112,13 +106,16 @@
 	border-radius: settings.$radius-small;
 	margin-right: settings.$space-small;
 }
-
-.page-button {
-	@extend %page-button-base;
+%page-button-dimensions {
 	height: settings.$btn-height-regular;
 	min-width: settings.$btn-height-regular;
 	width: auto;
-	padding: 0 20px;
+	padding: 0 settings.$font-size-xmedium;
+}
+
+.page-button {
+	@extend %page-button-base;
+	@extend %page-button-dimensions;
 	&__invert {
 		@extend %page-button-base;
 		background-color: transparent;
@@ -141,22 +138,25 @@
 		visibility: hidden;
 	}
 	&__empty {
-		.right-arrow {
+		%arrow-base {
 			width: 100%;
 			height: 100%;
 			position: relative;
 			display: block;
 			background-image: url("/../../assets/images/cataloge/arrow_right.svg");
-			background-size: 16px 8px;
+			background-size: settings.$space-regular settings.$space-small;
 			background-position-x: right;
 			background-position-y: center;
 			background-repeat: no-repeat;
 			padding: 0 settings.$space-medium;
-			filter: invert(-1);
+			filter: invert(0);
+		}
+		.right-arrow {
+			@extend %arrow-base;
 		}
 		.left-arrow {
-			@extend .right-arrow;
-			transform: scale(-1);
+			@extend %arrow-base;
+			transform: scaleX(-1);
 		}
 		@extend .page-button;
 		background-color: transparent;
@@ -179,9 +179,9 @@
 
 .btn-link-primary,
 a.btn-link-primary {
+	@extend %btn-primary-style;
 	width: 174px;
 	height: 60px;
-	@extend .btn-primary;
 	padding: settings.$space-small 0;
 	margin: settings.$space-big 0;
 }
@@ -198,19 +198,18 @@ a.btn-link-primary {
 	grid-column: 1/-1;
 	background-color: settings.$secondary;
 	color: settings.$white;
-	top: 200px;
+	top: settings.$popup-search-top-offset;
 	width: 100%;
-	height: 200px;
+	min-height: settings.$popup-search-height;
 	z-index: settings.z("search-popup");
 	&__content {
 		margin: 0 auto;
 		text-align: center;
-		width: 80%;
+		width: settings.$layout-container-width;
 		height: 100%;
-		display: flex;
+		@extend %display-centered;
+		row-gap: settings.$space-bigger;
 		flex-direction: column;
-		justify-content: space-around;
-		align-items: center;
 	}
 }
 
@@ -235,10 +234,14 @@ a.btn-link-primary {
 .travel-card {
 	position: relative;
 	overflow: hidden;
-	width: 296px;
-	height: 600px;
+	width: settings.$travel-card-width;
+	height: settings.$travel-card-height;
 	color: settings.$white;
-
+	@include mixins.font(
+		settings.$font-bold,
+		settings.$font-size-travelcard,
+		"Montserrat"
+	);
 	&__image-content {
 		position: absolute;
 		top: 0;
@@ -246,10 +249,11 @@ a.btn-link-primary {
 		object-fit: cover;
 	}
 	&__body {
+		@include mixins.font(null, settings.$font-size-travelcard);
 		position: relative;
 		z-index: settings.z("default");
-		padding: 2.5em;
-		padding-right: settings.$space-verybig;
+		padding: settings.$font-size-ultrabig;
+		padding-right: settings.$travel-card-spacing;
 		background-color: settings.$black40;
 		height: 100%;
 		display: flex;
@@ -259,7 +263,12 @@ a.btn-link-primary {
 		text-align: start;
 		row-gap: settings.$space-bigger;
 		line-height: settings.$font-size-big;
-		font-size: settings.$font-size-medium;
+		& h3 {
+			@include mixins.font(settings.$font-bold, settings.$font-size-travelcard);
+		}
+	}
+	&__text {
+		@include mixins.font(settings.$font-regular);
 	}
 	&:hover,
 	&:focus-within {
@@ -279,7 +288,7 @@ a.btn-link-primary {
 		margin-top: settings.$space-verybig;
 		margin-bottom: settings.$space-big;
 		&--slider {
-			left: -296px;
+			left: settings.$travel-card-width * -1;
 		}
 	}
 	&__fluid {
@@ -326,15 +335,15 @@ a.btn-link-primary {
 	.side {
 		@extend %display-centered;
 		padding: 0 settings.$space-medium;
-		p.description {
-			color: settings.$white;
-		}
 	}
 	.side:first-child {
 		text-align: center;
-
 		h2 {
-			font-size: clamp(1.5em, 4em + 12vw, 15em);
+			font-size: clamp(
+				settings.$font-size-xlarge,
+				14vw,
+				settings.$font-size-xmega
+			);
 		}
 	}
 }
@@ -345,38 +354,37 @@ a.btn-link-primary {
 	@include mixins.font(
 		settings.$font-bold,
 		settings.$font-size-xmedium,
-		"Montserrat",
-		sans-serif
+		"Montserrat"
 	);
 	&__container {
 		margin: settings.$space-mega settings.$space-medium;
 		@extend %display-centered;
 		justify-content: space-around;
-		row-gap: 30px;
+		row-gap: settings.$font-size-big;
 		flex-wrap: wrap;
 	}
 	&__item {
 		@extend %display-centered;
 		flex-direction: column;
 		row-gap: settings.$space-big;
-		width: 230px;
+		width: settings.$award-item-width;
 		height: auto;
-		min-height: 237px;
+		min-height: settings.$award-item-height;
 		justify-content: space-between;
 	}
 	&__text {
 		text-align: center;
 		font-size: medium;
 		font-weight: settings.$font-regular;
-		line-height: 1.6em;
+		line-height: settings.$line-height-medium;
 	}
 }
 
 .card {
 	display: grid;
-	grid-template-columns: repeat(2, calc(settings.$breakpoint-large / 2));
-	grid-template-rows: calc(settings.$breakpoint-large / 2);
 	box-shadow: settings.$shadow-drop;
+	grid-template-columns: repeat(2, 1fr);
+	aspect-ratio: 2/1;
 
 	&__arrival {
 		grid-template-columns: repeat(2, 0.5fr);
@@ -387,6 +395,7 @@ a.btn-link-primary {
 	&__col {
 		@extend %display-centered;
 		padding: 0 settings.$space-ultrabig;
+		aspect-ratio: 1 / 1;
 	}
 	&__col--arrival {
 		height: 100%;
@@ -399,7 +408,7 @@ a.btn-link-primary {
 		background-color: settings.$white;
 	}
 	&__col--right {
-		color: white;
+		color: settings.$white;
 		@include mixins.background-overlay(
 			"../../assets/images/homepage/discounted_suitcases2x.png"
 		);
@@ -410,13 +419,14 @@ a.btn-link-primary {
 		height: 100%;
 	}
 	&__btn--arrival {
-		width: 200px;
+		width: settings.$button-arrival-width;
 		height: settings.$space-verybig;
 		font-size: settings.$font-size-medium;
 	}
 	&__image--arrival {
 		object-fit: cover;
 		width: 100%;
+		height: 100%;
 
 		object-position: center;
 	}
@@ -424,16 +434,8 @@ a.btn-link-primary {
 		font-weight: settings.$font-black;
 	}
 }
-.card-content {
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
 @media screen and (max-width: settings.$breakpoint-large) {
 	.card {
-		grid-template-columns: repeat(2, calc(settings.$breakpoint-medium / 2));
-		grid-template-rows: calc(settings.$breakpoint-medium / 2);
 		font-size: settings.$font-size-regular;
 		&__arrival {
 			grid-template-columns: repeat(2, 0.5fr);
@@ -449,22 +451,27 @@ a.btn-link-primary {
 		&__col--right--arrival {
 			justify-content: center;
 		}
+		&__image--arrival {
+			object-fit: cover;
+		}
 	}
 }
 @media screen and (max-width: settings.$breakpoint-medium) {
 	.card {
-		grid-template-columns: repeat(2, calc(settings.$breakpoint-small / 2));
-		grid-template-rows: calc(settings.$breakpoint-small / 2);
+		display: flex;
+		flex-direction: column;
+		box-shadow: settings.$shadow-drop;
 		font-size: settings.$font-size-regular;
 		&__arrival {
-			grid-template-columns: repeat(2, 0.5fr);
-			grid-template-rows: 1fr;
+			width: 100%;
+			aspect-ratio: initial;
 		}
 		> * {
 			padding: 0 settings.$space-bigger;
 		}
 		&__col--arrival {
 			align-items: flex-start;
+			aspect-ratio: initial;
 			padding: 0;
 		}
 		&__btn--arrival {
@@ -473,22 +480,26 @@ a.btn-link-primary {
 			font-size: settings.$font-size-regular;
 			font-weight: settings.$font-medium;
 		}
+		&__image--arrival {
+			width: settings.$breakpoint-small;
+
+			object-fit: cover;
+		}
 	}
 }
 @media screen and (max-width: settings.$breakpoint-small) {
 	.card {
-		grid-template-columns: 100vw;
-		grid-template-rows: 100vw 100vw;
 		font-size: settings.$font-size-regular;
 		> * {
 			padding: 0 settings.$space-medium;
 		}
 		&__arrival {
 			row-gap: settings.$space-big;
-			grid-template-rows: 1fr;
+			aspect-ratio: initial;
 		}
 		&__image--arrival {
 			width: 100vw;
+			aspect-ratio: initial;
 		}
 	}
 }
@@ -525,7 +536,7 @@ a.btn-link-primary {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(39, 39, 39, 0.219);
+	background-color: settings.$secondary;
 	z-index: settings.z("sticky-header");
 	@extend %display-centered;
 	&__message {
@@ -534,17 +545,16 @@ a.btn-link-primary {
 		@include mixins.font(
 			settings.$font-bold,
 			settings.$font-size-medium,
-			"Montserrat",
-			sans-serif
+			"Montserrat"
 		);
-		width: 400px;
-		height: 100px;
-		background-color: white;
+		width: settings.$popup-width;
+		height: settings.$popup-height;
+		background-color: settings.$white;
 		@extend %display-centered;
 		box-shadow: settings.$shadow-drop;
 	}
 	&__rounded {
-		border-radius: 12px 12px;
+		border-radius: settings.$radius-large;
 	}
 }
 
@@ -560,26 +570,27 @@ a.btn-link-primary {
 }
 
 .flat-hero {
-	height: clamp(180px, 50vw, 554px);
+	height: clamp(
+		settings.$flat-hero-height-min,
+		50vw,
+		settings.$flat-hero-height-max
+	);
 	@include mixins.background-overlay(
 		"../../assets/images/aboutus/banner_image.webp"
 	);
 	&__content {
 		width: 100%;
 		height: 100%;
-		display: flex;
+		@extend %display-centered;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 	}
 	&__title {
 		color: settings.$white;
 		margin: 0;
 		@include mixins.font(
 			settings.$font-bold,
-			clamp(2em, 4vw, settings.$font-size-mega),
-			"Montserrat",
-			sans-serif
+			clamp(settings.$font-size-large, 4vw, settings.$font-size-mega),
+			"Montserrat"
 		);
 	}
 	&__text {
@@ -587,7 +598,7 @@ a.btn-link-primary {
 		margin-top: settings.$space-xlarge;
 	}
 	&--cart {
-		height: 229px;
+		height: settings.$flat-hero-cart-height;
 		@include mixins.background-overlay-black-50(
 			"../../assets/images/cart/highway_image.jpg"
 		);
