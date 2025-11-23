@@ -88,7 +88,12 @@ class Catalog {
 		const endRange = +start + pageElementsSet.length - 1;
 
 		this.setPaginationCount(start, endRange, flatedArray.length);
+		this.#productContainer.scrollIntoView({
+			behavior: "smooth",
+			block: "start",
+		});
 	}
+
 	searchProduct(query) {
 		if (this.#timer) {
 			clearTimeout(this.#timer);

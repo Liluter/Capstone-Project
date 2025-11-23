@@ -3,8 +3,8 @@
 @use "../abstracts/mixins";
 
 %btn-base {
-	width: 156px;
-	height: 40px;
+	width: settings.$btn-width-regular;
+	height: settings.$btn-height-regular;
 	@extend %display-centered;
 	color: settings.$white;
 	border: none;
@@ -35,14 +35,19 @@
 }
 .btn-big {
 	@extend .btn-primary;
-	height: 60px;
-	width: 224px;
+	width: settings.$btn-width-large;
+	height: settings.$btn-height-large;
 	font-size: settings.$font-size-regular;
 }
 .btn-medium {
 	@extend %btn-primary-style;
-	height: 42px;
-	width: clamp(120px, 50%, 229px);
+
+	height: settings.$btn-height-medium;
+	width: clamp(
+		settings.$btn-width-clamp-min,
+		50%,
+		settings.$btn-width-clamp-max
+	);
 	padding: 0 settings.$space-medium;
 
 	font-size: settings.$font-size-regular;
@@ -56,9 +61,10 @@
 	position: absolute;
 	top: settings.$space-big;
 	left: settings.$space-big;
+
 	@extend %btn-base;
-	width: 54px;
-	height: 28px;
+	width: settings.$btn-width-small;
+	height: settings.$btn-height-small;
 	font-size: settings.$font-size-small;
 	font-family: "Inter", sans-serif;
 	visibility: hidden;
@@ -90,8 +96,7 @@
 		border: none;
 	}
 }
-
-.page-button {
+%page-button-base {
 	position: relative;
 	@include mixins.font(
 		settings.$font-bold,
@@ -103,27 +108,33 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	border: 2px solid transparent;
-	height: 40px;
-	min-width: 40px;
-	width: auto;
-	padding: 0 20px;
+	border: settings.$border-regular solid transparent;
 	border-radius: settings.$radius-small;
 	margin-right: settings.$space-small;
-	&__invert {
-		@extend .page-button;
-		background-color: transparent;
+}
 
+.page-button {
+	@extend %page-button-base;
+	height: settings.$btn-height-regular;
+	min-width: settings.$btn-height-regular;
+	width: auto;
+	padding: 0 20px;
+	&__invert {
+		@extend %page-button-base;
+		background-color: transparent;
 		color: settings.$black;
+		width: settings.$btn-width-medium;
 		&:hover,
-		&:focus &:focus-within {
-			border: settings.$border-regular solid settings.$primary;
+		&:focus,
+		&:focus-within {
+			border-color: settings.$primary;
 			transition: none;
 		}
 		&:active {
 			@include mixins.hoverable();
 			background-color: settings.$primary;
 			color: settings.$white;
+			border-color: settings.$primary;
 		}
 	}
 	&__hidden {
