@@ -38,7 +38,6 @@
 		grid-template-columns: 0.4fr 1fr repeat(4, 0.4fr);
 		grid-template-rows: 138px;
 		grid-template-areas: "img name price qty total del";
-		align-items: center;
 	}
 
 	&__col--image {
@@ -100,7 +99,8 @@
 
 		appearance: none;
 		-moz-appearance: none;
-		&:hover {
+		&:hover,
+		&:focus-within {
 			transform: scale(1.05);
 			@include mixins.outline(settings.$primary);
 		}
@@ -129,7 +129,8 @@
 	&__delete {
 		display: block;
 
-		&:hover {
+		&:hover,
+		&:focus-within {
 			transform: scale(1.05);
 		}
 	}
@@ -164,7 +165,8 @@
 		justify-content: center;
 		align-items: center;
 		transition: transform 200ms linear;
-		&:hover {
+		&:hover,
+		&:focus-within {
 			transform: scale(1.05);
 			@include mixins.outline(settings.$primary);
 		}
@@ -194,7 +196,6 @@
 			flex-direction: column-reverse;
 			align-items: center;
 			justify-content: center;
-			align-items: center;
 			font-weight: settings.$font-bold;
 			font-size: settings.$font-size-xlarge;
 		}
@@ -213,7 +214,8 @@
 			justify-content: center;
 			align-items: center;
 			transition: transform 200ms linear;
-			&:hover {
+			&:hover,
+			&:focus-within {
 				transform: scale(1.05);
 				@include mixins.outline(settings.$primary);
 			}
@@ -232,7 +234,6 @@
 		&__col--left {
 			grid-column: 1/2;
 			grid-row: 1/2;
-			// flex-direction: column;
 			justify-content: space-around;
 		}
 		&__col--right {

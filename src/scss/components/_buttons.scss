@@ -17,7 +17,7 @@
 	);
 	transition: all 0.2s ease;
 }
-.btn-primary {
+%btn-primary-style {
 	@extend %btn-base;
 	&:hover,
 	&:focus-within {
@@ -26,8 +26,12 @@
 	cursor: pointer;
 	&__login {
 		font-size: settings.$font-size-small;
-		font-family: "Inter" sans-serif;
+		font-family: Inter, Verdana, Geneva, Tahoma, sans-serif;
 	}
+}
+
+.btn-primary {
+	@extend %btn-primary-style;
 }
 .btn-big {
 	@extend .btn-primary;
@@ -36,7 +40,7 @@
 	font-size: settings.$font-size-regular;
 }
 .btn-medium {
-	@extend .btn-primary;
+	@extend %btn-primary-style;
 	height: 42px;
 	width: clamp(120px, 50%, 229px);
 	padding: 0 settings.$space-medium;
@@ -79,7 +83,8 @@
 	transition: all 0.2s ease;
 	&:hover,
 	&:active,
-	&:focus {
+	&:focus,
+	&:focus-within {
 		color: settings.$white;
 		background-color: settings.$primary;
 		border: none;
@@ -111,7 +116,7 @@
 
 		color: settings.$black;
 		&:hover,
-		&:focus {
+		&:focus &:focus-within {
 			border: settings.$border-regular solid settings.$primary;
 			transition: none;
 		}
@@ -146,7 +151,8 @@
 		background-color: transparent;
 		border: settings.$border-regular solid settings.$primary;
 		color: settings.$black;
-		&:hover {
+		&:hover,
+		&:focus-within {
 			color: settings.$white;
 			background-color: settings.$primary;
 			.right-arrow,
@@ -169,8 +175,11 @@ a.btn-link-primary {
 	margin: settings.$space-big 0;
 }
 
-.btn-link-primary:hover {
-	@include mixins.hoverable();
+.btn-link-primary {
+	&:hover,
+	&:focus-within {
+		@include mixins.hoverable();
+	}
 }
 
 .popup-search {
@@ -181,7 +190,7 @@ a.btn-link-primary {
 	top: 200px;
 	width: 100%;
 	height: 200px;
-	z-index: 20;
+	z-index: mixins.z("search-popup");
 	&__content {
 		margin: 0 auto;
 		text-align: center;
@@ -224,11 +233,10 @@ a.btn-link-primary {
 		top: 0;
 		left: 0;
 		object-fit: cover;
-		z-index: 0;
 	}
 	&__body {
 		position: relative;
-		z-index: 1;
+		z-index: mixins.z("default");
 		padding: 2.5em;
 		padding-right: settings.$space-verybig;
 		background-color: settings.$black40;
@@ -242,7 +250,8 @@ a.btn-link-primary {
 		line-height: settings.$font-size-big;
 		font-size: settings.$font-size-medium;
 	}
-	&:hover {
+	&:hover,
+	&:focus-within {
 		transform: scale(1.03);
 		box-shadow: settings.$shadow-drop;
 		transition: transform 0.2s ease-out;
@@ -498,7 +507,6 @@ a.btn-link-primary {
 	display: none;
 }
 .popup {
-	position: absolute;
 	color: settings.$primary;
 	text-align: center;
 	position: fixed;
@@ -507,27 +515,26 @@ a.btn-link-primary {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(39, 39, 39, 0.219);
-	z-index: 100;
+	z-index: mixins.z("sticky-header");
 	@extend %display-centered;
 	&__message {
 		padding: settings.$space-bigger;
-		font-weight: settings.$font-bold;
-		line-height: 2em;
-		// @include mixins.font(
-		// 	settings.$font-bold,
-		// 	settings.$font-size-medium,
-		// 	"Montserrat",
-		// 	sans-serif
-		// );
+		line-height: settings.$space-medium;
+		@include mixins.font(
+			settings.$font-bold,
+			settings.$font-size-medium,
+			"Montserrat",
+			sans-serif
+		);
 		width: 400px;
 		height: 100px;
 		background-color: white;
 		@extend %display-centered;
+		box-shadow: settings.$shadow-drop;
 	}
 	&__rounded {
 		border-radius: 12px 12px;
 	}
-	box-shadow: settings.$shadow-drop;
 }
 
 .success {

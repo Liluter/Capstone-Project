@@ -1,49 +1,77 @@
+@use "sass:math";
+
+@function rem($pixel) {
+	@if math.is-unitles($pixel) {
+		@return math.div($pixel, 16) + rem;
+	} @else {
+		@return mat.div($pixel, 16px) * 1rem;
+	}
+}
+
+$z-layers: (
+	"default": 1,
+	"header-top": 2,
+	"search-popup": 20,
+	"sticky-header": 100,
+	"modal-overlau": 101,
+	"modal-content:": 102,
+);
+
+@function z($layer) {
+	@if not map-has-key($z-layers, $layer) {
+		@error "Now such layer '#{$layer}}' in $z-layer map.";
+	}
+	@return map-get($z-layer, $layer);
+}
+
 $primary: #b92770;
 $primary-50: #b9277080;
 $secondary: #504e4a;
 $gray: #727174;
 $light-gray: #e7e8e9;
 $soft-gray: #e9e9ed;
-$black: #000000;
+$black: #000;
 $black40: #00000066;
 $black50: #00000080;
 $gray-30: #c1c7d44d;
-$white: #ffffff;
+$white: #fff;
 $success: #2ea123;
 $failure: #a02323;
 
-$space-smallest: 6px;
-$space-small: 8px;
-$space-medium: 12px;
-$space-regular: 16px;
-$space-large: 18px;
-$space-xlarge: 20px;
-$space-big: 24px;
-$space-xbig: 27px;
-$space-bigger: 30px;
-$space-xbigger: 42px;
-$space-verybig: 60px;
-$space-huge: 70px;
-$space-ultrabig: 90px;
-$space-mega: 120px;
-$table-row: 135px;
+$space-smallest: rem(6px);
+$space-small: rem(8px);
+$space-medium: rem(12px);
+$space-regular: rem(16px);
+$space-large: rem(18px);
+$space-xlarge: re(20px);
+$space-big: rem(24px);
+$space-xbig: rem(27px);
+$space-bigger: rem(30px);
+$space-xbigger: rem(42px);
+$space-verybig: rem(60px);
+$space-huge: rem(70px);
+$space-ultrabig: rem(90px);
+$space-mega: rem(120px);
+$table-row: rem(135px);
 
-$font-size-verysmall: 9px;
-$font-size-small: 12px;
-$font-size-label: 14px;
-$font-size-regular: 15px;
-$font-size-medium: 17px;
-$font-size-xmedium: 20px;
-$font-size-large: 22px;
-$font-size-xlarge: 25px;
-$font-size-big: 30px;
-$font-size-ultrabig: 40px;
-$font-size-mega: 50px;
+$font-size-verysmall: rem(9px);
+$font-size-small: rem(12px);
+$font-size-label: rem(14px);
+$font-size-regular: rem(15px);
+$font-size-medium: rem(17px);
+$font-size-xmedium: rem(20px);
+$font-size-large: rem(22px);
+$font-size-xlarge: rem(25px);
+$font-size-big: rem(30px);
+$font-size-ultrabig: rem(40px);
+$font-size-mega: rem(50px);
 
 $font-regular: 400;
 $font-medium: 500;
 $font-bold: 700;
 $font-black: 900;
+
+$dimention-2: 110px;
 
 $breakpoint-large: 1440px;
 $breakpoint-medium: 1024px;
@@ -56,12 +84,12 @@ $breakepoints: (
 	"small": $breakpoint-small,
 );
 
-$height-xs: 18px;
-$height-s: 36px;
-$height-m: 64px;
-$height-l: 135px;
+$height-xs: rem(18px);
+$height-s: rem(36px);
+$height-m: rem(64px);
+$height-l: rem(135px);
 
-$border-regular: 2px;
+$border-regular: rem(2px);
 
 $radius-small: 4px;
 $radius-medium: 8px;

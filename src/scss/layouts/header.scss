@@ -2,11 +2,6 @@
 @use "../abstracts/variables" as settings;
 @use "../abstracts/mixins";
 
-%display-centered {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
 %flex {
 	flex: 0 0 auto;
 }
@@ -20,7 +15,7 @@ hr {
 	background-color: settings.$white;
 	position: sticky;
 	top: 0;
-	z-index: 100;
+	z-index: mixins.z("sticky-header");
 }
 .site-header {
 	margin: 0 auto;
