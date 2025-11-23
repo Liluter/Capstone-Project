@@ -79,7 +79,6 @@ class Catalog {
 		const pageElementsSet = this.pageListData[pageNumber - 1];
 		const concatedString = pageElementsSet.join("");
 		this.#productContainer.innerHTML = concatedString;
-		console.log("set active page", pageNumber);
 		this.setActivePage(pageNumber);
 
 		const flatedArray = this.pageListData.flat();

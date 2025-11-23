@@ -65,14 +65,10 @@ async function dataAccess() {
 		);
 
 		infoNav.addEventListener("click", (e) => {
-			// console.log("sdds", e.target);
 			const listNav = [...infoNav.children];
 			listNav.forEach((child, idx) => {
-				console.log("child1", child.firstElementChild);
-				console.log("child2", child.firstElementChild === e.target);
 				infoContainer.children[idx].classList.add("info__hide");
 				if (child.firstElementChild === e.target) {
-					console.log("child1", idx, child.firstElementChild);
 					child.firstElementChild.classList.add("info__active");
 
 					infoContainer.children[idx].classList.remove("info__hide");
