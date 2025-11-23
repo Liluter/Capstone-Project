@@ -92,7 +92,6 @@ async function dataAccess(
 ) {
 	try {
 		const data = await fetchLocalData("assets/data.json");
-		console.log(data);
 		mountElements(
 			data,
 			selectedProductsContainer,

@@ -1,11 +1,6 @@
 @use "sass:list";
 @use "variables" as settings;
 
-// @mixin font($fontWeight, $fontSize, $fontFamily...) {
-// 	font-family: $fontFamily, Verdana, Geneva, Tahoma, sans-serif;
-// 	font-weight: $fontWeight;
-// 	font-size: $fontSize;
-// }
 @mixin font($fontWeight: null, $fontSize: null, $fontFamily...) {
 	@if ($fontWeight) {
 		font-weight: $fontWeight;

@@ -311,7 +311,7 @@ class Catalog {
 
 	templateStringGenerator(data) {
 		const productCard = `<div class="flex-item" id="${data.id}">
-          <div class="product-card">
+          <article class="product-card">
             <picture>
               <source srcset="/${data.imageUrl}" />
               <img src="/${data.imageUrl}" 
@@ -327,7 +327,7 @@ class Catalog {
                 SALE
               </div>
             </div>
-          </div>
+          </article>
         </div>`;
 		return productCard;
 	}
@@ -449,7 +449,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		})
 	);
-	filterBtn.addEventListener("click", () => {
+	filterBtn.addEventListener("click", (e) => {
+		e.preventDefault();
 		filterDropdown.classList.toggle("hide");
 	});
 	const searchInput = document.querySelector("#searchInput");

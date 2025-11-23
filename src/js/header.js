@@ -22,7 +22,7 @@ const headerHtml = `
       <div class="header-branding">
         <a href="/" class="logo">
           <img src="/assets/images/header/suitcase_logo.svg" width="32" height="32" alt="logo">
-          <span class="site-name">BEST SHOP</span>
+          <div class="site-name">BEST SHOP</div>
         </a>
       </div>
       <ul class="list account-controls">
@@ -182,7 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		} else {
 			passwordInput.focus();
 		}
-		console.log("invliad", emailInvalid, passwordInvalid);
 		if (emailInvalid && passwordInvalid) {
 			loginModal.classList.add("hide");
 		} else {

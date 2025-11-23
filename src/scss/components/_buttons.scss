@@ -263,7 +263,7 @@ a.btn-link-primary {
 		text-align: start;
 		row-gap: settings.$space-bigger;
 		line-height: settings.$font-size-big;
-		& h3 {
+		h3 {
 			@include mixins.font(settings.$font-bold, settings.$font-size-travelcard);
 		}
 	}
@@ -536,7 +536,7 @@ a.btn-link-primary {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: settings.$secondary;
+	background-color: settings.$black40;
 	z-index: settings.z("sticky-header");
 	@extend %display-centered;
 	&__message {
@@ -583,6 +583,7 @@ a.btn-link-primary {
 		height: 100%;
 		@extend %display-centered;
 		flex-direction: column;
+		padding: 0 settings.$space-bigger;
 	}
 	&__title {
 		color: settings.$white;

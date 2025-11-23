@@ -90,6 +90,18 @@
 		font-size: settings.$font-size-small;
 		width: settings.$btn-feedback-width;
 	}
+	&__fieldset-group {
+		width: 100%;
+		border: none;
+		padding: 0;
+		margin: 0;
+		min-width: 0;
+		display: block;
+		> legend {
+			padding: 0;
+			margin: 0;
+		}
+	}
 }
 
 @media screen and (max-width: settings.$breakpoint-medium) {

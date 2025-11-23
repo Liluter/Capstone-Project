@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 		const emailInput = document.querySelector("#feedbackEmail");
 		const emailMessage = document.querySelector("#feedbackMessagePopup");
-		console.log("errorMess", emailMessage);
 		let emailInvalid = true;
 		const emailValue = emailInput.value.trim();
 

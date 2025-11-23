@@ -100,7 +100,7 @@ $font-medium: 500;
 $font-bold: 700;
 $font-black: 900;
 
-$dimention-2: 110px;
+$dimention-2: rem(110px);
 $popup-width: rem(400px);
 $popup-height: rem(100px);
 $popup-search-height: rem(200px);
@@ -122,6 +122,10 @@ $product-card-width: rem(296px);
 $product-card-height: rem(569px);
 $customer-card-width: rem(300px);
 
+$footer-main-link-width: rem(170px);
+$footer-benefits-height: rem(192px);
+$footer-benefits-list: rem(220px);
+
 $team-image-width: rem(180px);
 
 $product-card-title: 70%;
@@ -139,6 +143,7 @@ $breakepoints: (
 );
 
 $height-xs: rem(18px);
+$height-ss: rem(32px);
 $height-s: rem(36px);
 $height-m: rem(64px);
 $height-l: rem(135px);
@@ -158,5 +163,6 @@ $radius-big: 20px;
 
 $shadow-drop: 0 20px 80px 0 #c1c7d4b3;
 
+$opacity-35: 0.35;
 $opacity-5: 0.5;
 $opacity-7: 0.7;

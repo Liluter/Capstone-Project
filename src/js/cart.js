@@ -249,8 +249,6 @@ export class Cart {
 		return filteredItem[0];
 	}
 	showMessage(message) {
-		console.log("Show messagemessage", this.#messagePopup);
-
 		this.#messagePopup.firstElementChild.textContent = message;
 		this.#messagePopup.classList.remove("hide");
 		setTimeout(() => {

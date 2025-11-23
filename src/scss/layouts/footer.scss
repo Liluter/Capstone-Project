@@ -5,17 +5,16 @@
 .footer-container {
 	color: settings.$white;
 	width: 100%;
+	@include mixins.font(
+		settings.$font-bold,
+		settings.$font-size-medium,
+		"Inter"
+	);
 	.benefits-container {
 		background-color: settings.$secondary;
 		height: auto;
 		background-image: url("../../assets/images/footer/benefits-lines.svg");
 		background-size: cover;
-		@include mixins.font(
-			settings.$font-bold,
-			settings.$font-size-medium,
-			Inter,
-			sans-serif
-		);
 	}
 	.benefits {
 		width: settings.$breakpoint-large;
@@ -24,29 +23,23 @@
 		@extend %display-centered;
 		align-items: flex-start;
 		flex-direction: column;
-		row-gap: 32px;
-		min-height: 194px;
+		row-gap: settings.$height-ss;
+		min-height: settings.$footer-benefits-height;
 		h4 {
 			margin: 0 0;
 		}
 		.list {
-			@include mixins.font(
-				settings.$font-medium,
-				settings.$font-size-regular,
-				"Inter",
-				sans-serif
-			);
-			line-height: 160%;
+			@include mixins.font(settings.$font-medium, settings.$font-size-regular);
+			line-height: settings.$line-height-medium;
 			display: flex;
 			justify-content: space-around;
 			li {
 				@extend %display-centered;
-
 				justify-content: flex-start;
 				span {
-					min-width: 220px;
-					padding-right: 8px;
-					padding-left: 20px;
+					min-width: settings.$footer-benefits-list;
+					padding-right: settings.$space-small;
+					padding-left: settings.$space-xlarge;
 				}
 			}
 		}
@@ -56,24 +49,19 @@
 		margin: auto;
 		display: grid;
 		grid-template-columns: repeat(3, 1fr) 1.6fr repeat(2, 1fr);
-		color: black;
-		@include mixins.font(
-			settings.$font-regular,
-			settings.$font-size-regular,
-			"Inter",
-			sans-serif
-		);
+		color: settings.$black;
+		@include mixins.font(settings.$font-regular, settings.$font-size-regular);
 		padding-top: settings.$space-big * 4;
 		> * {
 			padding-bottom: settings.$space-big;
 		}
 		h4 {
-			font-weight: 700;
+			font-weight: settings.$font-bold;
 			margin: settings.$space-big 0;
 		}
 		p,
 		li {
-			line-height: 200%;
+			line-height: settings.$line-height-medium;
 		}
 		.address-list {
 			display: grid;
@@ -104,9 +92,7 @@
 				.footer-bottom {
 					@include mixins.font(
 						settings.$font-regular,
-						settings.$font-size-regular,
-						"Inter",
-						sans-serif
+						settings.$font-size-regular
 					);
 					text-align: center;
 				}
@@ -120,7 +106,7 @@
 			justify-content: space-between;
 			width: 100%;
 			.footer-group {
-				flex: 0 0 170px;
+				flex: 0 0 settings.$footer-main-link-width;
 			}
 		}
 		.footer-contact {
@@ -139,7 +125,7 @@
 			grid-column: 1/7;
 			grid-row: 3/4;
 			padding-top: settings.$space-big * 3;
-			opacity: 0.35;
+			opacity: settings.$opacity-35;
 			p {
 				margin: settings.$space-medium 0;
 			}
