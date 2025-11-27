@@ -4,4 +4,4 @@ package-lock.json
 
 #temporary files and compilation
 # src/dist/
-src/html/temp/
+docs/html/temp/
