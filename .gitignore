@@ -3,5 +3,5 @@ package-lock.json
 .DS_Store
 
 #temporary files and compilation
-src/dist/
+# src/dist/
 src/html/temp/
