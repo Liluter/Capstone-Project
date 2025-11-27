@@ -1,0 +1,106 @@
+@use "base/reset";
+@use "base/fonts";
+@use "abstracts/_variables" as settings;
+@use "abstracts/mixins";
+@use "layouts/header";
+@use "layouts/footer";
+@use "components/buttons";
+@use "components/product-card";
+@use "components/forms";
+@use "pages/catalog";
+@use "pages/product-details";
+@use "pages/about";
+@use "pages/cart";
+
+.main-container {
+	@include mixins.font(
+		settings.$font-regular,
+		settings.$font-size-regular,
+		Montserrat
+	);
+	width: 100%;
+	color: settings.$black;
+}
+
+.description {
+	font-size: clamp(
+		settings.$font-size-regular,
+		settings.$font-size-regular + 0.2vw - 1px,
+		settings.$font-size-medium
+	);
+	line-height: clamp(1.2em, 1.8vw, 1.8em);
+}
+.hero {
+	background-color: settings.$white;
+	font-size: settings.$font-size-medium;
+
+	&__wrapper {
+		background-color: settings.$light-gray;
+		height: calc(
+			100vh - settings.$height-s - settings.$height-l - settings.$space-big
+		);
+		width: 100%;
+		margin-bottom: settings.$space-ultrabig * -1;
+	}
+	&__section {
+		@extend %display-centered;
+		margin: 0 auto;
+		padding: settings.$space-big 0;
+		height: 100%;
+	}
+	&__item {
+		flex: 1 1 50%;
+	}
+	&__content {
+		margin-right: -50px;
+		padding-left: settings.$space-medium;
+		padding-right: settings.$space-medium;
+	}
+
+	&__image {
+		width: 100%;
+		height: 100%;
+	}
+}
+.avatar-item {
+	@extend %display-centered;
+	justify-content: flex-start;
+	column-gap: settings.$space-big;
+	margin: clamp(settings.$space-small, 2vw, settings.$space-bigger) 0;
+
+	&__image {
+		height: clamp(4em, 4em + 0.5vw, 5em);
+		width: auto;
+	}
+	&__name {
+		font-weight: settings.$font-bold;
+		font-size: clamp(1.1em, max(2vw, 1em), 1.2em);
+	}
+	p {
+		margin: settings.$space-smallest 0;
+	}
+}
+
+@media screen and (max-width: settings.$breakpoint-medium) {
+	.hero {
+		&__wrapper {
+			margin-bottom: 0;
+			height: auto;
+		}
+		&__section {
+			flex-direction: column-reverse;
+			height: fit-content;
+		}
+		&__content {
+			margin-right: 0;
+		}
+	}
+}
+@media screen and (orientation: portrait) and (max-width: settings.$breakpoint-very-small) {
+	.main-container {
+		a.btn-link-primary {
+			width: 100%;
+			height: auto;
+		}
+	}
+}

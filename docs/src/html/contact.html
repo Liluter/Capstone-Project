@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Best Shop - Contact Us</title>
+		<script src="../js/header.js" async></script>
+		<script src="../js/footer.js" defer></script>
+		<link rel="stylesheet" href="../dist/css/main.css" />
+		<script src="../js/cart.js" type="module"></script>
+		<script src="../js/contact.js" type="module"></script>
+	</head>
+	<body>
+		<main class="main-container">
+			<section class="flat-hero">
+				<div class="flat-hero__content">
+					<h1 class="flat-hero__title">Contact Us</h1>
+					<div class="flat-hero__text">
+						Duis vestibulum elit vel neque pharetra vulputate. Duis rutrum non
+						risus in imperdiet.
+					</div>
+				</div>
+			</section>
+			<section class="awards container">
+				<ul class="awards__container">
+					<li >
+						<article class="awards__item">
+							<picture>
+								<source
+								srcset="../assets/images/icons/accuracy_icon.webp"
+								type="image/webp"
+								/>
+								<img
+								src="../assets/images/icons/accuracy_icon.png"
+								alt="skill icon target"
+								width="62"
+								height="62"
+								class="block"
+								/>
+							</picture>
+							<div class="awards__title">Superior Accuracy</div>
+							<p class="awards__text">
+								Qewist vestibulum elit vel neque pharetra vulputate scelerisque
+								nisi urna.
+							</p>
+						</article>
+					</li>
+					<li >
+						<article class="awards__item">
+							<picture>
+								<source
+								src="../assets/images/icons/award_icon.webp"
+								type="image/webp"
+								/>
+								<img
+								src="../assets/images/icons/award_icon.png"
+								alt="skill icon award"
+								width="62"
+								height="62"
+								class="block"
+								/>
+							</picture>
+							<div class="awards__title">Awards</div>
+							<p class="awards__text">
+								Vestibulum elit vel neque pharetra vulputate. Quisque scelerisque
+								nisi urna.
+							</p>
+						</article>
+					</li>
+					<li >
+						<article class="awards__item">
+							<picture>
+								<source
+								src="../assets/images/icons/accuracy_icon.webp"
+								type="image/webp"
+								/>
+								<img
+								src="../assets/images/icons/accuracy_icon.png"
+								alt="skill icon target"
+								width="62"
+								height="62"
+								class="block"
+								/>
+							</picture>
+							<div class="awards__title">Ecological</div>
+							<p class="awards__text">
+								Elit vel neque duis vestibulum pharetra vulputateuisque
+								scelerisque nisi urna.
+							</p>
+						</article>
+					</li>
+					<li >
+						<article class="awards__item">
+							<picture>
+								<source
+								src="../assets/images/icons/accuracy_icon.webp"
+								type="image/webp"
+								/>
+								<img
+								src="../assets/images/icons/accuracy_icon.png"
+								alt="skill icon target"
+								width="62"
+								height="62"
+								class="block"
+								/>
+							</picture>
+							<div class="awards__title">Shipping Worlwide</div>
+							<p class="awards__text">
+								Quisque scelerisque nisi urna. Duis vestibulum elit vel neque
+								pharetra vulputate.
+							</p>
+						</article>
+					</li>
+				</ul>
+			</section>
+			<section class="feedback container">
+				<div class="feedback__container">
+					<div class="feedback__col--left"></div>
+					<div class="feedback__col--right">
+            <form action="" class="feedback__form" id="feedbackForm">
+              <header class="feedback__header">
+								<h2 class="feedback__title">
+								Your Feedback Is Much Appreciated!
+								</h2>
+								<div class="feedback__subtitle">
+									We will contact you when you complete the following form!
+								</div>
+							</header>
+								<fieldset class="feedback__fieldset-group">
+									<legend class="visually-hidden">Contact Form Details</legend>
+										<div class="feedback__input--wrapper" >
+											<label for="feedbackName" class="feedback__label">
+												Your Name <span class="postfix primary">*</span>
+											</label>
+												<input 
+												type="text" 
+												name="feedbackName" 
+												id="feedbackName" 
+												class="feedback__input"
+												required
+												minlength="6"
+												/>
+										</div>
+										<div class="feedback__input--wrapper" >
+											<label for="feedbackEmail" class="feedback__label">
+												Your Email Address <span class="postfix primary">*</span>
+											</label>
+												<input 
+												type="email" 
+												name="feedbackEmail" 
+												id="feedbackEmail" 
+												class="feedback__input" 
+												required/>
+										</div>
+										<div class="feedback__input--wrapper">
+											<label for="feedbackTopic" class="feedback__label">
+												Topic <span class="postfix primary">*</span></label
+											>
+											</label>
+												<input type="text" name="feedbackTopic" id="feedbackTopic"  
+												class="feedback__input" required
+												/>
+										</div>
+										<div class="feedback__input--wrapper">
+											<label for="feedbackMessage" class="feedback__label" 
+												>Your Message <span class="postfix primary">*</span></label
+											>
+											<textarea
+												name="message"
+												id="feedbackMessage"
+												class="feedback__input feedback__textarea"
+												rows="4"
+												required
+												autocomplete="off" 
+											></textarea>
+										</div>
+								</fieldset>
+							<div class="feedback__input--wrapper">
+								<button id="feddbackButton" type="submit"
+								class="btn-primary feedback__button">SEND</button>
+							</div>
+            </form>
+						<div id="feedbackMessagePopup" class="popup hide">
+							<div class="popup__message">Wrong email address</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>

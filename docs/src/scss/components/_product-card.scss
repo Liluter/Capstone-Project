@@ -1,0 +1,49 @@
+@use "../abstracts/variables" as settings;
+@use "../abstracts/mixins";
+
+.product-card {
+	width: settings.$product-card-width;
+	height: settings.$product-card-height;
+
+	@extend %display-centered;
+
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+	margin: 0 settings.$space-small;
+	&__image {
+		display: block;
+		box-shadow: settings.$shadow-drop;
+	}
+	&__body {
+		flex: 1 0 auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&__title {
+		margin: settings.$space-big auto 0;
+		width: settings.$product-card-title;
+	}
+	&__text {
+		padding: settings.$space-regular 0;
+	}
+	&__price {
+		color: settings.$secondary;
+		font-weight: settings.$font-bold;
+		font-size: settings.$font-size-medium;
+	}
+}
+
+.customer-card {
+	height: auto;
+	width: auto;
+	flex: 0 1 settings.$customer-card-width;
+
+	@extend %display-centered;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: settings.$space-bigger;
+	box-shadow: settings.$shadow-drop;
+}

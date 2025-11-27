@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Best Shop - Product Detail Page</title>
+		<script src="../js/header.js" async></script>
+		<script src="../js/footer.js" defer></script>
+		<link rel="stylesheet" href="../dist/css/main.css" />
+		<script src="../js/cart.js" type="module"></script>
+		<script src="./../js/product.js" type="module"></script>
+	</head>
+
+	<body>
+		<main class="container" aria-label="main">
+			<article class="product responsive container">
+				<div class="product__col--left">
+					<div class="product__main-picture">
+						<picture id="mainPicture">
+							<source
+								src="/assets/images/regular_suitcases/suitcase_red.webp"
+							/>
+							<img
+								src="/assets/images/regular_suitcases/suitcase_red.webp"
+								alt="product red  big suitcase "
+								width="297"
+								height="400"
+								class="product__main-image"
+							/>
+						</picture>
+					</div>
+					<div class="product__thumbnails-container">
+						<picture class="product__thumbnail">
+							<source src="/assets/images/product/yellow_open_3.webp" />
+							<img
+								src="/assets/images/product/yellow_open_3.webp"
+								alt="product red  big suitcase "
+								width="150"
+								height="150"
+								class="product__thumbnail-image"
+							/>
+						</picture>
+						<picture class="product__thumbnail">
+							<source src="/assets/images/product/suitcase_small_card_1.webp" />
+							<img
+								src="/assets/images/product/suitcase_small_card_1.webp"
+								alt="product red  big suitcase "
+								width="150"
+								height="150"
+								class="product__thumbnail-image"
+							/>
+						</picture>
+						<picture class="product__thumbnail">
+							<source src="/assets/images/product/suitcase_small_2.webp" />
+							<img
+								src="/assets/images/product/suitcase_small_2.webp"
+								alt="product red  big suitcase "
+								width="150"
+								height="150"
+								class="product__thumbnail-image"
+							/>
+						</picture>
+						<picture class="product__thumbnail">
+							<source src="/assets/images/product/suitcase_small_4.webp" />
+							<img
+								src="/assets/images/product/suitcase_small_4.webp"
+								alt="product red  big suitcase "
+								width="150"
+								height="150"
+								class="product__thumbnail-image"
+							/>
+						</picture>
+					</div>
+				</div>
+				<div class="product__col--right">
+					<header class="product__header">
+						<h1 id="productTitle" class="product__title">
+							Global Explorer Max Comfort Suitcase Pro
+						</h1>
+						<div class="recommendation-card__body">
+							<div
+								id="rating-star-list"
+								class="recommendation-card__rating product__rating"
+							>
+								<span class="icon-star icon-star__yellow"></span>
+								<span class="icon-star icon-star__yellow"></span>
+								<span class="icon-star icon-star__yellow"></span>
+								<span class="icon-star icon-star__yellow"></span>
+								<span class="icon-star icon-star__yellow"></span>
+							</div>
+							<span class="product__rating">(1 Client reviews)</span>
+						</div>
+						<div id="priceValue" class="product__price">$200</div>
+					</header>
+					<section class="product__body">
+						<p class="product__description">
+							The new Global Explorer Max Comfort Suitcase Pro is a bold
+							reimagining of travel essentials, designed to elevate every
+							journey. Made with at least 30% recycled materials, its
+							lightweight yet impact-resistant shell combines eco-conscious
+							innovation with rugged durability.
+						</p>
+						<p class="product__description">
+							The ergonomic handle and GlideMotion spinner wheels ensure
+							effortless mobility while making a statement in sleek design.
+							Inside, the modular compartments and adjustable straps keep your
+							belongings secure and neatly organized, no matter the destination.
+						</p>
+					</section>
+					<form id="product-form">
+						<fieldset class="product__options-group product__form">
+							<legend class="visually-hidden">Product options</legend>
+
+							<div class="product__form-item">
+								<label for="selectSize" class="text--secondary text--bold"
+									>Size</label
+								>
+								<select
+									name="size"
+									id="selectSize"
+									class="product__select-input"
+								>
+									<option value="" default>Choose option</option>
+									<option value="S">S</option>
+									<option value="M">M</option>
+									<option value="L">L</option>
+									<option value="XL">XL</option>
+									<option value="S-L">S-L</option>
+									<option value="S, M, XL">S,M,XL</option>
+								</select>
+							</div>
+							<div class="product__form-item">
+								<label for="selectColor" class="text--secondary text--bold"
+									>Color</label
+								>
+								<select
+									name="color"
+									id="selectColor"
+									class="product__select-input"
+								>
+									<option value="" default>Choose option</option>
+									<option value="red">red</option>
+									<option value="blue">blue</option>
+									<option value="green">green</option>
+									<option value="black">black</option>
+									<option value="grey">grey</option>
+									<option value="yellow">yellow</option>
+									<option value="pink">pink</option>
+								</select>
+							</div>
+							<div class="product__form-item">
+								<label for="selectCategory" class="text--secondary text--bold"
+									>Category</label
+								>
+								<select
+									name="category"
+									id="selectCategory"
+									class="product__select-input"
+								>
+									<option value="" default>Choose option</option>
+									<option value="carry-ons">carry ons</option>
+									<option value="suitcases">suitcases</option>
+									<option value="luggage sets">luggage sets</option>
+									<option value="kids' luggage">kids' luggage</option>
+								</select>
+							</div>
+							<div class="product__form-item product__flex-row">
+								<div id="inputPcs" class="product__input-pcs">
+									<div id="decrement" class="product__input-item pointer">
+										-
+									</div>
+									<input
+										type="text"
+										name="pieces"
+										id="qty"
+										class="product__input-number"
+										value="1"
+										aria-label="quantity"
+										inputmode="numeric"
+										pattern="[0-9]*"
+										disabled
+									/>
+									<div id="increment" class="product__input-item pointer">
+										+
+									</div>
+								</div>
+								<button class="btn-primary product__input-button">
+									Add To Cart
+								</button>
+							</div>
+						</fieldset>
+					</form>
+					<footer class="product__footer">
+						Payment:
+						<picture>
+							<source src="/assets/images/icons/visa_pay_logo.webp" />
+							<img src="/assets/images/icons/visa_pay_logo.webp" alt="icon " />
+						</picture>
+						<picture>
+							<source src="/assets/images/icons/american_express_logo.webp" />
+							<img
+								src="/assets/images/icons/american_express_logo.webp"
+								alt="icon "
+							/>
+						</picture>
+						<picture>
+							<source src="/assets/images/icons/master_card_logo.webp" />
+							<img
+								src="/assets/images/icons/master_card_logo.webp"
+								alt="icon "
+							/>
+						</picture>
+						<picture>
+							<source src="/assets/images/icons/paypal_logo.webp" />
+							<img src="/assets/images/icons/paypal_logo.webp" alt="icon " />
+						</picture>
+					</footer>
+				</div>
+			</article>
+			<section class="info product-list product-list--mounted container">
+				<header>
+					<ul class="info__nav">
+						<li class="info__nav--link pointer">
+							<div id="detailsTab" class="info__title info__active">
+								DETAILS
+							</div>
+						</li>
+						<li class="info__nav--link pointer">
+							<div id="reviewsTab" class="info__title">REVIEWS</div>
+						</li>
+						<li class="info__nav--link pointer">
+							<div id="policyTab" class="info__title">SHIPPING POLICY</div>
+						</li>
+					</ul>
+				</header>
+				<div id="info-container">
+					<div id="details-content" class="info__details-content">
+						<p>
+							Vestibulum commodo sapien non elit porttitor, vitae volutpat nibh
+							mollis. Nulla porta risus id neque tempor, in efficitur justo
+							imperdiet. Etiam a ex at ante tincidunt imperdiet. Nunc congue ex
+							vel nisl viverra, sit amet aliquet lectus ullamcorper. Praesent
+							luctus lacus non lorem elementum, eu tristique sapien suscipit.
+							Sed bibendum, ipsum nec viverra malesuada, erat nisi sodales
+							purus, eget hendrerit dui ligula eu enim. Ut non est nisi.
+							Pellentesque tristique pretium dolor eu commodo. Proin iaculis
+							nibh vitae lectus mollis bibendum. Quisque varius eget urna sit
+							amet luctus. Suspendisse potenti. Curabitur ac placerat est, sit
+							amet sodales risus. Pellentesque viverra dui auctor, ullamcorper
+							turpis pharetra, facilisis quam.
+						</p>
+						<br />
+						<p>
+							Proin iaculis nibh vitae lectus mollis bibendum. Quisque varius
+							eget urna sit amet luctus. Suspendisse potenti. Curabitur ac
+							placerat est, sit amet sodales risus. Pellentesque viverra dui
+							auctor, ullamcorper turpis pharetra, facilisis quam. Proin iaculis
+							nibh vitae lectus mollis bibendum.
+						</p>
+						<br />
+						<p>
+							Quisque varius eget urna sit amet luctus. Suspendisse potenti.
+							Curabitur ac placerat est, sit amet sodales risus. Pellentesque
+							viverra dui auctor, ullamcorper turpis pharetra, facilisis quam.
+						</p>
+					</div>
+					<div id="review-content" class="info__review-content info__hide">
+						<div class="info__col">
+							<div class="post__review-message post__title">
+								1 review for Global Explorer Max Comfort Suitcase Pro
+							</div>
+							<article class="post__review-card" aria-label="Customer review">
+								<div class="post__review--image">
+									<picture>
+										<source src="/assets/images/product/review_customer.webp" />
+										<img
+											src="/assets/images/product/review_customer.webp"
+											alt="customer avatar"
+										/>
+									</picture>
+								</div>
+								<div>
+									<div class="post__review-header">
+										<div class="post__author-name">
+											Ella Harper
+											<span class="post__date">/ June 11, 2025</span>
+										</div>
+										<div class="recommendation-card__rating">
+											<span class="icon-star icon-star__yellow"></span>
+											<span class="icon-star icon-star__yellow"></span>
+											<span class="icon-star icon-star__yellow"></span>
+											<span class="icon-star icon-star__yellow"></span>
+											<span class="icon-star icon-star__gray"></span>
+										</div>
+									</div>
+									<p class="post__text">
+										Proin iaculis nibh vitae lectus mollis bibendum. Quisque
+										varius eget urna sit amet luctus. Suspendisse potenti
+										curabitur ac placerat est, sit amet sodales risus.
+									</p>
+								</div>
+							</article>
+						</div>
+						<div class="info__col">
+							<div class="post__title">Add Review</div>
+							<div class="post__disclaimer">
+								Your email address won’t be shared with anybody. Required fields
+								have the symbol
+							</div>
+							<div class="post__rate">
+								RATE PRODUCT
+								<div class="recommendation-card__rating">
+									<span class="icon-star icon-star__empty"></span>
+									<span class="icon-star icon-star__empty"></span>
+									<span class="icon-star icon-star__empty"></span>
+									<span class="icon-star icon-star__empty"></span>
+									<span class="icon-star icon-star__empty"></span>
+								</div>
+							</div>
+							<form id="reviewForm" action="" class="post__form">
+								<textarea
+									class="post__input-review post__input"
+									name="comment"
+									id="comment"
+									rows="10"
+									placeholder="Your Review"
+									required
+									minlength="10"
+									maxlength="200"
+								></textarea>
+								<div class="post__flex-wrapper">
+									<input
+										id="name-input"
+										class="post__input post__input-item"
+										name="username"
+										type="text"
+										placeholder="Your Name*"
+										required
+										minlength="6"
+									/>
+									<input
+										id="email-input"
+										class="post__input post__input-item"
+										type="email"
+										name="mail"
+										placeholder="Your Email*"
+										required
+									/>
+								</div>
+								<div class="post__checkbox-wrapper">
+									<input
+										class="post__input-checkbox"
+										type="checkbox"
+										name="save_data"
+										id="save-checkbox"
+										required
+									/>
+									<div class="post__date">
+										Save my name, email, and website in this browser for when I
+										leave another comment.
+									</div>
+								</div>
+								<button type="submit" class="btn-primary post__button">
+									SUBMIT
+								</button>
+							</form>
+						</div>
+					</div>
+					<div id="policy-content" class="info__policy-content info__hide">
+						<p>
+							Vestibulum commodo sapien non elit porttitor, vitae volutpat nibh
+							mollis. Nulla porta risus id neque tempor, in efficitur justo
+							imperdiet. Etiam a ex at ante tincidunt imperdiet. Nunc congue ex
+							vel nisl viverra, sit amet aliquet lectus ullamcorper. Praesent
+							luctus lacus non lorem elementum, eu tristique sapien suscipit.
+							Sed bibendum, ipsum nec viverra malesuada, erat nisi sodales
+							purus, eget hendrerit dui ligula eu enim. Ut non est nisi.
+							Pellentesque tristique pretium dolor eu commodo. Proin iaculis
+							nibh vitae lectus mollis bibendum. Quisque varius eget urna sit
+							amet luctus. Suspendisse potenti. Curabitur ac placerat est, sit
+							amet sodales risus. Pellentesque viverra dui auctor, ullamcorper
+							turpis pharetra, facilisis quam.
+						</p>
+					</div>
+				</div>
+			</section>
+			<section class="also-like product-list product-list--mounted container">
+				<header>
+					<h2 class="also-like__title">You may also like</h2>
+				</header>
+				<div class="product-list__container"></div>
+			</section>
+		</main>
+		<div id="messagePopup" class="popup hide">
+			<div class="popup__message">Wrong email address</div>
+		</div>
+	</body>
+</html>

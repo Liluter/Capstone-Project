@@ -1,0 +1,76 @@
+@use "../base/reset";
+@use "../abstracts/mixins";
+@use "../components/buttons";
+@use "../abstracts/variables" as settings;
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+.team {
+	text-align: center;
+	margin-bottom: settings.$space-verybig;
+	&__title {
+		display: inline-block;
+		@include mixins.font(
+			settings.$font-black,
+			settings.$font-size-ultrabig,
+			"Montserrat",
+			sans-serif
+		);
+		border-bottom: settings.$border-regular solid settings.$primary;
+		line-height: 2em;
+	}
+	&__container {
+		padding: settings.$space-verybig 0;
+		width: 100%;
+		@extend %display-centered;
+		align-items: flex-start;
+		@media screen and (max-width: settings.$breakpoint-medium) {
+			flex-wrap: wrap;
+		}
+	}
+
+	&__item {
+		width: auto;
+		height: 100%;
+		margin: 0 settings.$space-medium;
+		margin-bottom: settings.$space-verybig;
+		flex: 1 1 180px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		row-gap: settings.$space-xbig;
+	}
+
+	&__image {
+		min-width: settings.$team-image-width;
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	&__name {
+		@include mixins.font(
+			settings.$font-bold,
+			clamp(settings.$font-size-regular, 2.5vw, settings.$font-size-large),
+			"Montserrat"
+		);
+	}
+	&__role {
+		@include mixins.font(
+			settings.$font-regular,
+			clamp(settings.$font-size-small, 1.5vw, settings.$font-size-medium),
+			"Montserrat"
+		);
+	}
+}
